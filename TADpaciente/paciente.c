@@ -25,15 +25,24 @@ printf ("Digite a idade do paciente:\n");
 scanf("%d", p->idade);
 printf("Qual a situação da saúde, digite B para bom, R para ruim e M para medio:\n");
 scanf("%s", escolha);
-if (escolha== 'B' && escolha=='b')
-
-
-    p->situacao_saude= "Boa";
+if (escolha == 'B') {
+                strcpy(p->situacao_saude, "Boa");
+            }
+            else if (escolha == 'M') {
+                strcpy(p->situacao_saude, "Media");
+            }
+            else if (escolha == 'R') {
+                strcpy(p->situacao_saude, "Ruim");
+            }
+            else {
+                printf("Escolha apenas as letras 'R', 'B' ou 'M':\n");
+                return NULL;
+            }
 
 
 
 Quantidade_pacientes++;
-qualquer=1}
+qualquer=1
     }}while(qualquer==1);
 
 void remover_paciente(Paciente *p){
