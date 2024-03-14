@@ -6,16 +6,17 @@ struct paciente{
     int situacao_saude;
 };
 
-Paciente* coletar_dados_paciente(Paciente *p, Quantidade_pacientes){
+Paciente* coletar_dados_paciente(Paciente *p, int quantidade_pacientes){
     
 do{
-        qualquer=0; char  choose;
+        int continuidade=0; 
+        char  choose;
    printf("Caso deseje cadastrar algum paciente digite \"S\"\n");
     scanf(" %c", &choose);
     choose = toupper(choose); 
 char escolha;
     if (choose == 'S'){
-      p = (Paciente*)realloc(p, (Quantidade_pacientes + 1) * sizeof(Pacientes));
+      p = (Paciente*)realloc(p, (quantidade_pacientes + 1) * sizeof(Pacientes));
 
     return p;
 
@@ -41,12 +42,12 @@ if (escolha == 'B') {
 
 
 
-Quantidade_pacientes++;
-qualquer=1
-    }}while(qualquer==1);
+quantidade_pacientes++;
+continuidade=1
+    }}while(continuidade==1);
  
- void escrever_pacientes(Paciente*p)
- void ler_pacientes(Paciente*p)
+ void escrever_pacientes(Paciente*, int quantidade_pacientes)
+ void ler_pacientes(Paciente*p, int quantidade_pacientes)
 void remover_paciente(Paciente *p){
 
 }
