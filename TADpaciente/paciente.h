@@ -3,7 +3,7 @@ typedef struct paciente Paciente;
 
 /*Funcao que adiciona um paciente,
   Recebe como parametro um ponteiro*/
-Paciente adicionar_paciente(Paciente *p);
+Paciente coletar_dados_paciente(Paciente *p, Quantidade_pacientes);
 
 /*Funcao que remove um paciente,
   Recebe como parametro um ponteiro*/

@@ -6,7 +6,7 @@ struct paciente{
     int situacao_saude;
 };
 
-Paciente coletar_dados_paciente(Paciente *p, Quantidade_pacientes){
+Paciente* coletar_dados_paciente(Paciente *p, Quantidade_pacientes){
     
 do{
         qualquer=0; char  choose;
@@ -44,7 +44,9 @@ if (escolha == 'B') {
 Quantidade_pacientes++;
 qualquer=1
     }}while(qualquer==1);
-
+ 
+ void escrever_pacientes(Paciente*p)
+ void ler_pacientes(Paciente*p)
 void remover_paciente(Paciente *p){
 
 }
