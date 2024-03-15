@@ -33,16 +33,16 @@ Paciente *pacientes = NULL;
                 pacientes = coletar_dados_paciente(pacientes, &quantidade_pacientes);
                 break;
             case '2':
-                // Implemente a função para listar pacientes
+             
                 break;
             case '3':
-                // Implemente a função para remover pacientes
+             
                 break;
             case '4':
-                // Implemente a função para editar pacientes
+               
                 break;
             case '5':
-                // Implemente a função para buscar pacientes
+                
                 break;
             case '6':
                 break;
