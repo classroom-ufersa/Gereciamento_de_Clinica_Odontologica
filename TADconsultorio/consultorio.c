@@ -1,4 +1,4 @@
-#inclide "configuracoes.h"
+#include "configuracoes.h"
 #include "consultorio.h"
 
 struct consultorio {

@@ -1,4 +1,4 @@
-#include 
+#include "paciente.h"
 
 struct paciente{
     char nome[Max];
