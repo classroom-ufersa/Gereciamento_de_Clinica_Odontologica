@@ -21,7 +21,7 @@ struct Listapaciente* lista_cria() {
 struct Listapaciente* listapaciente(struct Paciente* paciente, struct Listapaciente* Listapaciente) {
     struct Listapaciente* novo = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
     if (novo == NULL) {
-        printf("Erro na alocação \n");
+        printf("Erro na alocacao \n");
         exit(1);
     }
     novo->paciente = paciente;
@@ -82,10 +82,39 @@ void escrever_dados(Paciente* pacientes, int quantidade_pacientes)
    
  void ler_pacientes(Paciente*p, int quantidade_pacientes){
 
+}
+void remover_paciente_por_nome(struct Listapaciente* listapaciente) {
+    char nomeremover[200];
+    printf("Digite o nome do paciente que deseja remover:\n");
+    scanf(" %[^\n]", nomeremover);
 
- }
-void remover_paciente(Paciente *p){
+    struct Listapaciente* atual = *listapaciente;
+    struct Listapaciente* anterior = NULL;
 
+    while (atual != NULL && strcmp(atual->paciente->nome, nomeremover) != 0) {
+        anterior = atual;
+        atual = atual->next;
+    }
+
+    if (atual == NULL) {
+        printf("Paciente nao encontrado.\n");
+        return;
+    }
+
+    if (anterior == NULL) {
+        *listapaciente = atual->next;
+    } else {
+        anterior->next = atual->next;
+    }
+
+    free(atual->paciente);
+    free(atual);
+}
+
+}
+
+ Paciente editar_paciente(Paciente *pacientes, char[500]){
+}
 
 
 
