@@ -5,9 +5,12 @@
 #include <time.h>
 /*Renomeacao de um tipo estruturado*/
 typedef struct paciente Paciente;
-
+typedef struct listapaciente Listapaciente;
 /*Funcao que adiciona um paciente,
-  Recebe como parametro um ponteiro*/
+
+
+
+
 Paciente coletar_dados_paciente(Paciente *pacientes, int *quantidade_pacientes);
 
 /*Funcao que remove um paciente,
