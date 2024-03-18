@@ -18,8 +18,8 @@ struct Listapaciente* lista_cria() {
     return NULL;
 }
 
-struct Listapaciente* listapaciente(struct Paciente* paciente, struct Listapaciente* Listapaciente) {
-    struct Listapaciente* novo = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
+struct Listapaciente* listapaciente(Paciente* paciente, Listapaciente* Listapaciente) {
+    struct Listapaciente* novo = (Listapaciente*)malloc(sizeof( Listapaciente));
     if (novo == NULL) {
         printf("Erro na alocacao \n");
         exit(1);
@@ -29,7 +29,7 @@ struct Listapaciente* listapaciente(struct Paciente* paciente, struct Listapacie
     return novo;
 }
 
-struct Paciente* inserir_ordenado(struct Paciente* inicio, struct Paciente* novo) {
+struct Paciente* inserir_ordenado( Paciente* inicio, Paciente* novo) {
     if (inicio == NULL || strcmp(novo->nome, inicio->nome) < 0) {
         novo->proximo = inicio;
         return novo;
@@ -53,7 +53,7 @@ struct Listapaciente* coletar_dados_paciente() {
     scanf("%d", &novo_paciente->idade);
 
     printf("Qual a situacao da saude?\n");
-    getchar(); 
+  
     scanf("%[^\n]" novo_paciente->situacao_saude)
 
 }
@@ -78,12 +78,12 @@ struct Listapaciente* coletar_dados_paciente() {
 }
 
 
-void escrever_dados(Paciente* pacientes, int quantidade_pacientes) 
+void escrever_pacientes(Listapaciente*listapaciente) {}
    
- void ler_pacientes(Paciente*p, int quantidade_pacientes){
+ void ler_pacientes(Listapaciente*listapaciente){
 
 }
-void remover_paciente_por_nome(struct Listapaciente* listapaciente) {
+void remover_paciente_por_nome( Listapaciente* listapaciente) {
     char nomeremover[200];
     printf("Digite o nome do paciente que deseja remover:\n");
     scanf(" %[^\n]", nomeremover);
