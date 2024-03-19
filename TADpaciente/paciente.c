@@ -1,3 +1,5 @@
+#include "paciente.h"
+
 struct Listapaciente* lista_cria() {
     return NULL;
 }
