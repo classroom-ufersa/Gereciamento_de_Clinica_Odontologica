@@ -128,7 +128,7 @@ void editar_paciente(struct Listapaciente* listapaciente) {
 void escrever_pacientes(struct Listapaciente* listapaciente) {}
 
 void ler_pacientes(struct Listapaciente* listapaciente) {}
-
+void pacientes_atendidos(struct Listapaciente*listapaciente){}
 
     
 
