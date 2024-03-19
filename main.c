@@ -7,17 +7,6 @@ int main() {
     char escolha;
     
 
-    do {
-        printf("\nMenu:\n");
-        printf("1 - Adicionar paciente\n");
-        printf("2 - Listar pacientes\n");
-        printf("3 - Remover paciente\n");
-        printf("4 - Editar paciente\n");
-        printf("5 - Buscar paciente\n");
-        printf("6 - Sair\n");
-        printf("Escolha uma opcao: ");
-        scanf(" %c", &escolha);
-
         switch (escolha) {
             case '1':
                 lista_pacientes = coletar_dados_paciente(lista_pacientes);
