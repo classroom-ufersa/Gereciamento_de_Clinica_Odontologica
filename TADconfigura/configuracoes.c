@@ -1,8 +1,10 @@
 #include "configuracoes.h"
 
 void menu(void){
-    printf("Bem vindo ao Menu da Clinica '' !\n");
-    printf("Gerenciamento Clinica Odontologica.\n");
+    int opcao;
+    printf("Bem vindo ao Menu da Clinica!\n");
+    printf("Escolha uma das opcoes a seguir:\n");
+    scanf("%d",&opcao);
     printf("1-Adicionar consultorio\n");
     printf("2-Remover consultorio \n");
     printf("3-Adicionar paciente\n");

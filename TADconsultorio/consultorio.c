@@ -5,12 +5,12 @@ struct consultorio {
     int identificacao;
     char especialidade[50];
     char equipamentos_disponiveis[50];
-    Paciente* pacientes;
+     struct Listapacientes*pac;
     
 };
 
 struct listaconsultorio {
-    struct Concultorio* consultorio;
+    struct next_consultorio;
     struct Listapaciente* next;
 };
 
@@ -30,14 +30,14 @@ struct Listaconsultorio* listaconsultorio(Consultorio* consultorio, Listaconsult
 }
 
 struct Consultorio* inserir_ordenado( Consultorio* inicio, Consultorio* novo) {
-    if (inicio == NULL || strcmp(novo->identificacao, inicio->identificacao) < 0) {
+    if (inicio == NULL || (novo->identificacao, inicio->identificacao) < 0) {
         novo->proximo = inicio;
         return novo;
     }
     struct Consultorio* atual = inicio;
-    while (atual->proximo != NULL && strcmp(novo->identificacao, atual->proximo->identificacao) >= 0) {
+    while (atual->proximo != NULL && (novo->identificacao, atual->proximo->identificacao) >= 0) {
         atual = atual->proximo;
-    }
+    } //mudar depois porque tem que ser ordenado por id nao por nome.
     novo->proximo = atual->proximo;
     atual->proximo = novo;
     return inicio;
@@ -53,9 +53,7 @@ struct Listaconsultorio* coletar_dados_consultorio() {
 
     printf("Digite os equipamentos disponiveis: \n");
     scanf("%[^\n]" novo_consultorio->equipamentos_disponiveis);
-    
-//chamar a funcao cadastrar paciente lojy
-}
+    }
 
 void escrever_consultorio(Listaconsultorio *listaconsultorio) {
     
@@ -96,7 +94,24 @@ void remover_consultorio( Listaconsultorio *listaconsultorio) {
 Consultorio adicionar_consultorio(Consultorio *c){
 
 }
-
+void verificar_lista_vazia(Listaconsultorio *lista_consultorio){
+    if(lista_consultorio==NULL){
+    return 1;}
+return 0;
+}
 void remover_consultorio(Consultorio *c){
   
+}
+Listaconsultorio *buscar_por_consultorios(Listaconsultorio* lista_consultorio){
+if(lista_consultorio==NULL){//funcao criada para percorrer a lista de consultorios(falta adicionar coisas ainda), mas eu mudei para main, para nao usar função :) deixei aqui qualquer coisa eu mude de ideia.
+    printf("Lista vazia");
+    return 1;
+}
+    
+    Listaconsultorio*variaveltemp = lista_consultorio;
+    while(variaveltemp->next_consultorio!=NULL){
+
+    variaveltemp= variaveltemp->next_consultorio;
+    }
+    return variaveltemp;
 }
