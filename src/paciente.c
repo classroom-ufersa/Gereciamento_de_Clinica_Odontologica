@@ -1,9 +1,11 @@
 #include "paciente.h"
 
+/*Lista encadeada de pacientes, inicia com nenhum paciente na lista*/
 struct Listapaciente* lista_cria() {
     return NULL;
 }
 
+/*Funcao que insere paciente de forma ordenada*/
 struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct paciente* novo) {
     struct Listapaciente* new_node = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
     if (new_node == NULL) {
@@ -28,6 +30,7 @@ struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, str
     return inicio;
 }
 
+/*Funcao que coleta os dados dos pacientes*/
 struct Paciente* coletar_dados_paciente() {
     struct paciente* novo_paciente = (struct paciente*)malloc(sizeof(struct paciente));
     if (novo_paciente == NULL) {
@@ -53,6 +56,7 @@ struct Paciente* coletar_dados_paciente() {
     return novo_paciente;
 }
 
+/*Busca o paciente por meio do seu nome*/
 struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     char nomeprocurar[80];
     printf("Digite o nome que deseja buscar:\n");
@@ -127,10 +131,15 @@ void editar_paciente(struct Listapaciente* listapaciente) {
     }
 }
 
-void escrever_pacientes(struct Listapaciente* listapaciente) {}
 
-void ler_pacientes(struct Listapaciente* listapaciente) {}
-void pacientes_atendidos(struct Listapaciente*listapaciente){}
-
+void escrever_pacientes(struct Listapaciente* listapaciente) {
     
+}
 
+void ler_pacientes(struct Listapaciente* listapaciente) {
+    
+}
+
+void pacientes_atendidos(struct Listapaciente*listapaciente){
+    
+}
