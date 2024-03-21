@@ -1,7 +1,7 @@
 #include "paciente.h"
 
 
-/*Lista encadeada de pacientes, inicia com nenhum paciente na lista*/
+
 struct Listapaciente* lista_cria() {
     return NULL;
 }
@@ -61,7 +61,7 @@ struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na mai
 
 struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     char nomeprocurar[80];
-    //lembrar de colocar o while aqui para percorrer a  lista de consultorio; e em todas as funcoes que conter buscar
+    //leticia, lembrar de colocar o while aqui para percorrer a  lista de consultorio; e em todas as funcoes que conter buscar
     printf("Digite o nome que deseja buscar:\n");
     scanf(" %[^\n]", nomeprocurar);
      
@@ -94,7 +94,7 @@ void remover_paciente(struct Listapaciente* listapaciente, struct Pacientes_aten
 
 
 
-void editar_paciente(struct Listapaciente* listapaciente) {
+void editar_paciente(struct Listapaciente* listapaciente, char nome, int idade, char situacao_saude) {
    
         char novo_nome[500];
         int nova_idade;
