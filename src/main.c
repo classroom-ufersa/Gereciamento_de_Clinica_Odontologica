@@ -57,32 +57,14 @@ int main() {
             break;
           
             case '9':
-             printf("Remover paciente especifico:\n"); //o famoso fura fila :) //talvez seja melhor nao colocar
-             char paciente_escolhido;
-             printf("Digite o nome do paciente que deseja remover:\n");
-             scanf("%[^\n], paciente_escolhido");
-             lista_consultorios= buscar_pacientes(lista_consultorios, paciente_escolhido); 
-             struct Listapacientes*lista_atual= *listapaciente;
-
-             while(lista_atual!=NULL){
-             if (strcmp(lista_consultorios->pacientes->nome, paciente_escolhido)==NULL{
-                struct Lista_atendidos *lista_atendidos= 
-                strcpy(lista_consultorios->nome);
-                strcpy(lista_consultorios->idade);
-                strcpy(lista_consultorios->idade);
-                return lista_atendidos;
-
-             }
-             }
-
-            break;
-            case '10';
-            break;
+            }
+         
+           
             default:
                 printf("Opcao invalida. Tente novamente.\n");
                 break;
         }
-          while(escolha!= '')
+          while(escolha!= '9')
           }
           }
    

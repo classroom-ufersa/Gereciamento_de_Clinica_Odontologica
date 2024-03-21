@@ -1,6 +1,6 @@
 #include "configuracoes.h"
 #include "consultorio.h"
-
+#include "paciente.h"
 struct consultorio {
     int identificacao;
     char especialidade[50];

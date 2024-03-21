@@ -122,7 +122,9 @@ void editar_paciente(struct Listapaciente* listapaciente, char nome, int idade, 
 void escrever_pacientes(struct Listapaciente* listapaciente) {}
 
 void ler_pacientes(struct Listapaciente* listapaciente) {}
-void pacientes_atendidos(struct Listapaciente*listapaciente){}
+void pacientes_atendidos_escrever(struct Listapaciente*listapaciente){
+
+}
  
 
 
