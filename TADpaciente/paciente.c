@@ -5,7 +5,7 @@ struct Listapaciente* lista_cria() {
     return NULL;
 }
 
-struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct paciente* novo) {
+struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct Paciente* novo) {
     struct Listapaciente* new_node = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
     if (new_node == NULL) {
         printf("Erro na alocacao\n");
