@@ -1,7 +1,5 @@
 #include "paciente.h"
 
-
-
 struct Listapaciente* lista_cria() {
     return NULL;
 }
@@ -28,6 +26,7 @@ struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, str
 
     return inicio;
 }
+
 void verificar_lista_vazia(Listapaciente*lista_paciente_var){
     if (lista_paciente_var==NULL){
         return ;
@@ -37,8 +36,7 @@ void verificar_lista_vazia(Listapaciente*lista_paciente_var){
 
 struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na main depois.
     struct Paciente* novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
-
-
+    
     if (novo_paciente == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
@@ -52,12 +50,10 @@ struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na mai
 
     printf("Qual a situacao da saude?\n");
     scanf(" %[^\n]", novo_paciente->situacao_saude);
-
-
+    
     novo_paciente->proximo = NULL;
     return novo_paciente;
 }
-
 
 struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     char nomeprocurar[80];
@@ -77,7 +73,8 @@ struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     return NULL;
 }
 
-void remover_paciente(struct Listapaciente* listapaciente, struct Pacientes_atendidos*listaatendidos;) { //remove apenas o primeiro ciente  da lista
+//remove apenas o primeiro ciente  da lista
+void remover_paciente(struct Listapaciente* listapaciente, struct Pacientes_atendidos*listaatendidos;) {
  if (listapaciente==NULL)
    {
        printf("Lista Vazia:\n");
@@ -90,47 +87,38 @@ void remover_paciente(struct Listapaciente* listapaciente, struct Pacientes_aten
    free(lista_atual);
 }
 
-
-
-
-
 void editar_paciente(struct Listapaciente* listapaciente, char nome, int idade, char situacao_saude) {
    
-        char novo_nome[500];
-        int nova_idade;
-        char nova_situacao_saude[500];
+    char novo_nome[500];
+    int nova_idade;
+    char nova_situacao_saude[500];
         
-        
-        printf("Digite o novo nome do paciente;\n");
-        scanf(" %[^\n]", novo_nome);
+    printf("Digite o novo nome do paciente;\n");
+    scanf(" %[^\n]", novo_nome);
 
+    printf("Digite a nova idade:\n");
+    scanf("%d", &nova_idade);
 
-        printf("Digite a nova idade:\n");
-        scanf("%d", &nova_idade);
+    printf("Digite a nova situacao de saude:\n");
+    scanf(" %[^\n]", nova_situacao_saude);
 
+    strcpy(atual->paciente->nome, novo_nome);
+    atual->paciente->idade = nova_idade;
+    strcpy(atual->paciente->situacao_saude, nova_situacao_saude);
+}    
 
-        printf("Digite a nova situacao de saude:\n");
-
-        scanf(" %[^\n]", nova_situacao_saude);
-
-      strcpy(atual->paciente->nome, novo_nome);
-        atual->paciente->idade = nova_idade;
-        strcpy(atual->paciente->situacao_saude, nova_situacao_saude);
-    }
+void escrever_pacientes(struct Listapaciente* listapaciente) {
+    
 }
 
-void escrever_pacientes(struct Listapaciente* listapaciente) {}
+void ler_pacientes(struct Listapaciente* listapaciente) {
+    
+}
 
-void ler_pacientes(struct Listapaciente* listapaciente) {}
 void pacientes_atendidos_escrever(struct Listapaciente*listapaciente){
 
 }
  
-
-
-
-    
-}
 
 void pacientes_atendidos(struct Listapaciente*listapaciente){
     
