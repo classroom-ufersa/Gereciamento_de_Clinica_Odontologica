@@ -1,11 +1,20 @@
 #include "paciente.h"
 
+<<<<<<< HEAD:TADpaciente/paciente.c
 
+=======
+/*Lista encadeada de pacientes, inicia com nenhum paciente na lista*/
+>>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
 struct Listapaciente* lista_cria() {
     return NULL;
 }
 
+<<<<<<< HEAD:TADpaciente/paciente.c
 struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct Paciente* novo) {
+=======
+/*Funcao que insere paciente de forma ordenada*/
+struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct paciente* novo) {
+>>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
     struct Listapaciente* new_node = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
     if (new_node == NULL) {
         printf("Erro na alocacao\n");
@@ -35,8 +44,14 @@ void verificar_lista_vazia(Listapaciente*lista_paciente_var){
     return ;
 }
 
+<<<<<<< HEAD:TADpaciente/paciente.c
 struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na main depois.
     struct Paciente* novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
+=======
+/*Funcao que coleta os dados dos pacientes*/
+struct Paciente* coletar_dados_paciente() {
+    struct paciente* novo_paciente = (struct paciente*)malloc(sizeof(struct paciente));
+>>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
     if (novo_paciente == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
@@ -56,6 +71,7 @@ struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na mai
     return novo_paciente;
 }
 
+/*Busca o paciente por meio do seu nome*/
 struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     char nomeprocurar[80];
     //lembrar de colocar o while aqui para percorrer a  lista de consultorio; e em todas as funcoes que conter buscar
@@ -140,11 +156,23 @@ void editar_paciente(struct Listapaciente* listapaciente) {
     }
 }
 
+<<<<<<< HEAD:TADpaciente/paciente.c
 void escrever_pacientes(struct Listapaciente* listapaciente) {}
 
 void ler_pacientes(struct Listapaciente* listapaciente) {}
 void pacientes_atendidos(struct Listapaciente*listapaciente){}
  
+=======
+>>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
 
+void escrever_pacientes(struct Listapaciente* listapaciente) {
     
+}
 
+void ler_pacientes(struct Listapaciente* listapaciente) {
+    
+}
+
+void pacientes_atendidos(struct Listapaciente*listapaciente){
+    
+}
