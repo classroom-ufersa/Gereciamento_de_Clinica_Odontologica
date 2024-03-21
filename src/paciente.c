@@ -1,38 +1,29 @@
 #include "paciente.h"
 
-<<<<<<< HEAD:TADpaciente/paciente.c
 
-=======
 /*Lista encadeada de pacientes, inicia com nenhum paciente na lista*/
->>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
 struct Listapaciente* lista_cria() {
     return NULL;
 }
 
-<<<<<<< HEAD:TADpaciente/paciente.c
 struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct Paciente* novo) {
-=======
-/*Funcao que insere paciente de forma ordenada*/
-struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct paciente* novo) {
->>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
-    struct Listapaciente* new_node = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
-    if (new_node == NULL) {
+    struct Listapaciente* novo_no = (struct Listapaciente*)malloc(sizeof(struct Listapaciente));
+    if (novo_no == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
     }
 
-    new_node->paciente = novo;
-
+    novo_no->paciente = novo;//variavel criada para fazer comparacao
     if (inicio == NULL || strcmp(novo->nome, inicio->paciente->nome) < 0) {
-        new_node->next = inicio;
-        return new_node;
+        novo_no->next = inicio;
+        return novo_no;
     }
 
     Listapaciente* atual = inicio;
     while (atual->next != NULL && strcmp(novo->nome, atual->next->paciente->nome) >= 0) {
         atual = atual->next;
     }
-    new_node->next = atual->next;
+    novo_no->next = atual->next;
     atual->next = new_node;
 
     return inicio;
@@ -44,14 +35,10 @@ void verificar_lista_vazia(Listapaciente*lista_paciente_var){
     return ;
 }
 
-<<<<<<< HEAD:TADpaciente/paciente.c
 struct Paciente* coletar_dados_paciente() {//essa funcao deve ser chamada na main depois.
     struct Paciente* novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
-=======
-/*Funcao que coleta os dados dos pacientes*/
-struct Paciente* coletar_dados_paciente() {
-    struct paciente* novo_paciente = (struct paciente*)malloc(sizeof(struct paciente));
->>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
+
+
     if (novo_paciente == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
@@ -71,7 +58,7 @@ struct Paciente* coletar_dados_paciente() {
     return novo_paciente;
 }
 
-/*Busca o paciente por meio do seu nome*/
+
 struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     char nomeprocurar[80];
     //lembrar de colocar o while aqui para percorrer a  lista de consultorio; e em todas as funcoes que conter buscar
@@ -90,86 +77,56 @@ struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     return NULL;
 }
 
-void remover_paciente_por_nome(struct Listapaciente* listapaciente) {
-    char nomeremover[200];
-    printf("Digite o nome do paciente que deseja remover:\n");
-    scanf(" %[^\n]", nomeremover);
-
-Listaconsultorio= buscar_por_consultorios(Listaconsultorio );
-    struct Listapaciente* atual = *listapaciente;
-    struct Listapaciente* anterior = NULL;
-
-    while (atual != NULL && strcmp(atual->paciente->nome, nomeremover) != 0) {
-        anterior = atual;
-        atual = atual->next;
-    }
-
-    if (atual == NULL) {
-        printf("Paciente nao encontrado.\n");
-        return;
-    }
-
-    if (anterior == NULL) {
-        *listapaciente = atual->next;
-    } else {
-        anterior->next = atual->next;
-    }
-
-    free(atual->paciente);
-    free(atual);
+void remover_paciente(struct Listapaciente* listapaciente, struct Pacientes_atendidos*listaatendidos;) { //remove apenas o primeiro ciente  da lista
+ if (listapaciente==NULL)
+   {
+       printf("Lista Vazia:\n");
+     return 0;
+   }
+   struct ListaPaciente* lista_atual= *listapaciente;
+   *listapaciente= (*listapaciente)->proximo;
+   struct Pacientes_atendidos*listaatendidos= *lista_atual
+   //aqui a gente pode abrir um arquivo de texto ou adicionar esse paciente a outra lista :)
+   free(lista_atual);
 }
 
+
+
+
+
 void editar_paciente(struct Listapaciente* listapaciente) {
-    char nomeeditar[500];
-    printf("Digite o nome do Paciente que deseja editar os dados:\n");
-    scanf(" %[^\n]", nomeeditar);
-    struct Listapaciente* atual = listapaciente;
-
-    while (atual != NULL && strcmp(atual->paciente->nome, nomeeditar) != 0) {
-        atual = atual->next;
-    }
-
-    if (atual == NULL) {
-        printf("Paciente nao encontrado.\n");
-        return;
-    } else {
-        char novonome[500];
-        int novaidade;
-        char newsituacao_saude[500];
+   
+        char novo_nome[500];
+        int nova_idade;
+        char nova_situacao_saude[500];
         
         
         printf("Digite o novo nome do paciente;\n");
-        scanf(" %[^\n]", novonome);
+        scanf(" %[^\n]", novo_nome);
 
 
         printf("Digite a nova idade:\n");
-        scanf("%d", &novaidade);
+        scanf("%d", &nova_idade);
 
 
         printf("Digite a nova situacao de saude:\n");
 
-        scanf(" %[^\n]", newsituacao_saude);
+        scanf(" %[^\n]", nova_situacao_saude);
 
-      strcpy(atual->paciente->nome, novonome);
-        atual->paciente->idade = novaidade;
-        strcpy(atual->paciente->situacao_saude, newsituacao_saude);
+      strcpy(atual->paciente->nome, novo_nome);
+        atual->paciente->idade = nova_idade;
+        strcpy(atual->paciente->situacao_saude, nova_situacao_saude);
     }
 }
 
-<<<<<<< HEAD:TADpaciente/paciente.c
 void escrever_pacientes(struct Listapaciente* listapaciente) {}
 
 void ler_pacientes(struct Listapaciente* listapaciente) {}
 void pacientes_atendidos(struct Listapaciente*listapaciente){}
  
-=======
->>>>>>> 7dbada9943088b8b754e91d0033be3fa080e9ef4:src/paciente.c
 
-void escrever_pacientes(struct Listapaciente* listapaciente) {
-    
-}
 
-void ler_pacientes(struct Listapaciente* listapaciente) {
+
     
 }
 

@@ -14,11 +14,12 @@ typedef struct paciente { //Criacao de uma estrutura para os dados do paciente :
 
 typedef listapaciente  {
     struct Paciente* paciente;
-    struct Listapaciente* next;
+    struct Listapaciente* proximo;
+    struct Pacientes_atendidos *lista;
 }Listapaciente;
 
 typedef struct pacientesatendidos{
-  struct Pacientes_atendidos next;
+  struct Pacientes_atendidos*prox;
 }Pacientes_atendidos;
 
 

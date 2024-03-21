@@ -102,16 +102,24 @@ return 0;
 void remover_consultorio(Consultorio *c){
   
 }
-Listaconsultorio *buscar_por_consultorios(Listaconsultorio* lista_consultorio){
-if(lista_consultorio==NULL){//funcao criada para percorrer a lista de consultorios(falta adicionar coisas ainda), mas eu mudei para main, para nao usar função :) deixei aqui qualquer coisa eu mude de ideia.
-    printf("Lista vazia");
-    return 1;
-}
-    
-    Listaconsultorio*variaveltemp = lista_consultorio;
-    while(variaveltemp->next_consultorio!=NULL){
-
-    variaveltemp= variaveltemp->next_consultorio;
+void buscar_por_paciente(Listaconsultorio* lista_consultorio, char* nome_paciente) {
+    if (lista_consultorio == NULL) {
+        printf("Lista de consultórios vazia.\n");
+        return;
     }
-    return variaveltemp;
-}
+
+    Listaconsultorio* consultorio_atual = lista_consultorio;
+    while (consultorio_atual != NULL) {
+     
+        Listapacientes* paciente_atual = consultorio_atual->lista_pacientes;
+        while (paciente_atual != NULL) {
+            if (strcmp(paciente_atual->paciente->nome, nome_paciente) == 0) {
+                printf("Paciente encontrado: %s\n", paciente_atual->paciente->nome);
+               
+                return;
+            }
+            paciente_atual = paciente_atual->next;
+        }
+        
+        consultorio_atual = consultorio_atual->next_consultorio;
+    }
