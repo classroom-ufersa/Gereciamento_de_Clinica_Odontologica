@@ -37,8 +37,7 @@ int main() {
                    }
                 break;
             case '4':
-                //aqui remove o primeiro da lista, igual a uma fila;
-                remover_paciente(lista_pacientes);
+               
                 break;
             case '5':
                 char nomeeditar[500];

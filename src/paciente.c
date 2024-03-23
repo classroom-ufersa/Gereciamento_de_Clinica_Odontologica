@@ -25,9 +25,19 @@ Listapaciente* addPaciente(struct Paciente *paciente, struct Listapaciente *list
         exit(1);
     }
     novo->paciente = paciente;
-    novo->proximo = lista;
-    return novo; 
+    novo->proximo = NULL;
+    struct Listapaciente *atual = lista;
+    while (atual->proximo != NULL && strcmp(paciente->nome, atual->proximo->paciente->nome) > 0)
+    {
+        atual = atual->proximo;
+    }
+
+    novo->proximo = atual->proximo;
+    atual->proximo = novo;
+
+    return lista;
 }
+
 
 struct Paciente *coletar_Dados(void)
 {
@@ -61,8 +71,10 @@ void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendido
 
     
     paciente_removido->proximo = lista_atendidos->primeiro;
+     printf("Paciente removido: %s %d %s\n", paciente_removido->paciente->nome, paciente_removido->paciente->idade,paciente_removido->paciente->situacao_saude);
+
     lista_atendidos->primeiro = paciente_removido;
-    printf("Paciente removido: %s %d %s\n", paciente_removido->paciente->nome, paciente_removido->paciente->idade,paciente_removido->paciente->situacao_saude);
+   
 }
 
 
