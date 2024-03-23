@@ -27,13 +27,12 @@ struct Listapaciente* adicionar_paciente(struct Listapaciente* lista_pacientes) 
 
     printf("Digite a idade do paciente: ");
     scanf("%d", &novo_paciente->paciente.idade);
-    getchar(); // Limpar o buffer de entrada
+    getchar(); 
 
-    printf("Qual a situacao da saude do paciente?\n");
-    scanf(" %[^\n]", novo_paciente->paciente.situacao_saude);
-
-    novo_paciente->proximo = lista_pacientes;
-
+    printf("Qual a situacao da saude?\n");
+    scanf(" %[^\n]", novo_paciente->situacao_saude);
+    
+    novo_paciente->proximo = NULL;
     return novo_paciente;
 }
 
