@@ -14,14 +14,23 @@ typedef struct Listapaciente {
     struct Listapaciente *proximo;
     
 } Listapaciente;
+typedef struct listageral{
+    struct Paciente *paciente;
+    struct Listageral  *prox;
+}Listageral;
 
+
+typedef struct listatendidos{
+    Paciente *paciente;
+    struct Listaatendidos*primeiro;
+}Listaatendidos;
 
 Listapaciente* lista_cria_paciente();
 Listapaciente* addPaciente(struct Paciente *paciente, Listapaciente *lista);
 struct Paciente *coletar_Dados(void);
 void liberar_paciente(struct Paciente* paciente);
-void remover_paciente(struct Listapaciente *lista_geral);
-void editar_paciente(struct Listapaciente *lista);
+void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendidos) 
+ editar_paciente(struct Listapaciente *lista);
 
 #endif // PACIENTE_H_INCLUDED
 

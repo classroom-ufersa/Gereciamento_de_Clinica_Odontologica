@@ -9,7 +9,6 @@ Listapaciente* lista_cria_paciente() {
     return NULL;
 }
 
-
 void verificar_lista_vazia(struct Listapaciente* lista_paciente_var){
     if (lista_paciente_var==NULL){
         printf("Lista vazia\n");
@@ -51,24 +50,23 @@ void liberar_paciente(struct Paciente* paciente) {
     free(paciente);
     paciente = NULL; 
 }
-
-void remover_paciente(struct Listapaciente *lista_geral) {
+void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendidos) {
     if (lista_geral == NULL) {
-        printf("Lista Vazia:\n");
+        printf("Lista Vazia\n");
         return;
     }
 
-    struct Listapaciente *lista_atual = lista_geral;
-    lista_geral = (lista_geral)->proximo;
+    Listapaciente *paciente_removido = lista_geral;
+    lista_geral = paciente_removido->proximo;
 
-    struct Listapaciente *proximo;
-    while (lista_atual != NULL) {
-        proximo = lista_atual->proximo;
-        free(lista_atual);
-        lista_atual = proximo;
-    }
-    printf("Todos os pacientes foram removidos.\n");
+    
+    paciente_removido->proximo = lista_atendidos->primeiro;
+    lista_atendidos->primeiro = paciente_removido;
+    printf("Paciente removido: %s %d %s\n", paciente_removido->paciente->nome, paciente_removido->paciente->idade,paciente_removido->paciente->situacao_saude);
 }
+
+
+   
 
 void editar_paciente(struct Listapaciente *lista) {
     char nome[500];
@@ -114,5 +112,9 @@ struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
         variaveltemp = variaveltemp->proximo;
     }
     printf("Desculpe, nao conseguimos encontrar esse nome.\n");
+}
+
+void lista_atendidos(){
+
 }
 
