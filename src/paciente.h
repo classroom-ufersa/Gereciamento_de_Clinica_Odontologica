@@ -18,8 +18,10 @@ typedef struct pacientesatendidos {
     struct pacientesatendidos* prox;
 } Pacientes_atendidos;
 
+
+
+struct Listapaciente* insere_paciente_ordenado(struct Listapaciente* inicio, struct Paciente* novo);
+struct Paciente* coletar_dados_paciente();
+void remover_paciente(struct Listapaciente* listapaciente);
+void editar_paciente(struct Listapaciente* listapaciente);
 #endif
-
-
-
-

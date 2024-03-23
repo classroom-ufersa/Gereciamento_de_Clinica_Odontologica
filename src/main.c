@@ -13,9 +13,7 @@ int main() {
 
         switch (escolha) {
             case '1':
-                
-
-    break;
+            break;
             case '2':
                 
                 break;
@@ -32,21 +30,22 @@ int main() {
 
                if (aux_consultorio != NULL) {
             aux_consultorio->pacientes = adicionar_paciente(aux_consultorio->pacientes);
+        
              }
             else {
                printf("Consultorio nao encontrado.\n");
                    }
                 break;
             case '4':
-                printf("Opcao remover paciente:"); //aqui remove o primeiro da lista, igual a uma fila;
-                lista_pacientes= remover_paciente(lista_pacientes);
+                //aqui remove o primeiro da lista, igual a uma fila;
+                remover_paciente(lista_pacientes);
                 break;
             case '5':
                 char nomeeditar[500];
                 printf("Digite o nome do Paciente que deseja editar os dados:\n");
                 scanf(" %[^\n]", nomeeditar);
-                lista_consultorios= buscar_consultorio(lista_consultorios, nomeeditar);
-                lista_pacientes= editar_pacientes(lista_pacientes);
+                 buscar_consultorio(lista_consultorios, nomeeditar);
+                 editar_pacientes(lista_pacientes);
                 break;
             case '6':
             
