@@ -1,24 +1,30 @@
-#ifndef PACIENTE_H
-#define PACIENTE_H
+#ifndef PACIENTE_H_INCLUDED
+#define PACIENTE_H_INCLUDED
 
-typedef struct paciente {
-    char nome[500];
+// Definição da estrutura do Paciente
+typedef struct Paciente {
+    char nome[50];
     int idade;
-    char situacao_saude[50];
-    struct paciente* proximo;
+    char situacao_saude[100];
 } Paciente;
 
-typedef struct listapaciente {
-    struct paciente* paciente;
-    struct listapaciente* proximo;
-    struct pacientesatendidos* lista;
+// Definição da estrutura da Lista de Pacientes
+typedef struct Listapaciente {
+    struct Paciente *paciente;
+    struct Listapaciente *proximo;
+    
 } Listapaciente;
 
-typedef struct pacientesatendidos {
-    struct pacientesatendidos* prox;
-} Pacientes_atendidos;
 
-#endif
+Listapaciente* lista_cria_paciente();
+Listapaciente* addPaciente(struct Paciente *paciente, Listapaciente *lista);
+struct Paciente *coletar_Dados(void);
+void liberar_paciente(struct Paciente* paciente);
+void remover_paciente(struct Listapaciente *lista_geral);
+void editar_paciente(struct Listapaciente *lista);
+
+#endif // PACIENTE_H_INCLUDED
+
 
 
 
