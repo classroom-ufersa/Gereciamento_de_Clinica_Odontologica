@@ -76,10 +76,6 @@ void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendido
     lista_atendidos->primeiro = paciente_removido;
    
 }
-
-
-   
-
 void editar_paciente(struct Listapaciente *lista) {
     char nome[500];
     int idade;
@@ -126,7 +122,12 @@ struct Paciente* buscarpornome(struct Listapaciente* listapaciente) {
     printf("Desculpe, nao conseguimos encontrar esse nome.\n");
 }
 
-void lista_atendidos(){
+void listar_atendidos(Listaatendidos *lista_atendidos){
+    struct Listaatendidos*lista= lista_atendidos;
+    printf("Pacientes atendidos:\n");
+    while(lista!=NULL){
+        printf("Nome: %s\n Idade %d\n Situacao de saude:%s\n", lista_atendidos->paciente->nome, lista_atendidos->paciente->idade, lista_atendidos->paciente->situacao_saude );
+    }
 
 }
 
