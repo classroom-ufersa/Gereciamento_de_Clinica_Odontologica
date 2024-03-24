@@ -1,95 +1,76 @@
-#include "paciente.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "paciente.h"
 
-Listapaciente* lista_cria_paciente() {
-    return NULL;
-}
-
-Listapaciente* addPaciente(struct Paciente *paciente, struct Listapaciente *lista)
-{
-    struct Listapaciente *novo = (struct Listapaciente *)malloc(sizeof(struct Listapaciente));
-    if (novo == NULL)
-    {
-        printf("Memoria insuficiente \n");
+struct Paciente* coletar_dados_paciente() {
+    struct Paciente* novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
+    if (novo_paciente == NULL) {
+        printf("Erro na alocacao\n");
         exit(1);
     }
-    novo->paciente = paciente;
-    novo->proximo = lista;
-    return novo; 
-}
 
-struct Paciente *coletar_Dados(void)
-{
-    struct Paciente *novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
-    if (novo_paciente == NULL)
-    {
-        printf("Memoria insuficiente \n");
-        exit(1);
-    }
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]", novo_paciente->nome);
+
     printf("Digite a idade do paciente: ");
-    scanf(" %d", &novo_paciente->idade);
-    printf("Digite a doenca do paciente: ");
+    scanf("%d", &novo_paciente->idade);
+    getchar();
+
+    printf("Qual a situacao da saude do paciente?\n");
     scanf(" %[^\n]", novo_paciente->situacao_saude);
+
+    novo_paciente->proximo = NULL;
+
     return novo_paciente;
 }
-
-void liberar_paciente(struct Paciente* paciente) {
-    free(paciente);
-    paciente = NULL; 
-}
-
-void remover_paciente(struct Listapaciente *lista_geral) {
-    if (lista_geral == NULL) {
-        printf("Lista Vazia:\n");
-        return;
+struct ListaPaciente* inserir_paciente_ordenado(struct ListaPaciente* lista_pacientes, struct Paciente* novo_paciente) {
+    struct ListaPaciente* novo_no = (struct ListaPaciente*)malloc(sizeof(struct ListaPaciente));
+    if (novo_no== NULL) {
+        printf("Erro na alocacao\n");
+        exit(1);
     }
 
-    struct Listapaciente *lista_atual = lista_geral;
-    lista_geral = (lista_geral)->proximo;
+    novo_no->paciente = novo_paciente;
 
-    struct Listapaciente *proximo;
-    while (lista_atual != NULL) {
-        proximo = lista_atual->proximo;
-        free(lista_atual);
-        lista_atual = proximo;
+    if (lista_pacientes == NULL || strcmp(novo_paciente->nome, lista_pacientes->paciente->nome) < 0) {
+        novo_no->proximo = lista_pacientes;
+        return novo_no;
     }
-    printf("Todos os pacientes foram removidos.\n");
-}
 
-void editar_paciente(struct Listapaciente *lista) {
-    char nome[500];
-    int idade;
-    char situacao_saude[500];
+    struct ListaPaciente* anterior = lista_pacientes;
+    struct ListaPaciente* atual = lista_pacientes->proximo;
 
-    printf("Digite o nome do paciente que deseja editar:\n");
-    scanf(" %[^\n]", nome);
-
-    struct Listapaciente *atual = lista;
-    while (atual != NULL && strcmp(atual->paciente->nome, nome) != 0) {
+    while (atual != NULL && strcmp(novo_paciente->nome, atual->paciente->nome) > 0) {
+        anterior = atual;
         atual = atual->proximo;
     }
 
-    if (atual != NULL) {
-        printf("Digite o novo nome do paciente:\n");
-        scanf(" %[^\n]", nome);
+    novo_no->proximo = atual;
+    anterior->proximo = novo_no;
 
-        printf("Digite a nova idade:\n");
-        scanf("%d", &idade);
+    return lista_pacientes;
+}
+void buscar_por_nome_paciente(struct ListaPaciente* lista) {
+    char nome_buscado[50];
+    printf("Digite o nome que deseja buscar:\n");
+    scanf(" %[^\n]", nome_buscado);
 
-        printf("Digite a nova situacao de saude:\n");
-        scanf(" %[^\n]", situacao_saude);
+    struct ListaPaciente* lista_busca = lista;
+    while (lista_busca != NULL && strcmp(lista_busca->paciente->nome, nome_buscado) != 0) {
+        lista_busca = lista_busca->proximo;
+    }
 
-        strcpy(atual->paciente->nome, nome);
-        atual->paciente->idade = idade;
-        strcpy(atual->paciente->situacao_saude, situacao_saude);
-
-        printf("Paciente atualizado com sucesso!\n");
+    if (lista_busca != NULL) {
+        printf("Paciente encontrado:\n");
+        printf("Nome: %s\n", lista_busca->paciente->nome);
+        printf("Idade: %d\n", lista_busca->paciente->idade);
+        printf("Situacao de Saude: %s\n", lista_busca->paciente->situacao_saude);
+    } else {
+        printf("Paciente nao encontrado.\n");
     }
 }
 
-  
+
+      
 

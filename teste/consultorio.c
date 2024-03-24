@@ -1,31 +1,50 @@
-#include "consultorio.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "consultorio.h"
+#include"paciente.h"
 
-Listaconsultorio* lista_cria_consultorios() {
-    return NULL;
-}
-
-struct Consultorio* adicionar_consultorio(struct Consultorio* lista_consultorios) {
-    struct Consultorio* novo_consultorio = (struct Consultorio*)malloc(sizeof(struct Consultorio));
+ ListaConsultorio* adicionar_consultorio(struct ListaConsultorio* lista_consultorios) {
+    struct ListaConsultorio* novo_consultorio = (struct ListaConsultorio*)malloc(sizeof(struct ListaConsultorio));
     if (novo_consultorio == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
     }
-    novo_consultorio->lista_paciente = NULL;
-    novo_consultorio->proximo = lista_consultorios;
 
-    return novo_consultorio;
+    novo_consultorio->consultorio = (struct Consultorio*)malloc(sizeof(struct Consultorio));
+    if (novo_consultorio->consultorio == NULL) {
+        printf("Erro na alocacao\n");
+        exit(1);
+    }
+
+    printf("Digite o ID do consultorio: ");
+    scanf("%d", &novo_consultorio->consultorio->id);
+    getchar();
+    printf("Digite a especialidade desse consultorio: ");
+    scanf("%[^\n]", novo_consultorio->consultorio->especialidade);
+    getchar();
+    printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
+    scanf("%[^\n]", novo_consultorio->consultorio->equipamentos_disponiveis);
+    getchar();
+
+    novo_consultorio->proximo = NULL;
+
+    if (lista_consultorios == NULL || novo_consultorio->consultorio->id < lista_consultorios->consultorio->id) {
+        novo_consultorio->proximo = lista_consultorios;
+        return novo_consultorio;
+    }
+
+    struct ListaConsultorio* anterior = lista_consultorios;
+    struct ListaConsultorio* atual = lista_consultorios->proximo;
+
+    while (atual != NULL && novo_consultorio->consultorio->id > atual->consultorio->id) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    anterior->proximo = novo_consultorio;
+    novo_consultorio->proximo = atual;
+
+    return lista_consultorios;
 }
 
-void coletar_dados_consultorio(struct Consultorio* consultorio) {
-    printf("Digite a identificacao do consultorio: ");
-    scanf("%d", &consultorio->identificacao);
-
-    printf("Digite a especialidade do consultorio: ");
-    scanf(" %[^\n]", consultorio->especialidade);
-
-    printf("Digite os equipamentos disponiveis: ");
-    scanf(" %[^\n]", consultorio->equipamentos_disponiveis);
-}
+void remover_consultorio(struct ListaConsultorio*lista){}
