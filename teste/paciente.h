@@ -5,14 +5,13 @@ typedef struct Paciente {
     char nome[100];
     int idade;
     char situacao_saude[100];
+    struct Consultorio* consultorio;
     struct Paciente* proximo;
-}Paciente;
+} Paciente;
 
-typedef struct ListaPaciente {
-    struct Paciente* paciente;
-    struct ListaPaciente* proximo;
-}ListaPaciente;
-struct Paciente* coletar_dados_paciente();
-struct ListaPaciente* inserir_paciente_ordenado(struct ListaPaciente* lista_pacientes, struct Paciente*novo_paciente);
-void buscar_por_nome_paciente(struct ListaPaciente* lista);
+/*Funcao que cria paciente*/
+Paciente* cria_paciente(char nome, int idade, char situacao_saude);
+
+/*Funcao que adiciona paciente de forma ordenada na lista*/
+Paciente* adicionar_paciente_ordenado(Paciente*lista, Paciente*paciente);
 #endif

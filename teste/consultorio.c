@@ -3,48 +3,123 @@
 #include "consultorio.h"
 #include"paciente.h"
 
- ListaConsultorio* adicionar_consultorio(struct ListaConsultorio* lista_consultorios) {
-    struct ListaConsultorio* novo_consultorio = (struct ListaConsultorio*)malloc(sizeof(struct ListaConsultorio));
-    if (novo_consultorio == NULL) {
-        printf("Erro na alocacao\n");
+//lembrar  de adicionar as funcoes de tratamento de dados;
+//talvez criar uma pasta para isso;
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente) {
+    Lista_geral* novo_item = (Lista_geral*)malloc(sizeof(Lista_geral));
+    if (novo_item == NULL) {
+        printf("Erro na alocacao, tente novamente;");
         exit(1);
     }
 
-    novo_consultorio->consultorio = (struct Consultorio*)malloc(sizeof(struct Consultorio));
-    if (novo_consultorio->consultorio == NULL) {
-        printf("Erro na alocacao\n");
-        exit(1);
+    novo_item->paciente_geral = novo_paciente;
+    novo_item->proximo = NULL;
+
+    if (lista_geral == NULL) {
+        return novo_item;
     }
 
-    printf("Digite o ID do consultorio: ");
-    scanf("%d", &novo_consultorio->consultorio->id);
-    getchar();
-    printf("Digite a especialidade desse consultorio: ");
-    scanf("%[^\n]", novo_consultorio->consultorio->especialidade);
-    getchar();
-    printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
-    scanf("%[^\n]", novo_consultorio->consultorio->equipamentos_disponiveis);
-    getchar();
-
-    novo_consultorio->proximo = NULL;
-
-    if (lista_consultorios == NULL || novo_consultorio->consultorio->id < lista_consultorios->consultorio->id) {
-        novo_consultorio->proximo = lista_consultorios;
-        return novo_consultorio;
-    }
-
-    struct ListaConsultorio* anterior = lista_consultorios;
-    struct ListaConsultorio* atual = lista_consultorios->proximo;
-
-    while (atual != NULL && novo_consultorio->consultorio->id > atual->consultorio->id) {
-        anterior = atual;
+    Lista_geral* atual = lista_geral;
+    while (atual->proximo != NULL) {
         atual = atual->proximo;
     }
 
-    anterior->proximo = novo_consultorio;
-    novo_consultorio->proximo = atual;
-
-    return lista_consultorios;
+    atual->proximo = novo_item;
+    return lista_geral;
 }
 
-void remover_consultorio(struct ListaConsultorio*lista){}
+
+Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
+    Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
+    if (novo_consultorio == NULL) {
+        printf("Erro ao alocar memoria para o novo consultorio\n");
+        exit(1);
+    }
+
+    Consultorio *anterior = NULL;
+    Consultorio* var = lista_consultorios;
+
+    while (var != NULL && var->identificacao < novo_consultorio->identificacao) {
+        anterior = var;
+        var = var->proximo;
+    }
+
+    novo_consultorio->paciente = NULL;
+
+    char escolha;
+    printf("Deseja adicionar pacientes a esse consultorio (S/N)?\n");
+    scanf("%c", &escolha);
+  do {
+        char nome_paciente[100];
+        int idade_paciente;
+        char situacao_saude_paciente[100];
+
+        printf("Digite o nome do paciente: ");
+        if (scanf(" %[^\n]", nome_paciente) != 1) {
+            printf("Erro ao ler o nome do paciente.\n");
+            return 1;
+        }
+
+        printf("Digite a idade do paciente: ");
+        if (scanf("%d", &idade_paciente) != 1) {
+            printf("Erro ao ler a idade do paciente.\n");
+            return 1;
+        }
+
+        printf("Digite a situacao de saude do paciente: ");
+        if (scanf(" %[^\n]", situacao_saude_paciente) != 1) {
+            printf("Erro ao ler a situação de saúde do paciente.\n");
+            return 1;
+        }
+
+        // Criação e adição do paciente ao consultório
+        /* Paciente* novo_paciente = cria_paciente(nome_paciente, idade_paciente, situacao_saude_paciente);
+        novo_consultorio->paciente = adicionar_paciente_ordenado(novo_consultorio->paciente, novo_consultorio); */
+
+        printf("Paciente adicionado com sucesso.\n");
+
+        // Verifica se o usuário deseja continuar
+        char continuar;
+        printf("Deseja adicionar outro paciente? (s/n): ");
+        scanf(" %c", &continuar);
+        if (continuar != 's' && continuar != 'S') {
+            break; // Sai do loop se o usuário não quiser continuar
+        }
+    } while (1);   
+   
+   
+    
+    if (anterior == NULL) {
+        novo_consultorio->proximo = lista_consultorios;
+        return novo_consultorio;
+    } else {
+        anterior->proximo = novo_consultorio;
+        novo_consultorio->proximo = var;
+        return lista_consultorios;
+    }
+}
+/*void remover_consultorio(Consultorio*lista){
+    int id_remover;
+    printf("Digite o id que deseja remover:\n");
+    scanf("%d", &id_remover);
+    Consultorio*lista_procurar= lista;
+    int i;
+    for (lista=0;lista!=NULL; lista->proximo)
+    {
+       if (id_remover==lista->identificacao)
+       {
+        
+       }
+        
+    }
+    
+    
+    
+    while(lista!=NULL){
+       if (lista!=NULL && id_remover==lista->identificacao) {
+         
+       
+       }
+       
+    }
+}*/

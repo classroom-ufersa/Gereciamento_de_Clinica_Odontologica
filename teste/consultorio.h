@@ -1,20 +1,22 @@
 #ifndef CONSULTORIO_H
 #define CONSULTORIO_H
 
-struct Consultorio {
-    int id;
-    char especialidade[80];
+typedef struct Consultorio {
+    int identificacao;
+    char especialidade[400];
     char equipamentos_disponiveis[100];
-    struct ListaPaciente* pacientes;
+    struct Paciente* paciente;
     struct Consultorio* proximo;
-};
+    struct Lista_geral*listageral;
 
-typedef struct ListaConsultorio {
-    struct Consultorio* consultorio;
-    struct ListaConsultorio* proximo;
-} ListaConsultorio;
-ListaConsultorio* adicionar_consultorio(struct ListaConsultorio* lista_consultorios);
-void imprimir_consultorios(struct ListaConsultorio* lista_consultorios);
+} Consultorio;
+typedef struct listageral{
+    struct Lista_geral*proximo;
+    struct Paciente*paciente_geral;
+
+    
+}Lista_geral;
+
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente);
+Consultorio* adicionar_consultorio(Consultorio* lista_consultorios);
 #endif
-
-

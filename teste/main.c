@@ -6,42 +6,68 @@
            
   
 int main() {
-    ListaPaciente* lista_pacientes = NULL;
-    ListaConsultorio* lista_consultorios = NULL;
+    struct Consultorio* lista_consultorios = NULL;
+    struct Lista_geral* lista_geral = NULL;  
+    struct Paciente* lista_paciente=NULL; //nao sabemos se vai ser usado aqui;
+      char opcao;
 
-    lista_pacientes = lista_cria_paciente();
-    lista_consultorios = lista_cria_consultorios();
-
-    int opcao;
     do {
         printf("\nMenu:\n");
-        printf("1. Adicionar paciente\n");
-        printf("2. Adicionar consultorio\n");
-        printf("3. Sair\n");
+        printf("1. Adicionar consultorio\n");
+        printf("2. Remover Consultorio\n");
+        printf("3. Adicionar paciente na lista geral\n");
+        printf("4. Remover Paciente:"); //lembrar de adicionar as outras opcoes ao decorrer do progresso para ir testando;
+        printf("0. Sair\n");
         printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        scanf(" %c", &opcao);
+        getchar();
 
         switch (opcao) {
-            case 1: {
+            case '1': {
+                Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
+                if (novo_consultorio == NULL) {
+                    printf("Erro ao alocar memoria para o novo consultorio\n");
+                    exit(1);
+                }
+
+                printf("Digite o ID do consultorio: ");
+                scanf("%d", &novo_consultorio->identificacao);
+                getchar();
+
+                printf("Digite a especialidade desse consultorio: ");
+                scanf(" %[^\n]", novo_consultorio->especialidade);
+                getchar();
+
+                printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
+                scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
+                getchar();
+
+                lista_consultorios = adicionar_consultorio(lista_consultorios);
                 
+            }
+            case '2': {
+                printf("02");
+                //remover consultorio;
+                break; 
+            }
+               
+                
+            
+            case '4': {
+               //remover paciente funcao;
                 break;
             }
-            case 2: {
-                
-            }
-            case 3: {
-                
-               
-                return 0;
+            case '0': {
+            
+                break;
             }
             default: {
-                printf("Opcao invalida. Tente novamente.\n");
+                
                 break;
             }
         }
-    } while (opcao != 3);
+
+    } while (opcao != '0');
 
     return 0;
 }
-
-           
