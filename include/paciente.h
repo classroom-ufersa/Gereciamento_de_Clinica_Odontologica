@@ -19,22 +19,27 @@ typedef struct listageral{
     struct Listageral  *prox;
 }Listageral;
 
-
 typedef struct listatendidos{
     Paciente *paciente;
     struct Listaatendidos*primeiro;
 }Listaatendidos;
 
-Listapaciente* lista_cria_paciente();
-Listapaciente* addPaciente(struct Paciente *paciente, Listapaciente *lista);
 struct Paciente *coletar_Dados(void);
+
+/*Funcao que cria e inicializa uma nova lista de pacientes*/
+Listapaciente* lista_cria_paciente();
+
+/*Funcao que adiciona um paciente a lista de pacientes
+  Recebe um ponteiro para o paciente a ser adicionado e uma lista*/
+Listapaciente* addPaciente(struct Paciente *paciente, Listapaciente *lista);
+
+/*Funcao que libera espaco da memoria*/
 void liberar_paciente(struct Paciente* paciente);
-void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendidos) 
- void editar_paciente(struct Listapaciente *lista);
+
+/*Funcao que remove o paciente de acordo com a ordem de chegada*/
+void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendidos);
+
+/*Funcao que edita pacientes da lista*/
+void editar_paciente(struct Listapaciente *lista);
 
 #endif // PACIENTE_H_INCLUDED
-
-
-
-
-
