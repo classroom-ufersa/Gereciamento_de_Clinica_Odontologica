@@ -3,6 +3,19 @@
 #include <string.h>
 #include "paciente.h"
 
+void coletar_dados_paciente(Paciente* paciente) {
+    printf("Digite o nome do paciente: ");
+    scanf(" %[^\n]", paciente->nome);
+    
+
+    printf("Digite a idade do paciente: ");
+    scanf("%d", &paciente->idade);
+  
+
+    printf("Digite a situacao da saude do paciente: ");
+    scanf(" %[^\n]", paciente->situacao_saude);
+    
+}
 Paciente* cria_paciente(char nome, int idade, char situacao_saude) {
     Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
     if (novo_paciente == NULL) {

@@ -50,7 +50,19 @@ int main() {
                 //remover consultorio;
                 break; 
             }
-               
+               case '3':{
+                Consultorio*atual;
+                int id_procurar;
+                printf("Digite o id do consultorio que deseja adicionar esse paciente");
+                scanf("%d", &id_procurar);
+                Paciente*novo_paciente=(Paciente*)malloc(sizeof(Paciente));
+                coletar_dados_paciente(novo_paciente);
+                lista_geral= adicionar_paciente_geral(lista_geral, novo_paciente);
+                  while (atual != NULL) {
+                    if (atual->identificacao == id_procurar){
+                        //aqui vamos inserir o paciente que na posicao correta no consultorio;
+                    }
+               }
                 
             
             case '4': {

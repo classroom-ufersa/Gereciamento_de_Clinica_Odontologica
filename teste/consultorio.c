@@ -83,10 +83,7 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
             break;
         }
     } while (1);   
-   
-   
-    
-    if (anterior == NULL) {
+     if (anterior == NULL) {
         novo_consultorio->proximo = lista_consultorios;
         return novo_consultorio;
     } else {
