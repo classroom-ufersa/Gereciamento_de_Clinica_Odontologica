@@ -1,4 +1,3 @@
-
 #include<stdio.h>
 #include<stdlib.h>
 #include "paciente.c"
@@ -9,7 +8,7 @@ int main() {
     struct Consultorio* lista_consultorios = NULL;
     struct Lista_geral* lista_geral = NULL;  
     struct Paciente* lista_paciente=NULL; //nao sabemos se vai ser usado aqui;
-      char opcao;
+    char opcao;
 
     do {
         printf("\nMenu:\n");
@@ -43,11 +42,14 @@ int main() {
                 getchar();
 
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
+                salvar_consultorios_arquivo(lista_consultorios);
                 
             }
             case '2': {
                 printf("02");
                 //remover consultorio;
+                lista_consultorios = remover_consultorio_por_id(lista_consultorios, id_a_remover);
+                salvar_consultorios_em_arquivo(lista_consultorios);
                 break; 
             }
                case '3':{
@@ -74,7 +76,7 @@ int main() {
                 break;
             }
             default: {
-                
+                printf("Opção invalida. Tente novamente. \n");
                 break;
             }
         }
