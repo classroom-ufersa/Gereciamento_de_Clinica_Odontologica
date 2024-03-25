@@ -72,18 +72,15 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
             return 1;
         }
 
-        // Criação e adição do paciente ao consultório
-        /* Paciente* novo_paciente = cria_paciente(nome_paciente, idade_paciente, situacao_saude_paciente);
-        novo_consultorio->paciente = adicionar_paciente_ordenado(novo_consultorio->paciente, novo_consultorio); */
-
+        
         printf("Paciente adicionado com sucesso.\n");
 
-        // Verifica se o usuário deseja continuar
+        
         char continuar;
         printf("Deseja adicionar outro paciente? (s/n): ");
         scanf(" %c", &continuar);
         if (continuar != 's' && continuar != 'S') {
-            break; // Sai do loop se o usuário não quiser continuar
+            break;
         }
     } while (1);   
    
