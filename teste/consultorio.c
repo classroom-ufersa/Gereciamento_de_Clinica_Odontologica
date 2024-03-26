@@ -6,6 +6,39 @@
 /*lembrar  de adicionar as funcoes de tratametto de dados;
 talvez criar uma pasta para isso;*/
 
+void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
+    FILE* arquivo;
+    Consultorio* atual = lista_consultorios;
+
+    arquivo = fopen("consultorios.txt", "w"); // Abre o arquivo para escrita (sobrescreve o conteúdo existente)
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+
+    while (atual != NULL) {
+        fprintf(arquivo, "ID: %d\n", atual->identificacao);
+        fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
+        fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
+
+        // Salvar informações dos pacientes, se houver
+        Paciente* paciente_atual = atual->paciente;
+        while (paciente_atual != NULL) {
+            fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
+            fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
+            fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
+            paciente_atual = paciente_atual->proximo;
+        }
+
+        fprintf(arquivo, "------------------------------------\n");
+
+        atual = atual->proximo;
+    }
+
+    fclose(arquivo);
+    printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
+}
+
 Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente) {
     Lista_geral* novo_item = (Lista_geral*)malloc(sizeof(Lista_geral));
     if (novo_item == NULL) {
