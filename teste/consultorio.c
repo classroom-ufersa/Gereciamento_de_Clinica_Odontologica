@@ -28,8 +28,7 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
             fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
             paciente_atual = paciente_atual->proximo;
         }
-
-        fprintf(arquivo, "------------------------------------\n");
+        fprintf(arquivo, "===========\n");
 
         atual = atual->proximo;
     }
@@ -37,8 +36,6 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     fclose(arquivo);
     printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
 }
-
-
 
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
@@ -69,8 +66,6 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     return lista_consultorios;
 }
 
-
-
    void remover_consultorio_por_id(Consultorio* lista_consultorios) {
     Consultorio *atual = lista_consultorios;
     Consultorio *anterior = NULL;
@@ -95,17 +90,19 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
     free(atual);
     printf("Consultorio removido com sucesso.\n");
-    
 
     return lista_consultorios;
 }
+
 void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     Consultorio* imprimir_lista = lista;
     printf("Lista de consultorios:\n");
+    
     while (imprimir_lista != NULL) {
         printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
         printf("Especialidade: %s\n", imprimir_lista->especialidade);
         printf("Equipamentos disponiveis: %s\n", imprimir_lista->equipamentos_disponiveis);
+       
         imprimir_lista = imprimir_lista->proximo;
     }
 }
