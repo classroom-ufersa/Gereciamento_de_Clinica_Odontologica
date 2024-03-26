@@ -1,27 +1,21 @@
 #ifndef CONSULTORIO_H
 #define CONSULTORIO_H
 
+#include "paciente.h"
+
 typedef struct Consultorio {
     int identificacao;
     char especialidade[400];
     char equipamentos_disponiveis[100];
-    struct Paciente* paciente;
+    Paciente* paciente;
     struct Consultorio* proximo;
-    struct Lista_geral*listageral;
+    struct Lista_geral* listageral;
 } Consultorio;
 
-typedef struct listageral{
-    struct Lista_geral*proximo;
-    struct Paciente*paciente_geral;
-} Lista_geral;
-
-/*Funcao que adiciona pacinte a lista geral*/
-Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente);
-
-/*Funcao que adicina um consultorio*/
+Consultorio* criar_consultorio(int identificacao, char* especialidade, char* equipamentos);
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios);
+void remover_consultorio_por_id(Consultorio* lista_consultorios);
+void imprimir_consultorios_Disponiveis(Consultorio* lista);
 
-/*Funcao que remove um consultorio por meio do id informado*/
-Consultorio*remover_consultorio_por_id(Consultorio*lista_consultorios, int id);
+#endif /* CONSULTORIO_H */
 
-#endif

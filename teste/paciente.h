@@ -1,6 +1,9 @@
 #ifndef PACIENTE_H
 #define PACIENTE_H
 
+
+struct Consultorio;
+
 typedef struct Paciente {
     char nome[100];
     int idade;
@@ -9,9 +12,20 @@ typedef struct Paciente {
     struct Paciente* proximo;
 } Paciente;
 
-/*Funcao que cria paciente*/
-Paciente* cria_paciente(char nome, int idade, char situacao_saude);
-void coletar_dados_paciente(Paciente* paciente);
-/*Funcao que adiciona paciente de forma ordenada na lista*/
-Paciente* adicionar_paciente_ordenado(Paciente*lista, Paciente*paciente);
-#endif
+typedef struct Lista_geral {
+    struct Lista_geral* proximo;
+    Paciente* paciente_geral;
+} Lista_geral;
+
+typedef struct Lista_atendidos {
+    struct Lista_atendidos* proximo;
+    Paciente* paciente_atendido;
+} Lista_Atendidos;
+
+Paciente* criar_paciente(const char* nome, int idade, char* situacao_saude, struct Consultorio* consultorio);
+Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* paciente);
+Paciente* buscar_paciente_por_nome(struct Consultorio* consultorio, char* nome);
+Paciente* editar_paciente(struct Consultorio* consultorio, char* nome);
+void remover_paciente_por_fila(Lista_geral** lista_geral, Lista_Atendidos** lista_atendidos);
+
+#endif /* PACIENTE_H */
