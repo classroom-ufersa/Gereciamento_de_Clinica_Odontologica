@@ -33,67 +33,36 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
 }
 
 
-Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* paciente) {
-    if (paciente == NULL || lista == NULL || strcmp(paciente->nome, lista->nome) < 0) {
-        paciente->proximo = lista;
-        return paciente;
+Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
+    if (lista == NULL || novo_paciente == NULL || strcmp(novo_paciente->nome, lista->nome) < 0) {
+        novo_paciente->proximo = lista;
+        return novo_paciente;
     }
 
     Paciente* anterior = lista;
     Paciente* atual = lista->proximo;
 
-    while (atual != NULL && strcmp(paciente->nome, atual->nome) > 0) {
+    while (atual != NULL && strcmp(novo_paciente->nome, atual->nome) > 0) {
         anterior = atual;
         atual = atual->proximo;
     }
 
-    anterior->proximo = paciente;
-    paciente->proximo = atual;
+    anterior->proximo = novo_paciente;
+    novo_paciente->proximo = atual;
 
     return lista;
 }
 
-Paciente* buscar_paciente_por_nome(Consultorio* consultorio, char* nome) {
-    Paciente* paciente_atual = consultorio->paciente;
-    while (paciente_atual != NULL) {
-        if (strcmp(paciente_atual->nome, nome) == 0) {
-            return paciente_atual;
-        }
-        paciente_atual = paciente_atual->proximo;
-    }
-    return NULL;
-}
 
 
 
 
 
-void adicionar_paciente_por_id(Consultorio* lista_consultorios) {
-    int id_procurar;
-    printf("Digite a identificacao do consultorio que esse paciente vai ser pertencer: ");
-    scanf("%d", &id_procurar);
 
-    struct Consultorio* consultorio_atual = lista_consultorios;
-    while (consultorio_atual != NULL) {
-        if (consultorio_atual->identificacao == id_procurar) {
-            struct Paciente* novo_paciente = (struct Paciente*)malloc(sizeof(struct Paciente));
-            if (novo_paciente == NULL) {
-                printf("Erro na alocacao\n");
-                exit(1);
-            }
-            coletar_dados_pacientes(novo_paciente);
 
-            consultorio_atual->paciente = novo_paciente;
 
-            return;
-        }
-        consultorio_atual = consultorio_atual->proximo;
-    }
 
-    printf("Consultorio nao encontrado\n");
-}  
-
-Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente) {
+/*Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente) {
     Lista_geral* novo_paciente_geral = (Lista_geral*)malloc(sizeof(Lista_geral));
     if (novo_paciente_geral== NULL) {
         printf("Erro na alocacao\n");
@@ -104,10 +73,10 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_p
     novo_paciente_geral->proximo = lista_geral;
     
     return novo_paciente_geral;
-}
+}*/
 
 
-Paciente* editar_paciente(Consultorio* consultorio, char* nome) {
+/*Paciente* editar_paciente(Consultorio* consultorio, char* nome) {
     char novo_nome[500];
     int nova_idade;
     char nova_situacao_saude[200];
@@ -134,6 +103,6 @@ Paciente* editar_paciente(Consultorio* consultorio, char* nome) {
     printf("Paciente nao encontrado\n");
     return NULL;  
     
-}
+}*/
  
  
