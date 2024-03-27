@@ -11,7 +11,22 @@ typedef struct Consultorio {
     struct Consultorio* proximo;
     struct Lista_geral* listageral;
 } Consultorio;
+
+
+typedef struct Lista_atendidos {
+    struct Lista_atendidos* proximo;
+    Paciente* paciente_atendido;
+} Lista_Atendidos;
+
+
+typedef struct Lista_geral {
+    struct Lista_geral* proximo;
+    Paciente* paciente_geral;
+} Lista_geral;
+
+
 Consultorio*encontrar_posicao(Consultorio*consultorio_atual);
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral);
 int verificar_lista(Consultorio*consultorio_aux);
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios);
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios);

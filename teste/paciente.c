@@ -53,59 +53,6 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
     return lista;
 }
 
-
-
-
-
-
-
-
-
-
-/*Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* novo_paciente) {
-    Lista_geral* novo_paciente_geral = (Lista_geral*)malloc(sizeof(Lista_geral));
-    if (novo_paciente_geral== NULL) {
-        printf("Erro na alocacao\n");
-        exit(1);
-    }
-
-    novo_paciente_geral->paciente_geral = novo_paciente;
-    novo_paciente_geral->proximo = lista_geral;
-    
-    return novo_paciente_geral;
-}*/
-
-
-/*Paciente* editar_paciente(Consultorio* consultorio, char* nome) {
-    char novo_nome[500];
-    int nova_idade;
-    char nova_situacao_saude[200];
-    Paciente* paciente_atual = consultorio->paciente;
-    while (paciente_atual != NULL) {
-        if (strcmp(paciente_atual->nome, nome) == 0) {
-           
-            printf("Edicao dos dados do paciente:\n");
-            printf("Digite o novo nome do paciente:\n");
-            scanf(" %[^\n]", novo_nome);  
-            printf("Digite a nova idade do paciente:\n");
-            scanf("%d", &nova_idade);
-            printf("Digite a nova condicao de saude do paciente:\n");
-            scanf(" %[^\n]", nova_situacao_saude);  
-            
-            strcpy(paciente_atual->nome, novo_nome);
-            paciente_atual->idade = nova_idade;
-            strcpy(paciente_atual->situacao_saude, nova_situacao_saude);
-            
-            return paciente_atual;  
-        }
-        paciente_atual = paciente_atual->proximo;
-    }
-    printf("Paciente nao encontrado\n");
-    return NULL;  
-    
-}*/
- 
- 
 void editar_dados_paciente(Paciente*lista_pacientes){
     char nome_buscar[500];
     printf("Digite o nome do paciente que deseja editar:|n");

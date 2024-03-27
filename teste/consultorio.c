@@ -55,7 +55,7 @@ Consultorio* encontrar_posicao(Consultorio* consultorio_atual) {
     Consultorio* consultorio = consultorio_atual;
     while (consultorio != NULL) {
         if (consultorio->paciente == NULL) {
-            return consultorio;  // Retorna o consultorio vazio
+            return consultorio; 
         }
         consultorio = consultorio->proximo;
     }
@@ -201,3 +201,16 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
    
     
 
+
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral) {
+    Lista_geral* novo_paciente_geral = (Lista_geral*)malloc(sizeof(Lista_geral));
+    if (novo_paciente_geral== NULL) {
+        printf("Erro na alocacao\n");
+        exit(1);
+    }
+
+    novo_paciente_geral->paciente_geral = novo_paciente_geral;
+    novo_paciente_geral->proximo = lista_geral;
+    
+    return novo_paciente_geral;
+}
