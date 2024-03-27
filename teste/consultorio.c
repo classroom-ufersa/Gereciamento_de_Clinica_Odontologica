@@ -29,8 +29,7 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
             fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
             paciente_atual = paciente_atual->proximo;
         }
-
-        fprintf(arquivo, "------------------------------------\n");
+        fprintf(arquivo, "===========\n");
 
         atual = atual->proximo;
     }
@@ -38,7 +37,32 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     fclose(arquivo);
     printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
 }
+int verificar_lista(Consultorio* consultorio_aux) {
+    if (consultorio_aux == NULL) {
+        printf("Lista de consultorios esta vazia\n");
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
+Consultorio* encontrar_posicao(Consultorio* consultorio_atual) {
+    if (consultorio_atual == NULL) {
+        printf("Lista de consultorios esta vazia\n");
+        return NULL;
+    }
+
+    Consultorio* consultorio = consultorio_atual;
+    while (consultorio != NULL) {
+        if (consultorio->paciente == NULL) {
+            return consultorio;  // Retorna o consultorio vazio
+        }
+        consultorio = consultorio->proximo;
+    }
+
+    printf("Nao ha consultorios disponiveis para inserir o paciente\n");
+    return NULL;
+}
 
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
@@ -79,7 +103,71 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
     return lista_consultorios;
 }
-void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
+
+
+Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
+    Consultorio *atual = lista_consultorios;
+    Consultorio *anterior = NULL;
+    int id_a_remover;
+    printf("Digite o id do consultorio que deseja remover:\n");
+    scanf("%d", &id_a_remover);
+    
+    while (atual != NULL && atual->identificacao != id_a_remover) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual == NULL) {
+        printf("Consultorio nao encontrado no sistema\n");
+        return lista_consultorios;
+    }
+
+    if (anterior == NULL) {
+        lista_consultorios = atual->proximo;
+    } else {
+        anterior->proximo = atual->proximo;
+    }
+
+    free(atual);
+    printf("Consultorio removido com sucesso.\n");
+    
+    return lista_consultorios;
+}
+
+
+void imprimir_consultorios_Disponiveis(Consultorio* lista) {
+    Consultorio* imprimir_lista = lista;
+    
+    
+    printf("Lista de consultorios:\n");
+    
+    while (imprimir_lista != NULL) {
+        printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
+        printf("Especialidade: %s\n", imprimir_lista->especialidade);
+        printf("Equipamentos disponiveis: %s\n", imprimir_lista->equipamentos_disponiveis);
+       
+        imprimir_lista = imprimir_lista->proximo;
+    }
+}
+Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nome) {
+    struct Consultorio* consultorio_atual = lista_consultorios;
+    while (consultorio_atual != NULL) {
+        struct Paciente* paciente_atual = consultorio_atual->paciente;
+        while (paciente_atual != NULL) {
+            if (strcmp(paciente_atual->nome, nome) == 0) {
+                printf("Paciente encontrado:\n");
+                printf("Nome: %s, Idade: %d, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+            }
+            paciente_atual = paciente_atual->proximo;
+        }
+        consultorio_atual = consultorio_atual->proximo;
+    }
+    printf("Paciente nao encontrado\n");
+    return NULL; 
+}
+
+      
+   void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
      int id_procurar;
     printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
     scanf("%d", &id_procurar);
@@ -110,60 +198,6 @@ void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
 
     printf("Consultorio nao encontrado\n");
 }
-
-
-
-void remover_consultorio_por_id(Consultorio **lista_consultorios) {
-    Consultorio *atual = *lista_consultorios;
-    Consultorio *anterior = NULL;
-    int id_a_remover;
-    printf("Digite o id do consultorio que deseja remover:\n");
-    scanf("%d", &id_a_remover);
-    while (atual != NULL && atual->identificacao != id_a_remover) {
-        anterior = atual;
-        atual = atual->proximo;
-    }
-
-    if (atual == NULL) {
-        printf("Consultorio nao encontrado no sistema\n");
-        return;
-    }
-
-    if (anterior == NULL) {
-        *lista_consultorios = atual->proximo;
-    } else {
-        anterior->proximo = atual->proximo;
-    }
-
-    free(atual);
-    printf("Consultorio removido com sucesso.\n");
-}
-
-void imprimir_consultorios_Disponiveis(Consultorio* lista) {
-    Consultorio* imprimir_lista = lista;
-    printf("Lista de consultorios:\n");
-    while (imprimir_lista != NULL) {
-        printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
-        printf("Especialidade: %s\n", imprimir_lista->especialidade);
-        printf("Equipamentos disponiveis: %s\n", imprimir_lista->equipamentos_disponiveis);
-        imprimir_lista = imprimir_lista->proximo;
-    }
-}
-Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nome) {
-    struct Consultorio* consultorio_atual = lista_consultorios;
-    while (consultorio_atual != NULL) {
-        struct Paciente* paciente_atual = consultorio_atual->paciente;
-        while (paciente_atual != NULL) {
-            if (strcmp(paciente_atual->nome, nome) == 0) {
-                printf("Paciente encontrado:\n");
-                printf("Nome: %s, Idade: %d, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
-            }
-            paciente_atual = paciente_atual->proximo;
-        }
-        consultorio_atual = consultorio_atual->proximo;
-    }
-    printf("Paciente nao encontrado\n");
-    return NULL; 
-}
-
+   
+    
 

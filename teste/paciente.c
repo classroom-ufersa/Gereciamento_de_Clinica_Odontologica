@@ -106,3 +106,26 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
 }*/
  
  
+void editar_dados_paciente(Paciente*lista_pacientes){
+    char nome_buscar[500];
+    printf("Digite o nome do paciente que deseja editar:|n");
+    scanf("%[^\n]", nome_buscar);
+      if (lista_pacientes==NULL)
+      {
+     printf("Lista de pacientes esta vazia\n");
+      }
+      Paciente*lista_atual=lista_pacientes;
+      while (lista_pacientes!=NULL)
+      {
+        if(strcmp(lista_atual->nome, nome_buscar)==0){
+            printf("Digite o novo nome do paciente:\n");
+            scanf("%[^\n]", lista_atual->nome);
+            printf("Digite a nova idade do paciente:\n");
+            scanf("%d", lista_atual->idade);
+            printf("Digite a alteracao para a situacao de saude do paciente");
+            scanf("%[^\n]", lista_atual->situacao_saude);
+
+        }
+        lista_atual=lista_atual->proximo;
+        
+      }}

@@ -34,12 +34,12 @@ int main() {
                 break;
             }
             case '2': {
-                remover_consultorio_por_id(&lista_consultorios);
+                lista_consultorios= remover_consultorio_por_id(lista_consultorios);
                 break; 
             }
             case '3': {
            
-                 adicionar_paciente_por_id(lista_consultorios);
+                     adicionar_paciente_por_id(lista_consultorios);
                    salvar_consultorios_em_arquivo(lista_consultorios);
 
 
@@ -49,8 +49,11 @@ int main() {
                //adicionar funcao de remover
                 break;
             }
-            case 5: {
-                //funcao de editar
+            case '5': {
+              editar_dados_paciente(lista_consultorios->paciente);
+
+
+          Consultorio* consultorio_para_inserir = encontrar_posicao(lista_consultorios);
             }
             case '6': {
                 char nome_paciente_buscar[500];
