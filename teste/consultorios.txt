@@ -1,22 +1,9 @@
- ----Lista de consultorios da      ----Identificacao: 258
-Especialidade: mar
-Equipamentos disponiveis: mar
-===========
- ----Lista de consultorios da      ----Identificacao: 258
-Especialidade: mar
-Equipamentos disponiveis: mar
-----Lista de pacientes desse Consultorio:----Nome do paciente: Maria
-Idade do paciente: 1342196816
-Situacao de saude do paciente: f
-===========
- ----Lista de consultorios da      ----Identificacao: 111
-Especialidade: mar
-Equipamentos disponiveis: mar
-===========
- ----Lista de consultorios da      ----Identificacao: 111
-Especialidade: mar
-Equipamentos disponiveis: mar
-----Lista de pacientes desse Consultorio:----Nome do paciente: Maria
-Idade do paciente: 47
-Situacao de saude do paciente: dor den detne
+ ----Lista de consultorios da      ----
+Identificacao: 111
+Especialidade: dor
+Equipamentos disponiveis: dor
+   ||Pacientes||:  
+Nome do paciente: Maria
+Idade do paciente: 14
+Situacao de saude do paciente: dor de dente
 ===========

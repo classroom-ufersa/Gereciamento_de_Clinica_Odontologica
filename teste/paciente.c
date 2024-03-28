@@ -68,11 +68,26 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
         printf("Erro na alocacao\n");
         exit(1);
     }
-;
 
-    novo_paciente_geral->proximo = lista_geral; 
-    return novo_paciente_geral; 
+    novo_paciente_geral->proximo = NULL; 
+
+    if (lista_geral == NULL) {
+        
+        return novo_paciente_geral;
+    }
+
+    Lista_geral* ultimo = lista_geral;
+    while (ultimo->proximo != NULL) {
+        ultimo = ultimo->proximo;
+    }
+
+
+    ultimo->proximo = novo_paciente_geral;
+
+    return lista_geral; 
 }
+
+
 
 void tratamento_de_numero(char *variavelid)
 {
@@ -113,4 +128,41 @@ void string_maiuscula_minuscula(char *palavra_var){
       palavra_var[Contador] = tolower(palavra_var[Contador]); 
     }
   }
+}
+void imprimir_atendidos(Lista_Atendidos*lista){
+    if (lista==NULL)
+    {
+      printf("Nenhum paciente foi atendido ainda, lista esta vazia\n");
+    }
+    
+    while (lista!=NULL)
+    {
+        printf("Nome do paciente: %s\n", lista->paciente_atendido->nome);
+        printf("Idade do paciente: %d\n", lista->paciente_atendido->idade);
+        printf("Situacao de saude do paciente: %s\n",  lista->paciente_atendido->situacao_saude);
+    }
+    
+}
+
+void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
+    if (*lista == NULL) {
+        printf("Lista geral esta vazia\n");
+        return;
+    }
+
+    Lista_geral *removido = *lista;
+    *lista = (*lista)->proximo;
+
+    
+    Lista_Atendidos *novo_atendimento = (Lista_Atendidos *)malloc(sizeof(Lista_Atendidos));
+    if (novo_atendimento == NULL) {
+        printf("Erro na alocacao de memoria\n");
+        exit(1);
+    }
+
+    novo_atendimento->paciente_atendido = removido->paciente_geral;
+    novo_atendimento->proximo = *lista_atendidos;
+    *lista_atendidos = novo_atendimento;
+
+    free(removido); 
 }

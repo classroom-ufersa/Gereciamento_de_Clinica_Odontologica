@@ -9,14 +9,14 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;
     Consultorio* atual = lista_consultorios;
 
-    arquivo = fopen("consultorios.txt", "a+"); 
+    arquivo = fopen("consultorios.txt", "w+"); 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
 
     while (atual != NULL) {
-        fprintf(arquivo, " ----Lista de consultorios da      ----");
+        fprintf(arquivo, " ----Lista de consultorios da      ----\n");
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
@@ -24,7 +24,7 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     
         Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-            fprintf(arquivo, "----Lista de pacientes desse Consultorio:----");
+            fprintf(arquivo, "   ||Pacientes||:  \n");
             fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
@@ -91,7 +91,7 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
 
-    if (verificar_lista(lista_consultorios))
+    if (verificar_lista(lista_consultorios)==1)
     {
        printf("Lista de consultorios esta vazia\n");
     }
@@ -146,33 +146,81 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     }
 }
 Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nome) {
-    struct Consultorio* consultorio_atual = lista_consultorios;
+    Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
-        struct Paciente* paciente_atual = consultorio_atual->paciente;
+        Paciente* paciente_atual = consultorio_atual->paciente;
         while (paciente_atual != NULL) {
             if (strcmp(paciente_atual->nome, nome) == 0) {
                 printf("Paciente encontrado:\n");
-                printf("Nome: %s, Idade: %s, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+                printf("Nome: %s, Idade: %d, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+                return consultorio_atual; 
             }
             paciente_atual = paciente_atual->proximo;
         }
         consultorio_atual = consultorio_atual->proximo;
     }
     printf("Paciente nao encontrado\n");
-    return NULL; 
+    return NULL;
 }
+
+
+  Consultorio* editar_paciente(Consultorio* lista, char *nome_editar) {
+    char opcao;
+    if (verificar_lista(lista) == 1) {
+        printf("Lista de consultorios esta vazia\n");
+        return lista;
+    }
+
+    Consultorio* consultorio_editar = buscar_paciente_por_nome(lista, nome_editar);
+    if (consultorio_editar != NULL) {
+        printf("Edicao de dados do paciente:\n");
+        printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado\n ");
+        scanf(" %c", &opcao);
+
+        if (opcao == '1') {
+            printf("Digite o novo nome do paciente:\n");
+            scanf(" %[^\n]", consultorio_editar->paciente->nome);
+            printf("Digite a nova idade do paciente:\n ");
+            scanf(" %d", &consultorio_editar->paciente->idade);
+            printf("Digite a nova situacao de saude:\n");
+            scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+        } else if (opcao == '0') {
+            char dado_editar;
+            printf("Digite o dado que voce quer editar: 'I' para idade, 'N' para nome e 'S' para situacao de saude\n");
+            scanf(" %c", &dado_editar);
+
+            if (dado_editar == 'N' || dado_editar == 'n') {
+                printf("Digite o novo nome do paciente:\n");
+                scanf(" %[^\n]", consultorio_editar->paciente->nome);
+            } else if (dado_editar == 'I' || dado_editar == 'i') {
+                printf("Digite a nova idade do paciente:\n ");
+                scanf(" %d", &consultorio_editar->paciente->idade);
+            } else if (dado_editar == 'S' || dado_editar == 's') {
+                printf("Digite a nova situacao de saude:\n");
+                scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+            } else {
+                printf("Opcao invalida. Digite numeros correspondentes com os pedidos.\n");
+            }
+        } else {
+            printf("Opcao invalida. Digite letras correspondentes com os pedidos.\n");
+        }
+    }
+
+    return lista;
+}
+
 
       
    void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
-    Lista_geral*lista_geral_adicionar=NULL;
-     int id_procurar;
+    Lista_geral* lista_geral_adicionar = NULL;
+    int id_procurar;
     printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
     scanf("%d", &id_procurar);
-    if (verificar_lista(lista_consultorios)==1)
-    {
+    if (verificar_lista(lista_consultorios) == 1) {
         printf("Lista de consultorios esta vazia\n");
+        return;
     }
-    
+
     Consultorio *consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
         if (consultorio_atual->identificacao == id_procurar) {
@@ -185,7 +233,7 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
             coletar_dados_paciente(novo_paciente);
 
             consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
-            lista_geral_adicionar= adicionar_paciente_geral(lista_geral_adicionar);
+            lista_geral_adicionar = adicionar_paciente_geral(lista_geral_adicionar);
             return;
         }
         consultorio_atual = consultorio_atual->proximo;
@@ -193,6 +241,6 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
 
     printf("Consultorio nao encontrado\n");
 }
-   
+
     
 

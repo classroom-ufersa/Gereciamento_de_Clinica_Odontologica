@@ -8,6 +8,7 @@ int main() {
     struct Consultorio* lista_consultorios =NULL; 
     struct Lista_atendidos* lista_atendidos = NULL;
     struct Paciente*lista_paciente=NULL;
+    struct Lista_geral*lista_geral=NULL;
     char opcao;
 
     do {
@@ -24,7 +25,7 @@ int main() {
         printf("9- Sair\n ");
 
         scanf(" %c", &opcao);
-      
+         //salvar_consultorios_em_arquivo(lista_consultorios);
 
         switch (opcao) {
             case '1': {
@@ -37,29 +38,32 @@ int main() {
                 break; 
             }
             case '3': {
-           
-                     adicionar_paciente_por_id(lista_consultorios);
+                   adicionar_paciente_por_id(lista_consultorios);
                    salvar_consultorios_em_arquivo(lista_consultorios);
 
 
                 break;
             }
             case '4': {
-               //adicionar funcao de remover
+               remover_paciente_por_fila(&lista_geral,&lista_atendidos);
                 break;
             }
             case '5': {
-              //editar_dados_paciente(lista_consultorios->paciente);
-
-
-          //Consultorio* consultorio_para_inserir = encontrar_posicao(lista_consultorios);
+               char nome_editar[500];
+               printf("Digite o nome do paciente que deseja editar:\n");
+               scanf(" %[^\n]", nome_editar);
+               tratamento_de_palavras(nome_editar);
+                string_maiuscula_minuscula(nome_editar);
+               lista_consultorios= editar_paciente(lista_consultorios, nome_editar);
+               break;
             }
             case '6': {
                 char nome_paciente_buscar[500];
-                 printf("Digite o nome do paciente que deseja buscar: ");
+                 printf("Digite o nome do paciente que deseja buscar:\n");
                   scanf(" %[^\n]", nome_paciente_buscar);
-
-               Consultorio* paciente_encontrado = buscar_paciente_por_nome(lista_consultorios, nome_paciente_buscar);
+                  tratamento_de_palavras(nome_paciente_buscar);
+                 string_maiuscula_minuscula(nome_paciente_buscar);
+                lista_consultorios = buscar_paciente_por_nome(lista_consultorios, nome_paciente_buscar);
                 
                 }
             case '7': {
@@ -67,13 +71,13 @@ int main() {
                 break;
             }
             case '8': {
-                // Listar pacientes atendidos 
+                imprimir_atendidos(lista_atendidos);
                 
             
                 break;
             }
             case '9': {
-                //add pacientes  a lista gerap
+                //SAIR 
                 break;
             }
             default: {
@@ -83,6 +87,6 @@ int main() {
         }
 
     } while (opcao != 9);
-
+  //salvar_consultorios_em_arquivo(lista_consultorios);
     return 0;
 }
