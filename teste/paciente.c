@@ -92,16 +92,16 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral) {
 
 
 
-void tratamento_de_numero(char *variavelid)
+void tratamento_de_numero(char *variavel_num)
 {
   int Contador, Contador2;
-  for (Contador = 0; variavelid[Contador] != '\0'; Contador++)
+  for (Contador = 0; variavel_num[Contador] != '\0'; Contador++)
   {
-    if (variavelid[Contador] < 48 || variavelid[Contador] > 57)
+    if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57)
     {
-      for (Contador2 = Contador; variavelid[Contador2] != '\0'; Contador2++)
+      for (Contador2 = Contador; variavel_num[Contador2] != '\0'; Contador2++)
       {
-        variavelid[Contador2] = variavelid[Contador2 + 1];
+        variavel_num[Contador2] = variavel_num[Contador2 + 1];
       }
       Contador--;
     }

@@ -9,7 +9,7 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;
     Consultorio* atual = lista_consultorios;
 
-    arquivo = fopen("consultorios.txt", "w+"); 
+    arquivo = fopen("consultorios_e_pacientes.txt", "w+"); 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
@@ -90,7 +90,8 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
 
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
-
+ char id_remover[500];
+ int id_a_remover;
     if (verificar_lista(lista_consultorios)==1)
     {
        printf("Lista de consultorios esta vazia\n");
@@ -100,7 +101,10 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     Consultorio *anterior = NULL;
     int id_a_remover;
     printf("Digite o id do consultorio que deseja remover:\n");
-    scanf("%d", &id_a_remover);
+
+    scanf("%[^\n]", &id_remover);
+    tratamento_de_numero(id_a_remover);
+    id_a_remover = atoi(id_remover);
     
     while (atual != NULL && atual->identificacao != id_a_remover) {
         anterior = atual;
@@ -176,14 +180,22 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
         printf("Edicao de dados do paciente:\n");
         printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado\n ");
         scanf(" %c", &opcao);
-
+     char idade_var[100];
         if (opcao == '1') {
             printf("Digite o novo nome do paciente:\n");
             scanf(" %[^\n]", consultorio_editar->paciente->nome);
+            tratamento_de_palavras(consultorio_editar->paciente->nome);
+            string_maiuscula_minuscula(consultorio_editar->paciente->nome);
             printf("Digite a nova idade do paciente:\n ");
-            scanf(" %d", &consultorio_editar->paciente->idade);
+            
+            scanf(" %[^\n]", idade_var);
+            tratamento_de_numero(idade_var);
+            consultorio_editar->paciente->idade = atoi(idade_var);
+
             printf("Digite a nova situacao de saude:\n");
             scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+            tratamento_de_palavras(consultorio_editar->paciente->situacao_saude);
+            string_maiuscula_minuscula(consultorio_editar->paciente->situacao_saude);
         } else if (opcao == '0') {
             char dado_editar;
             printf("Digite o dado que voce quer editar: 'I' para idade, 'N' para nome e 'S' para situacao de saude\n");
@@ -192,12 +204,20 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
             if (dado_editar == 'N' || dado_editar == 'n') {
                 printf("Digite o novo nome do paciente:\n");
                 scanf(" %[^\n]", consultorio_editar->paciente->nome);
+                tratamento_de_palavras(consultorio_editar->paciente->nome);
+                string_maiuscula_minuscula(consultorio_editar->paciente->nome);
+
             } else if (dado_editar == 'I' || dado_editar == 'i') {
                 printf("Digite a nova idade do paciente:\n ");
-                scanf(" %d", &consultorio_editar->paciente->idade);
+                scanf(" %[^\n]", idade_var);
+                tratamento_de_numero(idade_var);
+               consultorio_editar->paciente->idade = atoi(idade_var);
+
             } else if (dado_editar == 'S' || dado_editar == 's') {
                 printf("Digite a nova situacao de saude:\n");
                 scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+                tratamento_de_palavras(consultorio_editar->paciente->nome);
+                string_maiuscula_minuscula(consultorio_editar->paciente->nome);
             } else {
                 printf("Opcao invalida. Digite numeros correspondentes com os pedidos.\n");
             }
@@ -213,8 +233,13 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
       
    void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
     int id_procurar;
+    char id_var[100];
     printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
-    scanf("%d", &id_procurar);
+    scanf(" %[^\n]", id_var);
+
+    tratamento_de_numero(id_var);
+    id_procurar = atoi(id_var);
+    
     if (verificar_lista(lista_consultorios) == 1) {
         printf("Lista de consultorios esta vazia\n");
         return;
