@@ -5,8 +5,7 @@
 #include "paciente.h"
 
 int main() {
-    struct Consultorio* lista_consultorios =NULL;
-    struct Lista_geral* lista_geral = NULL;  
+    struct Consultorio* lista_consultorios =NULL; 
     struct Lista_atendidos* lista_atendidos = NULL;
     struct Paciente*lista_paciente=NULL;
     char opcao;
@@ -50,10 +49,10 @@ int main() {
                 break;
             }
             case '5': {
-              editar_dados_paciente(lista_consultorios->paciente);
+              //editar_dados_paciente(lista_consultorios->paciente);
 
 
-          Consultorio* consultorio_para_inserir = encontrar_posicao(lista_consultorios);
+          //Consultorio* consultorio_para_inserir = encontrar_posicao(lista_consultorios);
             }
             case '6': {
                 char nome_paciente_buscar[500];
@@ -69,6 +68,7 @@ int main() {
             }
             case '8': {
                 // Listar pacientes atendidos 
+                
             
                 break;
             }
