@@ -4,6 +4,7 @@
 #include "consultorio.h"
 #include "paciente.h"
 
+
 int main() {
     struct Consultorio* lista_consultorios =NULL; 
     struct Lista_atendidos* lista_atendidos = NULL;
@@ -46,6 +47,7 @@ int main() {
             }
             case '4': {
                remover_paciente_por_fila(&lista_geral,&lista_atendidos);
+               
                 break;
             }
             case '5': {
@@ -72,21 +74,24 @@ int main() {
             }
             case '8': {
                 imprimir_atendidos(lista_atendidos);
-                
-            
                 break;
             }
             case '9': {
-                //SAIR 
+                printf("teste 02\n");
+                lista_geral=adicionar_paciente_geral(lista_geral);
+                printf("teste01\n");
                 break;
             }
+        case '0':{
+            break;
+        }
             default: {
                 printf("Opção invalida. Tente novamente. \n");
                 break;
             }
         }
 
-    } while (opcao != 9);
+    } while (opcao != '0');
   //salvar_consultorios_em_arquivo(lista_consultorios);
     return 0;
 }

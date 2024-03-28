@@ -3,6 +3,8 @@
 
 #include "paciente.h"
 
+
+
 typedef struct Consultorio {
     int identificacao;
     char especialidade[400];

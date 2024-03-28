@@ -1,9 +1,5 @@
  ----Lista de consultorios da      ----
 Identificacao: 111
-Especialidade: dor
-Equipamentos disponiveis: dor
-   ||Pacientes||:  
-Nome do paciente: Maria
-Idade do paciente: 14
-Situacao de saude do paciente: dor de dente
+Especialidade: d
+Equipamentos disponiveis: d
 ===========

@@ -212,7 +212,6 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
 
       
    void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
-    Lista_geral* lista_geral_adicionar = NULL;
     int id_procurar;
     printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
     scanf("%d", &id_procurar);
@@ -220,8 +219,7 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
         printf("Lista de consultorios esta vazia\n");
         return;
     }
-
-    Consultorio *consultorio_atual = lista_consultorios;
+     Consultorio *consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
         if (consultorio_atual->identificacao == id_procurar) {
             Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
@@ -233,7 +231,8 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
             coletar_dados_paciente(novo_paciente);
 
             consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
-            lista_geral_adicionar = adicionar_paciente_geral(lista_geral_adicionar);
+        
+
             return;
         }
         consultorio_atual = consultorio_atual->proximo;
@@ -241,6 +240,3 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
 
     printf("Consultorio nao encontrado\n");
 }
-
-    
-

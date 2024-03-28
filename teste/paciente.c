@@ -61,18 +61,23 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
     return lista;
 }
 
-
-   Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral) {
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral) {
     Lista_geral* novo_paciente_geral = (Lista_geral*)malloc(sizeof(Lista_geral));
     if (novo_paciente_geral == NULL) {
         printf("Erro na alocacao\n");
         exit(1);
     }
+    novo_paciente_geral->paciente_geral = (Paciente*)malloc(sizeof(Paciente));
+    if (novo_paciente_geral->paciente_geral == NULL) {
+        printf("Erro na alocacao\n");
+        exit(1);
+    }
 
+    
+    coletar_dados_paciente(novo_paciente_geral->paciente_geral);
     novo_paciente_geral->proximo = NULL; 
 
     if (lista_geral == NULL) {
-        
         return novo_paciente_geral;
     }
 
@@ -81,10 +86,8 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
         ultimo = ultimo->proximo;
     }
 
-
     ultimo->proximo = novo_paciente_geral;
-
-    return lista_geral; 
+    return lista_geral;
 }
 
 
@@ -129,20 +132,20 @@ void string_maiuscula_minuscula(char *palavra_var){
     }
   }
 }
-void imprimir_atendidos(Lista_Atendidos*lista){
-    if (lista==NULL)
-    {
-      printf("Nenhum paciente foi atendido ainda, lista esta vazia\n");
+void imprimir_atendidos(Lista_Atendidos* lista) {
+    if (lista == NULL) {
+        printf("Nenhum paciente foi atendido ainda, lista esta vazia\n");
+        return;
     }
-    
-    while (lista!=NULL)
-    {
+
+    while (lista != NULL) {
         printf("Nome do paciente: %s\n", lista->paciente_atendido->nome);
         printf("Idade do paciente: %d\n", lista->paciente_atendido->idade);
-        printf("Situacao de saude do paciente: %s\n",  lista->paciente_atendido->situacao_saude);
+        printf("Situacao de saude do paciente: %s\n", lista->paciente_atendido->situacao_saude);
+        lista = lista->proximo;
     }
-    
 }
+
 
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
@@ -165,4 +168,5 @@ void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_aten
     *lista_atendidos = novo_atendimento;
 
     free(removido); 
+    printf("Paciente removido com sucessp\n");
 }

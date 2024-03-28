@@ -26,6 +26,8 @@ typedef struct Lista_geral {
     Paciente* paciente_geral;
 } Lista_geral;
 
+extern struct Lista_geral* lista_geral;
+
 void coletar_dados_paciente(Paciente* paciente);
 Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, struct Consultorio* consultorio);
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente);
