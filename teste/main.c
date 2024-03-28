@@ -6,10 +6,10 @@
 
 
 int main() {
-    struct Consultorio* lista_consultorios =NULL; 
-    struct Lista_atendidos* lista_atendidos = NULL;
-    struct Paciente*lista_paciente=NULL;
-    struct Lista_geral*lista_geral=NULL;
+     Consultorio* lista_consultorios =NULL; 
+      Lista_Atendidos* lista_atendidos = NULL;
+      Paciente*lista_paciente=NULL;
+      Lista_geral*lista_geral=NULL;
     char opcao;
 
     do {
@@ -23,7 +23,8 @@ int main() {
         printf("6-Buscar paciente por nome\n");
         printf("7-Listar consultorios \n");
         printf("8-Listar pacientes atendidos\n");
-        printf("9- Sair\n ");
+        printf("9- Adicionar pacientes geral\n");
+        printf("0- Sair\n");
 
         scanf(" %c", &opcao);
          //salvar_consultorios_em_arquivo(lista_consultorios);
@@ -41,13 +42,11 @@ int main() {
             case '3': {
                    adicionar_paciente_por_id(lista_consultorios);
                    salvar_consultorios_em_arquivo(lista_consultorios);
-
-
-                break;
+                 break;
             }
             case '4': {
                remover_paciente_por_fila(&lista_geral,&lista_atendidos);
-               
+
                 break;
             }
             case '5': {
@@ -92,6 +91,6 @@ int main() {
         }
 
     } while (opcao != '0');
-  //salvar_consultorios_em_arquivo(lista_consultorios);
+  salvar_consultorios_em_arquivo(lista_consultorios);
     return 0;
 }
