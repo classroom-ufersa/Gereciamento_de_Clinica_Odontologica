@@ -87,3 +87,8 @@ int main() {
                 break;
             }
         }
+    } 
+    while (opcao != '0');
+          salvar_consultorios_em_arquivo(lista_consultorios);
+    return 0;
+}
