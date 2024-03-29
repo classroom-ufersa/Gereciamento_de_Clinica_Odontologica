@@ -54,17 +54,22 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
         printf("Erro ao alocar memoria para o novo consultorio\n");
         exit(1);
     }
-
+  char identificacao[500];
     printf("Digite o ID do consultorio: ");
-    scanf("%d", &novo_consultorio->identificacao);
-    getchar();
+    scanf("%[^\n]", identificacao);
+    tratamento_de_numero(identificacao);
+    novo_consultorio->identificacao=atoi(identificacao);
+
 
     printf("Digite a especialidade desse consultorio: ");
     scanf(" %[^\n]", novo_consultorio->especialidade);
-    getchar();
+    tratamento_de_palavras(novo_consultorio->especialidade);
+  string_maiuscula_minuscula(novo_consultorio->especialidade);
 
     printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
     scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
+    tratamento_de_palavras(novo_consultorio->equipamentos_disponiveis);
+    string_maiuscula_minuscula(novo_consultorio->equipamentos_disponiveis);
 
     novo_consultorio->paciente = NULL;
     novo_consultorio->proximo = NULL;
@@ -90,22 +95,22 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
 
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
- char id_remover[500];
- int id_a_remover;
-    if (verificar_lista(lista_consultorios)==1)
-    {
+    char id_remover[500];
+    int id_a_remover;
+
+    if (verificar_lista(lista_consultorios) == 1) {
        printf("Lista de consultorios esta vazia\n");
+       return lista_consultorios;
     }
-    
+
     Consultorio *atual = lista_consultorios;
     Consultorio *anterior = NULL;
-    int id_a_remover;
-    printf("Digite o id do consultorio que deseja remover:\n");
 
-    scanf("%[^\n]", &id_remover);
-    tratamento_de_numero(id_a_remover);
+    printf("Digite o id do consultorio que deseja remover:\n");
+    scanf(" %[^\n]", id_remover);
+    tratamento_de_numero(id_remover);
     id_a_remover = atoi(id_remover);
-    
+
     while (atual != NULL && atual->identificacao != id_a_remover) {
         anterior = atual;
         atual = atual->proximo;
@@ -124,9 +129,10 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
 
     free(atual);
     printf("Consultorio removido com sucesso.\n");
-    
+
     return lista_consultorios;
 }
+
 
 
 void imprimir_consultorios_Disponiveis(Consultorio* lista) {
