@@ -3,8 +3,6 @@
 #include "consultorio.h"
 #include"paciente.h"
 
-
-
 void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;
     Consultorio* atual = lista_consultorios;
@@ -47,7 +45,6 @@ int verificar_lista(Consultorio* consultorio_aux) {
     }
 }
 
-
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
     if (novo_consultorio == NULL) {
@@ -64,7 +61,7 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     printf("Digite a especialidade desse consultorio:\n ");
     scanf(" %[^\n]", novo_consultorio->especialidade);
     tratamento_de_palavras(novo_consultorio->especialidade);
-  string_maiuscula_minuscula(novo_consultorio->especialidade);
+    string_maiuscula_minuscula(novo_consultorio->especialidade);
 
     printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
     scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
@@ -92,7 +89,6 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
     return lista_consultorios;
 }
-
 
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     char id_remover[500];
@@ -133,8 +129,6 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     return lista_consultorios;
 }
 
-
-
 void imprimir_consultorios_Disponiveis(Consultorio* lista) {
 
     if (verificar_lista(lista)==1)
@@ -143,8 +137,6 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     }
     
     Consultorio* imprimir_lista = lista;
-    
-    
     printf("Lista de consultorios:\n");
     
     while (imprimir_lista != NULL) {
@@ -155,6 +147,7 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
         imprimir_lista = imprimir_lista->proximo;
     }
 }
+
 Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nome) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
@@ -173,8 +166,7 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
     return NULL;
 }
 
-
-  Consultorio* editar_paciente(Consultorio* lista, char *nome_editar) {
+Consultorio* editar_paciente(Consultorio* lista, char *nome_editar) {
     char opcao;
     if (verificar_lista(lista) == 1) {
         printf("Lista de consultorios esta vazia\n");
@@ -235,9 +227,7 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
     return lista;
 }
 
-
-      
-   void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
+void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
     int id_procurar;
     char id_var[100];
     printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
@@ -260,10 +250,7 @@ Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nom
             }
 
             coletar_dados_paciente(novo_paciente);
-
             consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
-        
-
             return;
         }
         consultorio_atual = consultorio_atual->proximo;
