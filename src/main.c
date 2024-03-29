@@ -32,7 +32,7 @@ int main() {
         switch (opcao) {
             case '1': {
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
-                 salvar_consultorios_em_arquivo(lista_consultorios);
+                salvar_consultorios_em_arquivo(lista_consultorios);
                 break;
             }
             case '2': {
@@ -40,33 +40,34 @@ int main() {
                 break; 
             }
             case '3': {
-                   adicionar_paciente_por_id(lista_consultorios);
-                   salvar_consultorios_em_arquivo(lista_consultorios);
-                 break;
+                adicionar_paciente_por_id(lista_consultorios);
+                salvar_consultorios_em_arquivo(lista_consultorios);
+                break;
             }
             case '4': {
-               remover_paciente_por_fila(&lista_geral,&lista_atendidos);
+                remover_paciente_por_fila(&lista_geral,&lista_atendidos);
+                //limpar buffer
                 break;
             }
             case '5': {
-               char nome_editar[500];
-               printf("Digite o nome do paciente que deseja editar:\n");
-               scanf(" %[^\n]", nome_editar);
-               tratamento_de_palavras(nome_editar);
+                char nome_editar[500];
+                printf("Digite o nome do paciente que deseja editar:\n");
+                scanf(" %[^\n]", nome_editar);
+                tratamento_de_palavras(nome_editar);
                 string_maiuscula_minuscula(nome_editar);
-               lista_consultorios= editar_paciente(lista_consultorios, nome_editar);
-               break;
+                lista_consultorios= editar_paciente(lista_consultorios, nome_editar);
+                break;
             }
             case '6': {
                 char nome_paciente_buscar[500];
-                 printf("Digite o nome do paciente que deseja buscar:\n");
-                  scanf(" %[^\n]", nome_paciente_buscar);
-                  tratamento_de_palavras(nome_paciente_buscar);
-                 string_maiuscula_minuscula(nome_paciente_buscar);
+                printf("Digite o nome do paciente que deseja buscar:\n");
+                scanf(" %[^\n]", nome_paciente_buscar);
+                tratamento_de_palavras(nome_paciente_buscar);
+                string_maiuscula_minuscula(nome_paciente_buscar);
                 lista_consultorios = buscar_paciente_por_nome(lista_consultorios, nome_paciente_buscar);
             }
             case '7': {
-               imprimir_consultorios_Disponiveis(lista_consultorios);
+                imprimir_consultorios_Disponiveis(lista_consultorios);
                 break;
             }
             case '8': {
@@ -89,6 +90,13 @@ int main() {
         }
     } 
     while (opcao != '0');
-          salvar_consultorios_em_arquivo(lista_consultorios);
+
+    /*Liberar memoria*/
+    free(lista_consultorios);
+    free(lista_atendidos);
+    free(lista_paciente);
+    free(lista_geral);
+    
+    salvar_consultorios_em_arquivo(lista_consultorios);
     return 0;
 }
