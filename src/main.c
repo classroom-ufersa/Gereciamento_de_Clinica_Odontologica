@@ -4,68 +4,86 @@
 #include "consultorio.c"
 
 int main() {
-    struct Listapaciente* lista_pacientes = NULL;
-    struct Listaconsultorio* lista_consultorio=NULL;
-    char escolha;
-    do{
-        escolha=menu()
+    Consultorio* lista_consultorios =NULL; 
+    Lista_Atendidos* lista_atendidos = NULL;
+    Paciente*lista_paciente=NULL;
+    Lista_geral*lista_geral=NULL;
     
+    char opcao;    
+    do{
+        printf("========= CHAR OF SMILE CLINICA ==========\n");
+        printf("Seja bem vindo! Segue o menu da cllinica: \n");
+        printf("Escolha uma das opcoes a seguir:\n");
+        printf("1-Adicionar consultorio\n");
+        printf("2-Remover consultorio \n");
+        printf("3-Adicionar paciente\n");
+        printf("4-Remover paciente\n");
+        printf("5-Editar informacoes de paciente\n");
+        printf("6-Buscar paciente por nome\n");
+        printf("7-Listar consultorios \n");
+        printf("8-Listar pacientes atendidos\n");
+        printf("9- Adicionar pacientes geral\n");
+        printf("0- Sair\n");
+        printf("===========================================\n");
 
-        switch (escolha) {
-            case '1':
-            break;
-            case '2':
-                
-                break;
-            case '3':
-               
-               int consultorio_id;
-               printf("Digite o id do consultorio que esse paciente vai pertencer: ");
-               scanf("%d", &consultorio_id);
-
-               struct Consultorio* aux_consultorio = Listaconsultorios;
-               while (aux_consultorio != NULL && aux_consultorio->id != consultorio_id) {
-               aux_consultorio = aux_consultorio->proximo;
-    }
-
-               if (aux_consultorio != NULL) {
-            aux_consultorio->pacientes = adicionar_paciente(aux_consultorio->pacientes);
+        scanf(" %c", &opcao);
+         //salvar_consultorios_em_arquivo(lista_consultorios);
         
-             }
-            else {
-               printf("Consultorio nao encontrado.\n");
-                   }
+        switch (opcao) {
+            case '1': {
+                lista_consultorios = adicionar_consultorio(lista_consultorios);
+                 salvar_consultorios_em_arquivo(lista_consultorios);
                 break;
-            case '4':
-               
-                break;
-            case '5':
-                char nomeeditar[500];
-                printf("Digite o nome do Paciente que deseja editar os dados:\n");
-                scanf(" %[^\n]", nomeeditar);
-                 buscar_consultorio(lista_consultorios, nomeeditar);
-                 editar_pacientes(lista_pacientes);
-                break;
-            case '6':
-            
-                break;
-            case '7':
-            break;
-            case '8':
-            break;
-          
-            case '9':
             }
-         
-           
-            default:
-                printf("Opcao invalida. Tente novamente.\n");
+            case '2': {
+                lista_consultorios= remover_consultorio_por_id(lista_consultorios);
+                break; 
+            }
+            case '3': {
+                   adicionar_paciente_por_id(lista_consultorios);
+                   salvar_consultorios_em_arquivo(lista_consultorios);
+                 break;
+            }
+            case '4': {
+               remover_paciente_por_fila(&lista_geral,&lista_atendidos);
                 break;
+            }
+            case '5': {
+               char nome_editar[500];
+               printf("Digite o nome do paciente que deseja editar:\n");
+               scanf(" %[^\n]", nome_editar);
+               tratamento_de_palavras(nome_editar);
+                string_maiuscula_minuscula(nome_editar);
+               lista_consultorios= editar_paciente(lista_consultorios, nome_editar);
+               break;
+            }
+            case '6': {
+                char nome_paciente_buscar[500];
+                 printf("Digite o nome do paciente que deseja buscar:\n");
+                  scanf(" %[^\n]", nome_paciente_buscar);
+                  tratamento_de_palavras(nome_paciente_buscar);
+                 string_maiuscula_minuscula(nome_paciente_buscar);
+                lista_consultorios = buscar_paciente_por_nome(lista_consultorios, nome_paciente_buscar);
+            }
+            case '7': {
+               imprimir_consultorios_Disponiveis(lista_consultorios);
+                break;
+            }
+            case '8': {
+                imprimir_atendidos(lista_atendidos);
+                break;
+            }
+            case '9': {
+                printf("teste 02\n");
+                lista_geral=adicionar_paciente_geral(lista_geral);
+                printf("teste01\n");
+                break;
+            }
+            case '0':{
+                break;
+            }
+            default: {
+                printf("Opção invalida! Tente novamente. \n");
+                break;
+            }
         }
-          while(escolha!= '9')
-          }
-          }
-   
-
-    return 0;
-}
