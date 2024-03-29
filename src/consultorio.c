@@ -1,141 +1,90 @@
-#include "configuracoes.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "consultorio.h"
-#include "paciente.h"
+#include"paciente.h"
 
-struct consultorio {
-    int identificacao;
-    char especialidade[50];
-    char equipamentos_disponiveis[50];
-    struct Listapacientes*pac;
+void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
+    FILE* arquivo;
+	Consultorio* atual = lista_consultorios;
+	arquivo = fopen("consultorios_e_pacientes.txt", "w+"); 
+    
+    if (arquivo == NULL) {
+	    printf("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+	
+	while (atual != NULL) {
+        fprintf(arquivo, "===== LISTA DE CONSULTORIOS =====\n");
+        fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
+        fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
+        fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
+
+	    Paciente* paciente_atual = atual->paciente;
+        while (paciente_atual != NULL) {
+	        fprintf(arquivo, "===== Pacientes =====: \n");
+            fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
+            fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
+            fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
+            paciente_atual = paciente_atual->proximo;
+        }
+        fprintf(arquivo, "=========================\n");
+        atual = atual->proximo;
+    }
+
+    fclose(arquivo);
+    printf("Dados dos consultorios salvos com sucesso! Arquivo consultorios.txt .\n");
 }
 
-struct listaconsultorio {
-    struct next_consultorio;
-    struct Listapaciente* next;
+int verificar_lista(Consultorio* consultorio_aux) {
+    if (consultorio_aux == NULL) {
+        printf("Lista de consultorios esta vazia\n");
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
-struct Listaconsultorio* lista_cria() {
-    return NULL;
-}
-
-/*Tipo estruturado que cria e adiciona um novo consultorio a lista encadeada*/
-struct Listaconsultorio* listaconsultorio(Consultorio* consultorio, Listaconsultorio* Listaconsultorio) {
-    struct Listaconsultorio* novo = (Listaconsultorio*)malloc(sizeof(Listaconsultorio));
-    if (novo == NULL) {
-        printf("Erro na alocacao da memoria.\n");
+Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
+    Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
+    if (novo_consultorio == NULL) {
+        printf("Erro ao alocar memoria para o novo consultorio\n");
         exit(1);
     }
     
-    novo->consultorio = consultorio;
-    novo->next = Listaconsultorio;
-    return novo;
-}
+    char identificacao[500];
+    printf("Digite o ID do consultorio:\n ");
+    scanf(" %[^\n]", identificacao);
+    tratamento_de_numero(identificacao);
+    novo_consultorio->identificacao=atoi(identificacao);
 
-/*Tipo estruturado que insere o consultorio de forma ordenada por meio do id*/
-struct Consultorio* inserir_ordenado(Consultorio* inicio, Consultorio* novo) {
-    if (inicio == NULL || novo->identificacao < inicio->identificacao) {
-        novo->proximo = inicio;
-        return novo;
+    printf("Digite a especialidade desse consultorio:\n ");
+    scanf(" %[^\n]", novo_consultorio->especialidade);
+    tratamento_de_palavras(novo_consultorio->especialidade);
+    string_maiuscula_minuscula(novo_consultorio->especialidade);
+
+    printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
+    scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
+    tratamento_de_palavras(novo_consultorio->equipamentos_disponiveis);
+    string_maiuscula_minuscula(novo_consultorio->equipamentos_disponiveis);
+
+    novo_consultorio->paciente = NULL;
+    novo_consultorio->proximo = NULL;
+
+    if (lista_consultorios == NULL || novo_consultorio->identificacao < lista_consultorios->identificacao) {
+        novo_consultorio->proximo = lista_consultorios;
+        return novo_consultorio;
     }
-    
-    struct Consultorio* atual = inicio;
-    while (atual->proximo != NULL && novo->identificacao >= atual->proximo->identificacao) {
-        atual = atual->proximo;
-    } 
-    
-    novo->proximo = atual->proximo;
-    atual->proximo = novo;
-    return inicio;
-}
 
-/*Tipo estruturado para coleta e armazenamento de dados do consultorio*/
-struct Listaconsultorio* coletar_dados_consultorio() {
-    
-    printf("Digite a identificacao do consultorio: ");
-    scanf("%d", &novo_consultorio->identificacao);
+    Consultorio* anterior = lista_consultorios;
+    Consultorio* atual = lista_consultorios->proximo;
 
-    printf("Digite a especialidade do consultorio: ");
-    scanf("%s", novo_consultorio->especialidade);
-
-    printf("Digite os equipamentos disponiveis: \n");
-    scanf("%[^\n]" novo_consultorio->equipamentos_disponiveis);
-}
-
-void escrever_consultorio(Listaconsultorio *listaconsultorio) {
-    //texto
-}
-
-/*Funcao que percorre a lista e imprime na tela as informações de cada consultorio*/
-void ler_consultorio(Listaconsultorio *listaconsultorio) {
-    struct Listaconsultorio *atual = listaconsultorio;
-    
-    while (atual != NULL) {
-        printf("Identificacao: %d\n", atual->consultorio->identificacao);
-        printf("Especialidade: %s\n", atual->consultorio->especialidade);
-        printf("Equipamentos Disponiveis: %s\n", atual->consultorio->equipamentos_disponiveis);
-        
-        atual = atual->next;
-    }
-}
-
-/*Fucao que remove consultorio a partir do seu id*/
-void remover_consultorio(Listaconsultorio *listaconsultorio) {
-    int id_remover;
-    printf("Digite a identificacao do consultorio que deseja remover:\n");
-    scanf("%d", &id_remover);
-
-    struct Listaconsultorio *atual = listaconsultorio;
-    struct Listaconsultorio *anterior = NULL;
-
-    while (atual != NULL && atual->consultorio->identificacao != id_remover) {
+    while (atual != NULL && novo_consultorio->identificacao > atual->identificacao) {
         anterior = atual;
-        atual = atual->next;
+        atual = atual->proximo;
     }
 
-    if (atual == NULL) {
-        printf("Consultorio nao encontrado.\n");
-        return;
-    }
+    anterior->proximo = novo_consultorio;
+    novo_consultorio->proximo = atual;
 
-    if (anterior == NULL) {
-        listaconsultorio = atual->next;
-    } else {
-        anterior->next = atual->next;
-    }
-
-    free(atual->consultorio);
-    free(atual);
-}
-
-
-Consultorio adicionar_consultorio(Consultorio *c){
-
-}
-
-/*Funcao que verifica se a lista esta vazia*/
-void verificar_lista_vazia(Listaconsultorio *lista_consultorio){
-    if(lista_consultorio==NULL){
-        return 1;
-    }
-    return 0;
-}
-
-/*Funcao que buscar por um paciente específico dentro de uma lista de consultórios*/
-void buscar_por_paciente(Listaconsultorio* lista_consultorio, char* nome_paciente) {
-    if (lista_consultorio == NULL) {
-        printf("Lista de consultórios vazia.\n");
-        return;
-    }
-    Listaconsultorio* consultorio_atual = lista_consultorio;
-    while (consultorio_atual != NULL) {
-        Listapacientes* paciente_atual = consultorio_atual->lista_pacientes;
-        while (paciente_atual != NULL) {
-            if (strcmp(paciente_atual->paciente->nome, nome_paciente) == 0) {
-                printf("Paciente encontrado: %s\n", paciente_atual->paciente->nome);
-                return;
-            }
-            paciente_atual = paciente_atual->next;
-        }
-        consultorio_atual = consultorio_atual->next_consultorio;
-    }
+    return lista_consultorios;
 }
