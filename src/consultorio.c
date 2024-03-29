@@ -4,7 +4,7 @@
 #include"paciente.h"
 
 void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
-    FILE* arquivo;
+	FILE* arquivo;
 	Consultorio* atual = lista_consultorios;
 	arquivo = fopen("consultorios_e_pacientes.txt", "w+"); 
     
@@ -19,9 +19,9 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
 
-	    Paciente* paciente_atual = atual->paciente;
+	Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-	        fprintf(arquivo, "===== Pacientes =====: \n");
+	    fprintf(arquivo, "===== Pacientes =====: \n");
             fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
@@ -87,4 +87,178 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     novo_consultorio->proximo = atual;
 
     return lista_consultorios;
+}
+
+
+Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
+char id_remover[500];
+    int id_a_remover;
+    
+    if (verificar_lista(lista_consultorios) == 1) {
+        printf("Lista de consultorios vazia! \n");
+        return lista_consultorios;
+    }
+
+    Consultorio *atual = lista_consultorios;
+    Consultorio *anterior = NULL;
+
+    printf("Digite o id do consultorio para remover:\n");
+    scanf(" %[^\n]", id_remover);
+    tratamento_de_numero(id_remover);
+    id_a_remover = atoi(id_remover);
+
+    while (atual != NULL && atual->identificacao != id_a_remover) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual == NULL) {
+        printf("Consultorio nao encontrado no sistema! \n");
+        return lista_consultorios;
+    }
+
+    if (anterior == NULL) {
+        lista_consultorios = atual->proximo;
+    } else {
+        anterior->proximo = atual->proximo;
+    }
+
+    free(atual);
+    printf("Consultorio removido com sucesso! \n");
+
+    return lista_consultorios;
+}
+
+void imprimir_consultorios_Disponiveis(Consultorio* lista) {
+    if (verificar_lista(lista)==1) {
+        printf("Lista de consultorios vazia, nao ha nada para imprimir! \n");
+    }
+    
+    Consultorio* imprimir_lista = lista;
+    printf("Lista de consultorios:\n");
+    
+    while (imprimir_lista != NULL) {
+        printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
+        printf("Especialidade: %s\n", imprimir_lista->especialidade);
+        printf("Equipamentos disponiveis: %s\n", imprimir_lista->equipamentos_disponiveis);
+       
+        imprimir_lista = imprimir_lista->proximo;
+    }
+}
+
+Consultorio* buscar_paciente_por_nome(Consultorio* lista_consultorios, char* nome) {
+    Consultorio* consultorio_atual = lista_consultorios;
+	
+    while (consultorio_atual != NULL) {
+        Paciente* paciente_atual = consultorio_atual->paciente;
+	    
+        while (paciente_atual != NULL) {
+            if (strcmp(paciente_atual->nome, nome) == 0) {
+                printf("Paciente encontrado:\n");
+                printf("Nome: %s \n, Idade: %d\n, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+                return consultorio_atual; 
+            }
+            paciente_atual = paciente_atual->proximo;
+        }
+        consultorio_atual = consultorio_atual->proximo;
+    }
+    printf("Paciente nao encontrado no sistema! \n");
+    return NULL;
+}
+
+Consultorio* editar_paciente(Consultorio* lista, char *nome_editar) {
+    char opcao;
+    if (verificar_lista(lista) == 1) {
+        printf("Lista de consultorios esta vazia! \n");
+        return lista;
+    }
+
+Consultorio* consultorio_editar = buscar_paciente_por_nome(lista, nome_editar);
+    if (consultorio_editar != NULL) {
+        printf("Editar dados do paciente:\n");
+        printf("Quais dados do paciente deseja editar? \n");
+	printf("Digite:\n  [0] Apenas um dado\n  [1] Todos os dados \n");
+        scanf(" %c", &opcao);
+        char idade_var[100];
+        
+	if (opcao == '1') {
+            printf("Digite o novo nome do paciente:\n");
+            scanf(" %[^\n]", consultorio_editar->paciente->nome);
+            tratamento_de_palavras(consultorio_editar->paciente->nome);
+            string_maiuscula_minuscula(consultorio_editar->paciente->nome);
+		
+            printf("Digite a nova idade do paciente:\n ");
+            scanf(" %[^\n]", idade_var);
+            tratamento_de_numero(idade_var);
+            consultorio_editar->paciente->idade = atoi(idade_var);
+
+            printf("Digite a nova situacao de saude:\n");
+            scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+            tratamento_de_palavras(consultorio_editar->paciente->situacao_saude);
+            string_maiuscula_minuscula(consultorio_editar->paciente->situacao_saude);
+		
+        } else if (opcao == '0') {
+            char dado_editar;
+            printf("Digite o dado para editar:\n [1] Editar a idade\n [2] Editar o nome [3] Editar a situacao de saude\n");
+            scanf(" %c", &dado_editar);
+
+            if (dado_editar == '1') {
+                printf("Digite o novo nome do paciente:\n");
+                scanf(" %[^\n]", consultorio_editar->paciente->nome);
+                tratamento_de_palavras(consultorio_editar->paciente->nome);
+                string_maiuscula_minuscula(consultorio_editar->paciente->nome);
+
+            } else if (dado_editar == '2') {
+                printf("Digite a nova idade do paciente:\n ");
+                scanf(" %[^\n]", idade_var);
+                tratamento_de_numero(idade_var);
+               consultorio_editar->paciente->idade = atoi(idade_var);
+
+            } else if (dado_editar == '3') {
+                printf("Digite a nova situacao de saude:\n");
+                scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
+                tratamento_de_palavras(consultorio_editar->paciente->nome);
+                string_maiuscula_minuscula(consultorio_editar->paciente->nome);
+            } else {
+                printf("Opcao invalida! Tente novamente.\n");
+            }
+        } else {
+            printf("Opcao invalida! Tente novamente.\n");
+        }
+    }
+
+    return lista;
+}
+
+void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
+    int id_procurar;
+    char id_var[100];
+    printf("Digite o ID do consultorio que o paciente vai pertencer: ");
+    scanf(" %[^\n]", id_var);
+
+    tratamento_de_numero(id_var);
+    id_procurar = atoi(id_var);
+    
+    if (verificar_lista(lista_consultorios) == 1) {
+        printf("Lista de consultorios esta vazia! \n");
+        return;
+    }
+
+    Consultorio *consultorio_atual = lista_consultorios;
+    while (consultorio_atual != NULL) {
+        if (consultorio_atual->identificacao == id_procurar) {
+            Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
+            if (novo_paciente == NULL) {
+                printf("Erro na alocacao! \n");
+                exit(1);
+            }
+
+            coletar_dados_paciente(novo_paciente);
+            consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
+            return;
+        }
+        consultorio_atual = consultorio_atual->proximo;
+    }
+
+    printf("Consultorio nao encontrado! \n");
 }
