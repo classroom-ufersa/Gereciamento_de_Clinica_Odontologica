@@ -55,13 +55,13 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
         exit(1);
     }
   char identificacao[500];
-    printf("Digite o ID do consultorio: ");
-    scanf("%[^\n]", identificacao);
+    printf("Digite o ID do consultorio:\n ");
+    scanf(" %[^\n]", identificacao);
     tratamento_de_numero(identificacao);
     novo_consultorio->identificacao=atoi(identificacao);
 
 
-    printf("Digite a especialidade desse consultorio: ");
+    printf("Digite a especialidade desse consultorio:\n ");
     scanf(" %[^\n]", novo_consultorio->especialidade);
     tratamento_de_palavras(novo_consultorio->especialidade);
   string_maiuscula_minuscula(novo_consultorio->especialidade);

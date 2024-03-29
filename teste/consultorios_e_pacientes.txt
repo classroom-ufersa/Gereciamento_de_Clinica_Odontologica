@@ -1,5 +1,0 @@
- ----Lista de consultorios da      ----
-Identificacao: 58
-Especialidade: FACAS
-Equipamentos disponiveis: DS
-===========
