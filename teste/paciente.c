@@ -5,8 +5,10 @@
 #include "consultorio.h"
 
 
-void coletar_dados_paciente(Paciente* paciente) {
-    char idade_var[50];
+void coletar_dados_paciente(Paciente* paciente, struct Consultorio*lista) {
+    char idade_var_string[50];
+    char digito_unico_string[100];
+     Consultorio*lista_pacientes=lista;
     printf("Digite o nome do paciente: ");
     scanf(" %[^\n]", paciente->nome);
     tratamento_de_palavras(paciente->nome);
@@ -15,18 +17,35 @@ void coletar_dados_paciente(Paciente* paciente) {
 
  
     printf("Digite a idade do paciente: ");
-    scanf(" %[^\n]", idade_var);
+    scanf(" %[^\n]", idade_var_string);
 
-    tratamento_de_numero(idade_var);
-    paciente->idade = atoi(idade_var);
+    tratamento_de_numero(idade_var_string);
+    paciente->idade = atoi(idade_var_string);
 
     printf("Digite a situacao da saude do paciente: ");
     scanf(" %[^\n]", paciente->situacao_saude);
     tratamento_de_palavras(paciente->situacao_saude);
-}
+
+    while (1)
+    {
+    
+    
+    printf("Digite o digito unico desse paciente:\n");
+    scanf(" %[^\n]", digito_unico_string);
+    tratamento_de_numero(digito_unico_string);
+    paciente->digito_unico= atoi(digito_unico_string);
+    if (verificar_autenticidade(lista_pacientes, paciente->digito_unico)==1)
+    {
+      printf("Um paciente ja possui esse digito, informe outro.\n");
+    }
+    else{
+      break;
+    }
+
+}}
 
 
-Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
+Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
     if (novo_paciente == NULL) {
         printf("Erro na alocacao, tente novamente;");
@@ -34,11 +53,13 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
     }
 
     strcpy(novo_paciente->nome, nome);
-    novo_paciente->idade=idade;
+    novo_paciente->idade = idade;
     strcpy(novo_paciente->situacao_saude, situacao_saude);
+    novo_paciente->digito_unico = dg;
     novo_paciente->proximo = NULL;
     return novo_paciente;
 }
+
 
 
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
@@ -74,7 +95,7 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral) {
     }
 
     
-    coletar_dados_paciente(novo_paciente_geral->paciente_geral);
+    //coletar_dados_paciente(novo_paciente_geral->paciente_geral);
     novo_paciente_geral->proximo = NULL; 
 
     if (lista_geral == NULL) {
@@ -169,4 +190,21 @@ void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_aten
 
     free(removido); 
     printf("Paciente removido com sucessp\n");
+}
+ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico) {
+    Consultorio* consultorio_atual = lista_consultorios;
+    while (consultorio_atual != NULL) {
+        Paciente* paciente_atual = consultorio_atual->paciente;
+        while (paciente_atual != NULL) {
+            if (strcmp(paciente_atual->nome, nome) == 0 && paciente_atual->digito_unico == digitoUnico) {
+                printf("Paciente encontrado:\n");
+                printf("Nome: %s, Idade: %d, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+                return paciente_atual; 
+            }
+            paciente_atual = paciente_atual->proximo;
+        }
+        consultorio_atual = consultorio_atual->proximo;
+    }
+    printf("Paciente nao encontrado\n");
+    return NULL;
 }

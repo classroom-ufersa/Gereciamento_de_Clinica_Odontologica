@@ -9,6 +9,7 @@ typedef struct Paciente {
     char nome[100];
     int idade;
     char situacao_saude[100];
+    int digito_unico;
     struct Consultorio* consultorio;
     struct Paciente* proximo;
 
@@ -28,8 +29,8 @@ typedef struct Lista_geral {
 
 extern struct Lista_geral* lista_geral;
 
-void coletar_dados_paciente(Paciente* paciente);
-Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, struct Consultorio* consultorio);
+void coletar_dados_paciente(Paciente* paciente, struct Consultorio*lista);
+Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg);
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente);
 Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral);
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos);
@@ -37,4 +38,5 @@ void tratamento_de_numero(char *variavel_num);
 void tratamento_de_palavras(char *palavra_var);
 void string_maiuscula_minuscula(char *palavra_var);
 void imprimir_atendidos(Lista_Atendidos*lista);
+ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico);
 #endif /* PACIENTE_H */

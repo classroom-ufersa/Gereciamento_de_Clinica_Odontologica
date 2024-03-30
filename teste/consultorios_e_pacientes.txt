@@ -1,5 +1,9 @@
  ----Lista de consultorios da      ----
 Identificacao: 147
-Especialidade: Maquinas
-Equipamentos disponiveis: Asa
+Especialidade: Dwdw
+Equipamentos disponiveis: Wdwd
+   ||Pacientes||:  
+Nome do paciente: Maria
+Idade do paciente: 47
+Situacao de saude do paciente: s
 ===========

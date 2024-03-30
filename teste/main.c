@@ -51,20 +51,33 @@ int main() {
             }
             case '5': {
                char nome_editar[500];
+               char dg_string[100];
+               int digito_unico;
                printf("Digite o nome do paciente que deseja editar:\n");
                scanf(" %[^\n]", nome_editar);
                tratamento_de_palavras(nome_editar);
                 string_maiuscula_minuscula(nome_editar);
-               lista_consultorios= editar_paciente(lista_consultorios, nome_editar);
+                printf("Agora insira o digito unico desse paciente:\n");
+                scanf(" %[^\n]", dg_string);
+                tratamento_de_numero(dg_string);
+               digito_unico=atoi(dg_string);
+
+               editar_paciente(lista_consultorios, nome_editar,digito_unico);
                break;
             }
             case '6': {
-                char nome_paciente_buscar[500];
-                 printf("Digite o nome do paciente que deseja buscar:\n");
-                  scanf(" %[^\n]", nome_paciente_buscar);
-                  tratamento_de_palavras(nome_paciente_buscar);
-                 string_maiuscula_minuscula(nome_paciente_buscar);
-                lista_consultorios = buscar_paciente_por_nome(lista_consultorios, nome_paciente_buscar);
+              char nome_buscar[500];
+               char dg_string[100];
+               int digito_unico;
+               printf("Digite o nome do paciente que deseja buscar:\n");
+               scanf(" %[^\n]", nome_buscar);
+               tratamento_de_palavras(nome_buscar);
+                string_maiuscula_minuscula(nome_buscar);
+                printf("Agora insira o digito unico desse paciente:\n");
+                scanf(" %[^\n]", dg_string);
+                tratamento_de_numero(dg_string);
+               digito_unico=atoi(dg_string);
+                lista_paciente = buscar_paciente_por_nome(lista_consultorios, nome_buscar, digito_unico);
                 
                 }
             case '7': {
