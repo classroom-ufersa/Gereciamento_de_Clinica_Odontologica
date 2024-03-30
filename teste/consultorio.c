@@ -44,19 +44,25 @@ int verificar_lista(Consultorio* consultorio_aux) {
         return 0;
     }
 }
-
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
     if (novo_consultorio == NULL) {
         printf("Erro ao alocar memoria para o novo consultorio\n");
         exit(1);
     }
-  char identificacao[500];
-    printf("Digite o ID do consultorio:\n ");
-    scanf(" %[^\n]", identificacao);
-    tratamento_de_numero(identificacao);
-    novo_consultorio->identificacao=atoi(identificacao);
 
+    while (1) {
+        char identificacao[500];
+        printf("Digite o ID do consultorio:\n ");
+        scanf(" %[^\n]", identificacao);
+        tratamento_de_numero(identificacao);
+        novo_consultorio->identificacao = atoi(identificacao);
+        if (verificar_id(lista_consultorios, novo_consultorio->identificacao) == 1) {
+            printf("Esse id ja pertence a um consultorio, digite outro.\n");
+        } else {
+            break; 
+        }
+    }
 
     printf("Digite a especialidade desse consultorio:\n ");
     scanf(" %[^\n]", novo_consultorio->especialidade);
@@ -89,6 +95,7 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
     return lista_consultorios;
 }
+
 
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     char id_remover[500];
@@ -196,31 +203,31 @@ Consultorio* editar_paciente(Consultorio* lista, char *nome_editar) {
             string_maiuscula_minuscula(consultorio_editar->paciente->situacao_saude);
         } else if (opcao == '0') {
             char dado_editar;
-            printf("Digite o dado que voce quer editar: 'I' para idade, 'N' para nome e 'S' para situacao de saude\n");
+            printf("Digite o dado que voce quer editar: '1' para nome, '2' para idade e '3' para situacao de saude\n");
             scanf(" %c", &dado_editar);
 
-            if (dado_editar == 'N' || dado_editar == 'n') {
+            if (dado_editar == '1') {
                 printf("Digite o novo nome do paciente:\n");
                 scanf(" %[^\n]", consultorio_editar->paciente->nome);
                 tratamento_de_palavras(consultorio_editar->paciente->nome);
                 string_maiuscula_minuscula(consultorio_editar->paciente->nome);
 
-            } else if (dado_editar == 'I' || dado_editar == 'i') {
+            } else if (dado_editar == '2') {
                 printf("Digite a nova idade do paciente:\n ");
                 scanf(" %[^\n]", idade_var);
                 tratamento_de_numero(idade_var);
                consultorio_editar->paciente->idade = atoi(idade_var);
 
-            } else if (dado_editar == 'S' || dado_editar == 's') {
+            } else if (dado_editar == '3') {
                 printf("Digite a nova situacao de saude:\n");
                 scanf(" %[^\n]", consultorio_editar->paciente->situacao_saude);
                 tratamento_de_palavras(consultorio_editar->paciente->nome);
                 string_maiuscula_minuscula(consultorio_editar->paciente->nome);
             } else {
-                printf("Opcao invalida. Digite numeros correspondentes com os pedidos.\n");
+                printf("Opcao invalida. Digite numeros correspondentes com os pedidos. Apenas 1,2 ou 3\n");
             }
         } else {
-            printf("Opcao invalida. Digite letras correspondentes com os pedidos.\n");
+            printf("Opcao invalida. Digite nuemros correspondentes com os pedidos. Apenas 0 ou 1\n");
         }
     }
 
@@ -257,4 +264,18 @@ void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
     }
 
     printf("Consultorio nao encontrado\n");
+}
+
+int verificar_id(Consultorio*lista, int id){
+     
+     Consultorio* lista_atual = lista;
+    while (lista_atual != NULL) {
+        if (lista_atual->identificacao == id) {
+            return 1; 
+        }
+        lista_atual = lista_atual->proximo;
+    }
+
+    return 0;
+
 }

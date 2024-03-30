@@ -17,6 +17,7 @@ typedef struct Consultorio {
 
 int verificar_lista(Consultorio*consultorio_aux);
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios);
+int verificar_id(Consultorio*lista, int id);
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios);
 void imprimir_consultorios_Disponiveis(Consultorio* lista);
 void adicionar_paciente_por_id(Consultorio *lista_consultorios);

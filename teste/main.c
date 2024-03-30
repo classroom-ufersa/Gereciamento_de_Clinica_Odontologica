@@ -7,7 +7,7 @@
 
 int main() {
      Consultorio* lista_consultorios =NULL; 
-      Lista_Atendidos* lista_atendidos = NULL;
+     Lista_Atendidos* lista_atendidos = NULL;
       Paciente*lista_paciente=NULL;
       Lista_geral*lista_geral=NULL;
     char opcao;
