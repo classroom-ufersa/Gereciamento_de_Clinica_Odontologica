@@ -1,9 +1,15 @@
  ----Lista de consultorios da      ----
-Identificacao: 147
-Especialidade: Dwdw
-Equipamentos disponiveis: Wdwd
+Identificacao: 123
+Especialidade: Dentes Brancos
+Equipamentos disponiveis: Facas
    ||Pacientes||:  
-Nome do paciente: Maria
+Nome do paciente: Ana
 Idade do paciente: 47
-Situacao de saude do paciente: s
+Situacao de saude do paciente: dores
+Digito unico: 14
+   ||Pacientes||:  
+Nome do paciente: Maria Ana
+Idade do paciente: 14
+Situacao de saude do paciente: dor de dente
+Digito unico: 14
 ===========

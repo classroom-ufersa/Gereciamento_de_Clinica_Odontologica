@@ -3,7 +3,7 @@
 #include "consultorio.h"
 #include"paciente.h"
 
-void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
+void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;
     Consultorio* atual = lista_consultorios;
 
@@ -26,6 +26,7 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
             fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
+            fprintf(arquivo, "Digito unico: %d\n", atual->paciente->digito_unico);
             paciente_atual = paciente_atual->proximo;
         }
         fprintf(arquivo, "===========\n");
@@ -35,6 +36,29 @@ void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios) {
 
     fclose(arquivo);
     printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
+}
+
+void arquivo_para_consultorios(Consultorio*lista_completa){
+FILE *consultorios;
+Consultorio*lista_atual=lista_completa;
+
+consultorios = fopen("consultorios_lista.txt", "w+"); 
+    if (consultorios == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+while (lista_atual!=NULL)
+{  fprintf(consultorios, "---Lista de consultorios:---\n");
+    fprintf(consultorios, "Identificacao: %d\n", lista_atual->identificacao);
+    fprintf(consultorios, "Especialidade: %s\n", lista_atual->especialidade);
+    fprintf(consultorios, "Equipamentos Disponiveis: %s\n", lista_atual->equipamentos_disponiveis);
+     fprintf(consultorios, "-------------------");
+    lista_atual=lista_atual->proximo;
+   
+}
+fclose(consultorios);
+
+
 }
 int verificar_lista(Consultorio* consultorio_aux) {
     if (consultorio_aux == NULL) {
@@ -252,36 +276,4 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     }
     return 0; 
 
-}
-
-void adicionar_paciente_por_id(Consultorio *lista_consultorios) {
-    int id_procurar;
-    char id_var[100];
-    printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
-    scanf(" %[^\n]", id_var);
-
-    tratamento_de_numero(id_var);
-    id_procurar = atoi(id_var);
-    
-    if (verificar_lista(lista_consultorios) == 1) {
-        printf("Lista de consultorios esta vazia\n");
-        return;
-    }
-     Consultorio *consultorio_atual = lista_consultorios;
-    while (consultorio_atual != NULL) {
-        if (consultorio_atual->identificacao == id_procurar) {
-            Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
-            if (novo_paciente == NULL) {
-                printf("Erro na alocacao\n");
-                exit(1);
-            }
-
-            coletar_dados_paciente(novo_paciente,lista_consultorios);
-            consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
-            return;
-        }
-        consultorio_atual = consultorio_atual->proximo;
-    }
-
-    printf("Consultorio nao encontrado\n");
 }

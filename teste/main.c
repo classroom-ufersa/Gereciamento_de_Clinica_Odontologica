@@ -27,21 +27,22 @@ int main() {
         printf("0- Sair\n");
 
         scanf(" %c", &opcao);
-         //salvar_consultorios_em_arquivo(lista_consultorios);
+       
 
         switch (opcao) {
             case '1': {
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
-                 salvar_consultorios_em_arquivo(lista_consultorios);
+                 arquivo_para_consultorios(lista_consultorios);
                 break;
             }
             case '2': {
                 lista_consultorios= remover_consultorio_por_id(lista_consultorios);
+                arquivo_para_consultorios(lista_consultorios);
                 break; 
             }
             case '3': {
-                   adicionar_paciente_por_id(lista_consultorios);
-                   salvar_consultorios_em_arquivo(lista_consultorios);
+                   adicionar_paciente_por_id(lista_consultorios,&lista_geral);
+                   salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                  break;
             }
             case '4': {
@@ -85,25 +86,27 @@ int main() {
                 break;
             }
             case '8': {
+                imprimir_gerais(lista_geral);
                 imprimir_atendidos(lista_atendidos);
+                arquivo_atendidos(lista_atendidos);
                 break;
             }
             case '9': {
-                printf("teste 02\n");
-                lista_geral=adicionar_paciente_geral(lista_geral);
-                printf("teste01\n");
+                printf("Saindo....\n");
                 break;
             }
-        case '0':{
-            break;
-        }
+        
             default: {
                 printf("Opção invalida. Tente novamente. \n");
                 break;
             }
         }
 
-    } while (opcao != '0');
-  salvar_consultorios_em_arquivo(lista_consultorios);
+    } while (opcao != '9');
+  /*Liberar memoria*/
+    free(lista_consultorios);
+    free(lista_atendidos);
+    free(lista_paciente);
+    free(lista_geral);
     return 0;
 }
