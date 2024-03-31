@@ -3,9 +3,7 @@
 void menu(void){
     char opcao;
          printf("========= CHAR OF SMILE DENTAL CLINIC ==========\n");
-        printf("Seja bem vindo! Segue o menu da cllinica: \n");
-        printf("Escolha uma das opcoes a seguir:\n");
-        scanf(" %c", &opcao);
+        printf("Seja bem vindo! Segue o menu da clinica: \n");
         printf("1-Adicionar consultorio\n");
         printf("2-Remover consultorio \n");
         printf("3-Adicionar paciente\n");
@@ -15,6 +13,8 @@ void menu(void){
         printf("7-Listar consultorios \n");
         printf("8-Listar pacientes atendidos\n");
         printf("9- Sair\n");
+         printf("Escolha uma das opcoes acima:\n");
+        scanf(" %c", &opcao);
         printf("===========================================\n");
 
 }

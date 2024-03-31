@@ -3,6 +3,8 @@
 #include <string.h>
 #include "paciente.h"
 #include "consultorio.h"
+
+
 void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
     char digito_unico_string[100];

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "paciente.c"
-#include "consultorio.c"
+#include "paciente.h"
+#include "consultorio.h"
 #include"configuracoes.h"
 
 int main() {
