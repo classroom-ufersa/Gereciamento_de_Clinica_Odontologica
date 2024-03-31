@@ -1,4 +1,4 @@
-#include "configuracoes.h"
+#include "../include/configuracoes.h"
 
 void menu(void){
     char opcao;
@@ -13,9 +13,10 @@ void menu(void){
         printf("7-Listar consultorios \n");
         printf("8-Listar pacientes atendidos\n");
         printf("9- Sair\n");
+         printf("===========================================\n");
          printf("Escolha uma das opcoes acima:\n");
-        scanf(" %c", &opcao);
-        printf("===========================================\n");
+    
+       
 
 }
 

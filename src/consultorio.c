@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "consultorio.h"
-#include"paciente.h"
+#include "../include/consultorio.h"
+#include"../include/paciente.h"
 
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;

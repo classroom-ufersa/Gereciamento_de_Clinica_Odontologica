@@ -1,45 +1,45 @@
-#ifndef PACIENTE_H_INCLUDED
-#define PACIENTE_H_INCLUDED
+#ifndef PACIENTE_H
+#define PACIENTE_H
 
-// Definição da estrutura do Paciente
+#include"consultorio.h"
+
+struct Consultorio;
+
 typedef struct Paciente {
-    char nome[50];
+    char nome[100];
     int idade;
     char situacao_saude[100];
+    int digito_unico;
+    struct Consultorio* consultorio;
+    struct Paciente* proximo;
+
+    
 } Paciente;
 
-// Definição da estrutura da Lista de Pacientes(Aqui vai ser a lista por ordem alfabetica)
-typedef struct Listapaciente {
-    struct Paciente *paciente;
-    struct Listapaciente *proximo;
-    
-} Listapaciente;
-typedef struct listageral{
-    struct Paciente *paciente;
-    struct Listageral  *prox;
-}Listageral;
+typedef struct Lista_atendidos {
+    struct Lista_atendidos* proximo;
+    Paciente* paciente_atendido;
+} Lista_Atendidos;
 
-typedef struct listatendidos{
-    Paciente *paciente;
-    struct Listaatendidos*primeiro;
-}Listaatendidos;
 
-struct Paciente *coletar_Dados(void);
+typedef struct Lista_geral {
+    struct Lista_geral* proximo;
+    Paciente* paciente_geral;
+} Lista_geral;
 
-/*Funcao que cria e inicializa uma nova lista de pacientes*/
-Listapaciente* lista_cria_paciente();
+extern struct Lista_geral* lista_geral;
 
-/*Funcao que adiciona um paciente a lista de pacientes
-  Recebe um ponteiro para o paciente a ser adicionado e uma lista*/
-Listapaciente* addPaciente(struct Paciente *paciente, Listapaciente *lista);
-
-/*Funcao que libera espaco da memoria*/
-void liberar_paciente(struct Paciente* paciente);
-
-/*Funcao que remove o paciente de acordo com a ordem de chegada*/
-void remover_paciente(Listapaciente *lista_geral, Listaatendidos *lista_atendidos);
-
-/*Funcao que edita pacientes da lista*/
-void editar_paciente(struct Listapaciente *lista);
-
-#endif // PACIENTE_H_INCLUDED
+void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista);
+Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg);
+Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente);
+void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_geral** lista_geral);
+Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* paciente);
+void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos);
+void tratamento_de_numero(char *variavel_num);
+void tratamento_de_palavras(char *palavra_var);
+void string_maiuscula_minuscula(char *palavra_var);
+void imprimir_atendidos(Lista_Atendidos*lista);
+void imprimir_gerais(Lista_geral* lista);
+void arquivo_atendidos(Lista_Atendidos*lista);
+ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico);
+#endif /* PACIENTE_H */

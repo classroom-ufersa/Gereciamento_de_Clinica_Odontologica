@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "paciente.h"
-#include "consultorio.h"
-#include"configuracoes.h"
+#include "../include/paciente.h"
+#include "../include/consultorio.h"
+#include"../include/configuracoes.h"
 
 int main() {
     Consultorio* lista_consultorios =NULL; 
@@ -13,7 +13,7 @@ int main() {
     char opcao;    
     do{
         menu();
-        scanf(" %c", &opcao);
+     scanf("%c", &opcao);
         switch (opcao) {
             case '1': {
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
