@@ -1,14 +1,3 @@
-int verificar_id_existente(Consultorio* lista_consultorios, int id);
-int verificar_autenticidade_digito_unico(Consultorio* lista_pacientes, int digito_unico);
-void imprimir_consultorios_Disponiveis(Consultorio* lista);
-void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
-void editar_paciente(Consultorio* lista, char* nome_editar, int dg_procurar);
-void arquivo_para_consultorios(Consultorio*lista_completa);
-
-#endif /* CONSULTORIO_H */
-
-
-/**/
 #ifndef CONSULTORIO_H
 #define CONSULTORIO_H
 #include"paciente.h"
@@ -43,5 +32,25 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
   Recebe como parametro um ponteiro para consultorios*/
 void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios); 
 
+/*Funcao que verifica se o id digitado existe,
+  Recebe como parametro a lista de consultorio e o id*/
+int verificar_id_existente(Consultorio* lista_consultorios, int id);
+
+/*Funcao que verifica a autenticidade do digito unico,
+  Recebe como parametros a lista de pacientes e o digito unico*/
+int verificar_autenticidade_digito_unico(Consultorio* lista_pacientes, int digito_unico);
+
+/*Funcao que exibe os consultorios disponiveis,
+  Recebe como parametro uma lista*/
+void imprimir_consultorios_Disponiveis(Consultorio* lista);
+
+/**/
+void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
+
+/**/
+void editar_paciente(Consultorio* lista, char* nome_editar, int dg_procurar);
+
+/**/
+void arquivo_para_consultorios(Consultorio*lista_completa);
 
 #endif /* CONSULTORIO_H */
