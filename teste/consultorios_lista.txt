@@ -1,4 +1,9 @@
-Identificacao: 123
-Especialidade: Dentes Brancos
-Equipamentos Disponiveis: Facas
--------------------
+===Lista de consultorios===
+Identificacao: 1
+Especialidade: K
+Equipamentos Disponiveis: L
+=============================Lista de consultorios===
+Identificacao: 211
+Especialidade: M
+Equipamentos Disponiveis: L
+==========================

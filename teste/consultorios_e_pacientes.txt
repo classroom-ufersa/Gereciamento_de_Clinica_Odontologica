@@ -1,15 +1,8 @@
- ----Lista de consultorios da      ----
-Identificacao: 123
-Especialidade: Dentes Brancos
-Equipamentos disponiveis: Facas
-   ||Pacientes||:  
-Nome do paciente: Ana
-Idade do paciente: 47
-Situacao de saude do paciente: dores
-Digito unico: 14
-   ||Pacientes||:  
-Nome do paciente: Maria Ana
-Idade do paciente: 14
-Situacao de saude do paciente: dor de dente
-Digito unico: 14
-===========
+===Consultorio===
+Identificacao: 1
+Especialidade: K
+Equipamentos disponiveis: L
+===Consultorio===
+Identificacao: 211
+Especialidade: M
+Equipamentos disponiveis: L

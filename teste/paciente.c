@@ -3,6 +3,7 @@
 #include <string.h>
 #include "paciente.h"
 #include "consultorio.h"
+
 void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
     char digito_unico_string[100];
@@ -51,7 +52,17 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     return novo_paciente;
 }
 
-
+void inserirPaciente(struct Consultorio *consultorio, Paciente *novoPaciente) {
+    if (consultorio->paciente == NULL) {
+        consultorio->paciente = novoPaciente;
+    } else {
+        Paciente *pacienteAtual = consultorio->paciente;
+        while (pacienteAtual->proximo != NULL) {
+            pacienteAtual = pacienteAtual->proximo;
+        }
+        pacienteAtual->proximo = novoPaciente;
+    }
+}
 
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
     if (lista == NULL || novo_paciente == NULL || strcmp(novo_paciente->nome, lista->nome) < 0) {
@@ -72,6 +83,7 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) 
 
     return lista;
 }
+
 Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* paciente) {
     Lista_geral* novo_paciente_geral = (Lista_geral*)malloc(sizeof(Lista_geral));
     if (novo_paciente_geral == NULL) {
@@ -84,94 +96,86 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
     return novo_paciente_geral;
 }
 
-
-
-
-void tratamento_de_numero(char *variavel_num)
-{
-  int Contador, Contador2;
-  for (Contador = 0; variavel_num[Contador] != '\0'; Contador++)
-  {
-    if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57)
-    {
-      for (Contador2 = Contador; variavel_num[Contador2] != '\0'; Contador2++)
-      {
-        variavel_num[Contador2] = variavel_num[Contador2 + 1];
-      }
-      Contador--;
+void tratamento_de_numero(char *variavel_num) {
+    int Contador, Contador2;
+    for (Contador = 0; variavel_num[Contador] != '\0'; Contador++){
+        if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57) {
+            for (Contador2 = Contador; variavel_num[Contador2] != '\0'; Contador2++) {
+                variavel_num[Contador2] = variavel_num[Contador2 + 1];
+            }
+        Contador--;
     }
   }
 }
 
-
 void tratamento_de_palavras(char *palavra_var){
-  int Contador, Contador2; 
-  for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
-    if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32)){
-       for(Contador2 = Contador;palavra_var[Contador2] != '\0';Contador2++){
-        palavra_var[Contador2] = palavra_var[Contador2 + 1];
-       }
+    int Contador, Contador2; 
+    for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
+        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32)){
+            for(Contador2 = Contador;palavra_var[Contador2] != '\0';Contador2++){
+                palavra_var[Contador2] = palavra_var[Contador2 + 1];
+            }
        Contador--;
     }
   }
 }
 
 void string_maiuscula_minuscula(char *palavra_var){ 
-  int Contador; 
-  palavra_var[0] = toupper(palavra_var[0]);  
-  for (Contador = 1; palavra_var[Contador] != '\0'; Contador++)  { 
-    if (isspace(palavra_var[Contador - 1]))  { 
-      palavra_var[Contador] = toupper(palavra_var[Contador]);
-    } else  { 
-      palavra_var[Contador] = tolower(palavra_var[Contador]); 
+    int Contador; 
+    palavra_var[0] = toupper(palavra_var[0]);  
+    for (Contador = 1; palavra_var[Contador] != '\0'; Contador++)  { 
+        if (isspace(palavra_var[Contador - 1]))  { 
+            palavra_var[Contador] = toupper(palavra_var[Contador]);
+        } else  { 
+            palavra_var[Contador] = tolower(palavra_var[Contador]); 
+        }
     }
-  }
 }
+
 void imprimir_atendidos(Lista_Atendidos* lista) {
     if (lista == NULL) {
-        printf("Nenhum paciente foi atendido ainda, lista esta vazia\n");
+        printf("Nenhum paciente foi atendido ainda, lista esta vazia. \n");
         return;
     }
 
     while (lista != NULL) {
         printf("Nome do paciente: %s\n", lista->paciente_atendido->nome);
         printf("Idade do paciente: %d\n", lista->paciente_atendido->idade);
-        printf("Situacao de saude do paciente: %s\n", lista->paciente_atendido->situacao_saude);
+        printf("Situacao de saude do paciente: %s\n \n", lista->paciente_atendido->situacao_saude);
         lista = lista->proximo;
     }
 }
 
 void arquivo_atendidos(Lista_Atendidos*lista){
-  FILE*atendidos;
-  Lista_Atendidos*lista_completa=lista;
-  int cont=0;
+    FILE*atendidos;
+    Lista_Atendidos*lista_completa=lista;
+    int cont=0;
     atendidos = fopen("lista_atendidos.txt", "w+"); 
     if (atendidos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
-  while (lista_completa!=NULL)
-  { 
+    while (lista_completa!=NULL) { 
     fprintf(atendidos, "===LISTA DE PACIENTES ATENDIDOS:===\n");
     fprintf(atendidos, "Paciente:%d\n", cont+1);
     fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
-    fprintf(atendidos,"Idade: %d\n", lista_completa->paciente_atendido->idade);
+    fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
     fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
     fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
     lista_completa=lista_completa->proximo;
-  }
-  fclose(atendidos);
+    }
+    fclose(atendidos);
 }
+
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
-        printf("Lista geral esta vazia\n");
+        printf("Lista geral esta vazia. \n");
         return;
     }
 
     Lista_geral *removido = *lista;
     *lista = (*lista)->proximo;
 
-    
     Lista_Atendidos *novo_atendimento = (Lista_Atendidos *)malloc(sizeof(Lista_Atendidos));
     if (novo_atendimento == NULL) {
         printf("Erro na alocacao de memoria\n");
@@ -185,29 +189,30 @@ void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_aten
     free(removido); 
     printf("Paciente removido com sucessp\n");
 }
- Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico) {
+
+Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
         Paciente* paciente_atual = consultorio_atual->paciente;
         while (paciente_atual != NULL) {
             if (strcmp(paciente_atual->nome, nome) == 0 && paciente_atual->digito_unico == digitoUnico) {
                 printf("Paciente encontrado:\n");
-                printf("Nome: %s, Idade: %d, Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
+                printf("\nNome: %s \n Idade: %d \n Situacao Saude: %s\n", paciente_atual->nome, paciente_atual->idade, paciente_atual->situacao_saude);
                 return paciente_atual; 
             }
             paciente_atual = paciente_atual->proximo;
         }
         consultorio_atual = consultorio_atual->proximo;
     }
-    printf("Paciente nao encontrado\n");
+    printf("Paciente nao encontrado.\n");
     return NULL;
 }
+
 void imprimir_gerais(Lista_geral* lista) {
     if (lista == NULL) {
-        printf("LISTA GERAL ESTA VAZIA, TESTE\n");
+        printf("LISTA GERAL ESTA VAZIA, TESTE.\n");
         return;
     }
-
     while (lista != NULL) {
         printf("nome: %s\n", lista->paciente_geral->nome);
         printf("Idade: %d\n", lista->paciente_geral->idade);
@@ -218,7 +223,7 @@ void imprimir_gerais(Lista_geral* lista) {
 void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_geral** lista_geral) {
     int id_procurar;
     char id_var[100];
-    printf("Digite a identificacao do consultorio que esse paciente vai pertencer: ");
+    printf("\n Digite a identificacao do consultorio que esse paciente vai pertencer: ");
     scanf(" %[^\n]", id_var);
 
     tratamento_de_numero(id_var);
@@ -237,7 +242,6 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
                 printf("Erro na alocacao\n");
                 exit(1);
             }
-
             coletar_dados_paciente(novo_paciente, lista_consultorios); 
             *lista_geral = adicionar_paciente_geral(*lista_geral, novo_paciente);
             consultorio_atual->paciente = adicionar_paciente_ordenado(consultorio_atual->paciente, novo_paciente);
@@ -245,6 +249,5 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
         }
         consultorio_atual = consultorio_atual->proximo;
     }
-
-    printf("Consultorio nao encontrado\n");
+    printf("Consultorio nao encontrado. \n");
 }
