@@ -12,6 +12,9 @@ int main() {
     
     char opcao;  
     ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente);  
+
+
+    
     do{
         menu();
      scanf(" %c", &opcao);

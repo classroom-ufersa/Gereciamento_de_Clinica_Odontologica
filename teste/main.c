@@ -12,6 +12,8 @@ int main() {
     char opcao;
 
     ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente);
+
+    
     do {
         printf("Bem vindo ao Menu da Clinica!\n");
         printf("Escolha uma das opcoes a seguir:\n");
@@ -31,13 +33,12 @@ int main() {
         switch (opcao) {
             case '1': {
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
-                arquivo_para_consultorios(lista_consultorios);
                 salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break;
             }
             case '2': {
                 lista_consultorios= remover_consultorio_por_id(lista_consultorios);
-                arquivo_para_consultorios(lista_consultorios);
+                
                 break; 
             }
             case '3': {
@@ -101,7 +102,8 @@ int main() {
         }
 
     } while (opcao != '9');
-  /*Liberar memoria*/
+  
+  
     free(lista_consultorios);
     free(lista_atendidos);
     free(lista_paciente);

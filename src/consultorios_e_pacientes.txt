@@ -1,8 +1,4 @@
-===Consultorio===
-Identificacao: 7
-Especialidade: Grg
-Equipamentos disponiveis: Rg
-===Consultorio===
-Identificacao: 8
-Especialidade: Dd
-Equipamentos disponiveis: Dd
+Consultorio:
+Identificacao: 222
+Especialidade: Edee
+Equipamentos disponiveis: Efede

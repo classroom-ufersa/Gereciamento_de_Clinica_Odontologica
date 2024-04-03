@@ -5,40 +5,39 @@
 #include"../include/paciente.h"
 
 
-
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
-    FILE* arquivo;
-    Consultorio* atual = lista_consultorios;
-
-    arquivo = fopen("consultorios_e_pacientes.txt", "w"); 
+    FILE* arquivo = fopen("consultorios_e_pacientes.txt", "w");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
+        printf("Erro na abertura do arquivo.\n");
+        return;
     }
 
-    int contador=0;
+    Consultorio* atual = lista_consultorios;
     while (atual != NULL) {
+        
         fprintf(arquivo, "Consultorio:\n");
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
 
+       
         Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-            fprintf(arquivo, "===Paciente===\n");
+            fprintf(arquivo, "Paciente:\n");
             fprintf(arquivo, "Nome: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude: %s\n", paciente_atual->situacao_saude);
-            fprintf(arquivo, "Digito unico: %d\n", atual->paciente->digito_unico);
+            fprintf(arquivo, "Digito Unico: %d\n", paciente_atual->digito_unico);
+
             paciente_atual = paciente_atual->proximo;
         }
-        
+
         atual = atual->proximo;
     }
 
     fclose(arquivo);
-    printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
 }
+
 
 int verificar_lista(Consultorio* consultorio_aux) {
     if (consultorio_aux == NULL) {
@@ -189,7 +188,8 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
 
 }
 
-void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes) {
+
+void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
         printf("Erro na leitura de arquivo.\n");
@@ -197,10 +197,9 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
     }
 
     char linha[200];
-    char* identificador;
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        identificador = strtok(identificador, ":");
+        char *identificador = strtok(linha, ":");
         if (identificador != NULL) {
             if (strcmp(identificador, "Consultorio") == 0) {
                 Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));
@@ -211,7 +210,6 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
                 fgets(linha, sizeof(linha), arquivo);
                 sscanf(linha, "Identificacao: %d", &novo_consultorio->identificacao);
 
-                
                 fgets(linha, sizeof(linha), arquivo);
                 sscanf(linha, "Especialidade: %[^\n]", novo_consultorio->especialidade);
 
@@ -230,8 +228,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
                     }
                     ultimo->proximo = novo_consultorio;
                 }
-                } else if (strcmp(identificador, "Paciente") == 0) {
-                
+            } else if (strcmp(identificador, "Paciente") == 0) {
                 Consultorio *ultimo = *comeco;
                 while (ultimo->proximo != NULL) {
                     ultimo = ultimo->proximo;
@@ -256,8 +253,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
                 sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
 
                 novo_paciente->proximo = NULL;
-                
-               
+
                 if (ultimo->paciente == NULL) {
                     ultimo->paciente = novo_paciente;
                 } else {

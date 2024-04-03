@@ -1,5 +1,0 @@
----Lista de consultorios:---
-Identificacao: 258
-Especialidade: 
-Equipamentos Disponiveis: Ee
--------------------
