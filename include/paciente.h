@@ -6,23 +6,24 @@
 struct Consultorio;
 
 /*Renomeação da estrutura paciente*/
-typedef struct paciente {
+typedef struct Paciente {
     char nome[100];
     int idade;
     char situacao_saude[100];
+    int digito_unico;
     struct Consultorio* consultorio;
     struct Paciente* proximo;
 } Paciente;
 
 /*Renomeacao da estrutura lista geral*/
 typedef struct lista_atendidos {
-    struct Lista_atendidos* proximo;
+    struct lista_atendidos* proximo;
     Paciente* paciente_atendido;
 } Lista_Atendidos;
 
 /*Renomeacao lista geral*/
 typedef struct lista_geral {
-    struct Lista_geral* proximo;
+    struct lista_geral* proximo;
     Paciente* paciente_geral;
 } Lista_geral;
 
@@ -79,5 +80,5 @@ void arquivo_atendidos(Lista_Atendidos*lista);
 /*Funcao que busca o paciente no consultorio pelo nome,
   Recebe como parametros a lista de consultorios, o nome e o digito*/
 Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico);
-
+void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
 #endif

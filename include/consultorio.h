@@ -6,12 +6,15 @@ typedef struct consultorio {
     int identificacao;
     char especialidade[400];
     char equipamentos_disponiveis[100];
-
     struct Paciente* paciente;
-    struct Consultorio* proximo;
+    struct consultorio* proximo;
     struct Lista_geral* listageral;
 } Consultorio; 
 
+
+
+/*Funcao que ler arquivos que estavm guardados em um arquivo de texto e insere na lista, antes de carregar o menu*/
+void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes);
 /*Funcao que verifica se a lista esta vazia,
   Recebe como parametros um ponteiro de consultorio*/
 int verificar_lista(Consultorio*consultorio_aux);
@@ -30,7 +33,7 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
 
 /*Funncao que salva o consultorio no arquivo de texto,
   Recebe como parametro um ponteiro para consultorios*/
-void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios); 
+//void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios); 
 
 /*Funcao que verifica se o id digitado existe,
   Recebe como parametro a lista de consultorio e o id*/
@@ -47,8 +50,7 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
 /**/
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
 
-/**/
-void editar_paciente(Consultorio* lista, char* nome_editar, int dg_procurar);
+
 
 /**/
 void arquivo_para_consultorios(Consultorio*lista_completa);

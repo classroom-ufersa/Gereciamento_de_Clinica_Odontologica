@@ -1,8 +1,8 @@
 ===Consultorio===
 Identificacao: 1
-Especialidade: K
-Equipamentos disponiveis: L
+Especialidade: Grg
+Equipamentos disponiveis: Rg
 ===Consultorio===
-Identificacao: 211
-Especialidade: M
-Equipamentos disponiveis: L
+Identificacao: 11
+Especialidade: Dd
+Equipamentos disponiveis: Dd

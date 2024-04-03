@@ -16,7 +16,7 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
 
     int contador=0;
     while (atual != NULL) {
-        fprintf(arquivo, "===Consultorio===\n");
+        fprintf(arquivo, "Consultorio:\n");
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
@@ -291,7 +291,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
     char *identificador;
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        identificador = strtok(linha, ":");
+        identificador = strtok(identificador, ":");
         if (identificador != NULL) {
             if (strcmp(identificador, "Consultorio") == 0) {
                 Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));

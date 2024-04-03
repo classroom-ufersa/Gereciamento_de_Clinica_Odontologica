@@ -10,19 +10,20 @@ int main() {
     Paciente*lista_paciente=NULL;
     Lista_geral*lista_geral=NULL;
     
-    char opcao;    
+    char opcao;  
+    ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente);  
     do{
         menu();
-     scanf("%c", &opcao);
+     scanf(" %c", &opcao);
         switch (opcao) {
             case '1': {
                 lista_consultorios = adicionar_consultorio(lista_consultorios);
-                 arquivo_para_consultorios(lista_consultorios);
+                 salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break;
             }
             case '2': {
                 lista_consultorios= remover_consultorio_por_id(lista_consultorios);
-                arquivo_para_consultorios(lista_consultorios);
+                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break; 
             }
             case '3': {

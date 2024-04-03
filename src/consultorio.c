@@ -3,34 +3,35 @@
 #include "../include/consultorio.h"
 #include"../include/paciente.h"
 
+
+
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo;
     Consultorio* atual = lista_consultorios;
 
-    arquivo = fopen("consultorios_e_pacientes.txt", "w+"); 
+    arquivo = fopen("consultorios_e_pacientes.txt", "w"); 
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
 
+    int contador=0;
     while (atual != NULL) {
-        fprintf(arquivo, " ----Lista de consultorios da      ----\n");
+        fprintf(arquivo, "Consultorio:\n");
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
 
-    
         Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-            fprintf(arquivo, "   ||Pacientes||:  \n");
-            fprintf(arquivo, "Nome do paciente: %s\n", paciente_atual->nome);
-            fprintf(arquivo, "Idade do paciente: %d\n", paciente_atual->idade);
-            fprintf(arquivo, "Situacao de saude do paciente: %s\n", paciente_atual->situacao_saude);
+            fprintf(arquivo, "===Paciente===\n");
+            fprintf(arquivo, "Nome: %s\n", paciente_atual->nome);
+            fprintf(arquivo, "Idade: %d\n", paciente_atual->idade);
+            fprintf(arquivo, "Situacao de saude: %s\n", paciente_atual->situacao_saude);
             fprintf(arquivo, "Digito unico: %d\n", atual->paciente->digito_unico);
             paciente_atual = paciente_atual->proximo;
         }
-        fprintf(arquivo, "===========\n");
-
+        
         atual = atual->proximo;
     }
 
@@ -180,76 +181,7 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
 }
 
 
-void editar_paciente(Consultorio* lista, char* nome_editar, int dg_procurar) {
-    char opcao;
-    if (verificar_lista(lista) == 1) {
-        printf("Lista de consultorios esta vazia\n");
-        return;
-    }
 
-    Paciente* paciente_Editar = buscar_paciente_por_nome(lista, nome_editar, dg_procurar);
-    if (paciente_Editar != NULL) {
-        printf("Edicao de dados do paciente:\n");
-        printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado\n ");
-        scanf(" %c", &opcao);
-        char idade_var[100];
-        if (opcao == '1') {
-            printf("Digite o novo nome do paciente:\n");
-            scanf(" %[^\n]", paciente_Editar->nome);
-            tratamento_de_palavras(paciente_Editar->nome);
-            string_maiuscula_minuscula(paciente_Editar->nome);
-            printf("Digite a nova idade do paciente:\n ");
-            scanf(" %[^\n]", idade_var);
-            tratamento_de_numero(idade_var);
-            paciente_Editar->idade = atoi(idade_var);
-
-            printf("Digite a nova situacao de saude:\n");
-            scanf(" %[^\n]", paciente_Editar->situacao_saude);
-            tratamento_de_palavras(paciente_Editar->situacao_saude);
-            string_maiuscula_minuscula(paciente_Editar->situacao_saude);
-
-            char dg_str[100];
-            printf("Insira o novo digito unico do paciente:\n");
-            scanf(" %[^\n]", dg_str);
-            tratamento_de_numero(dg_str);
-            paciente_Editar->digito_unico = atoi(dg_str);
-
-        } else if (opcao == '0') {
-            char dado_editar;
-            printf("Digite o dado que voce quer editar: '1' para nome, '2' para idade e '3' para situacao de saude ou '4' para o digito unico\n");
-            scanf(" %c", &dado_editar);
-
-            if (dado_editar == '1') {
-                printf("Digite o novo nome do paciente:\n");
-                scanf(" %[^\n]", paciente_Editar->nome);
-                tratamento_de_palavras(paciente_Editar->nome);
-                string_maiuscula_minuscula(paciente_Editar->nome);
-
-            } else if (dado_editar == '2') {
-                printf("Digite a nova idade do paciente:\n ");
-                scanf(" %[^\n]", idade_var);
-                tratamento_de_numero(idade_var);
-                paciente_Editar->idade = atoi(idade_var);
-
-            } else if (dado_editar == '3') {
-                printf("Digite a nova situacao de saude:\n");
-                scanf(" %[^\n]", paciente_Editar->situacao_saude);
-                tratamento_de_palavras(paciente_Editar->situacao_saude);
-                string_maiuscula_minuscula(paciente_Editar->situacao_saude);
-            } else if (dado_editar == '4') {
-                char dg_str[100];
-                printf("Insira o novo digito unico do paciente:\n");
-                scanf(" %[^\n]", dg_str);
-                tratamento_de_numero(dg_str);
-                paciente_Editar->digito_unico = atoi(dg_str);
-            } else {
-                printf("Opcao invalida. Digite numeros correspondentes com os pedidos. Apenas 1, 2, 3 ou 4\n");
-            }
-        } else {
-            printf("Opcao invalida. Digite nuemros correspondentes com os pedidos. Apenas 0 ou 1\n");
-        }
-    }
-}
 int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
@@ -276,4 +208,89 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     }
     return 0; 
 
+}
+void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes) {
+    FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro na leitura de arquivo.\n");
+        return;
+    }
+
+    char linha[200];
+    char *identificador;
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        identificador =strtok(identificador, ":");
+        if (identificador != NULL) {
+            if (strcmp(identificador, "Consultorio") == 0) {
+                Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));
+                if (novo_consultorio == NULL) {
+                    printf("Erro ao reservar memoria para um novo consultorio.\n");
+                    return;
+                }
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, "Identificacao: %d", &novo_consultorio->identificacao);
+
+                
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, "Especialidade: %[^\n]", novo_consultorio->especialidade);
+
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, "Equipamentos disponiveis: %[^\n]", novo_consultorio->equipamentos_disponiveis);
+
+                novo_consultorio->paciente = NULL;
+                novo_consultorio->proximo = NULL;
+
+                if (*comeco == NULL) {
+                    *comeco = novo_consultorio;
+                } else {
+                    Consultorio *ultimo = *comeco;
+                    while (ultimo->proximo != NULL) {
+                        ultimo = ultimo->proximo;
+                    }
+                    ultimo->proximo = novo_consultorio;
+                }
+                } else if (strcmp(identificador, "Paciente") == 0) {
+                
+                Consultorio *ultimo = *comeco;
+                while (ultimo->proximo != NULL) {
+                    ultimo = ultimo->proximo;
+                }
+
+                Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
+                if (novo_paciente == NULL) {
+                    printf("Erro: Não foi possível alocar memória para o novo paciente.\n");
+                    return;
+                }
+
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
+
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, " %*s %d", &novo_paciente->idade);
+
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
+
+                fgets(linha, sizeof(linha), arquivo);
+                sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
+
+                novo_paciente->proximo = NULL;
+                
+               
+                if (ultimo->paciente == NULL) {
+                    ultimo->paciente = novo_paciente;
+                } else {
+                    Paciente *ultimo_paciente = ultimo->paciente;
+                    while (ultimo_paciente->proximo != NULL) {
+                        ultimo_paciente = ultimo_paciente->proximo;
+                    }
+                    ultimo_paciente->proximo = novo_paciente;
+                }
+            }
+        }
+    }
+
+    fclose(arquivo);
+    printf("Dados inseridos na lista\n");
 }
