@@ -85,4 +85,4 @@ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char*
   Recebe como parametros a lista, o nome a ser editado e o dg procurar*/
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
 
-#endif /*PACIENTE.C*/
+#endif /*PACIENTE_H*/
