@@ -42,4 +42,5 @@ void imprimir_atendidos(Lista_Atendidos*lista);
 void imprimir_gerais(Lista_geral* lista);
 void arquivo_atendidos(Lista_Atendidos*lista);
  Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico);
+ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
 #endif /* PACIENTE_H */

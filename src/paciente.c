@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/paciente.h"
 #include "../include/consultorio.h"
-
+#include "../include/paciente.h"
 
 void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
@@ -53,6 +52,17 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     return novo_paciente;
 }
 
+void inserirPaciente(struct Consultorio *consultorio, Paciente *novoPaciente) {
+    if (consultorio->paciente == NULL) {
+        consultorio->paciente = novoPaciente;
+    } else {
+        Paciente *pacienteAtual = consultorio->paciente;
+        while (pacienteAtual->proximo != NULL) {
+            pacienteAtual = pacienteAtual->proximo;
+        }
+        pacienteAtual->proximo = novoPaciente;
+    }
+}
 
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
     if (lista == NULL || novo_paciente == NULL || strcmp(novo_paciente->nome, lista->nome) < 0) {
@@ -122,8 +132,7 @@ void string_maiuscula_minuscula(char *palavra_var){
     }
 }
 
-void imprimir_atendidos(Lista_Atendidos* lista_atendidos) {
-    Lista_Atendidos*lista=lista_atendidos;
+void imprimir_atendidos(Lista_Atendidos* lista) {
     if (lista == NULL) {
         printf("Nenhum paciente foi atendido ainda, lista esta vazia. \n");
         return;
@@ -242,6 +251,7 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
     }
     printf("Consultorio nao encontrado. \n");
 }
+
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar) {
     char opcao;
     if (verificar_lista(lista) == 1) {
@@ -255,11 +265,13 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
         printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado\n ");
         scanf(" %c", &opcao);
         char idade_var[100];
+
         if (opcao == '1') {
             printf("Digite o novo nome do paciente:\n");
             scanf(" %[^\n]", paciente_Editar->nome);
             tratamento_de_palavras(paciente_Editar->nome);
             string_maiuscula_minuscula(paciente_Editar->nome);
+
             printf("Digite a nova idade do paciente:\n ");
             scanf(" %[^\n]", idade_var);
             tratamento_de_numero(idade_var);
@@ -278,7 +290,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
 
         } else if (opcao == '0') {
             char dado_editar;
-            printf("Digite o dado que voce quer editar: [1] Nome, [2] Idade e [3] Situacao de saude [4] Digito Unico.\n");
+            printf("\nDigite o dado que voce quer editar: \n [1] Nome\n, [2] Idade [3] Situacao de saude [4] Digito unico\n");
             scanf(" %c", &dado_editar);
 
             if (dado_editar == '1') {
@@ -298,12 +310,14 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
                 scanf(" %[^\n]", paciente_Editar->situacao_saude);
                 tratamento_de_palavras(paciente_Editar->situacao_saude);
                 string_maiuscula_minuscula(paciente_Editar->situacao_saude);
+
             } else if (dado_editar == '4') {
                 char dg_str[100];
                 printf("Insira o novo digito unico do paciente:\n");
                 scanf(" %[^\n]", dg_str);
                 tratamento_de_numero(dg_str);
                 paciente_Editar->digito_unico = atoi(dg_str);
+                
             } else {
                 printf("Opcao invalida. Digite numeros correspondentes com os pedidos. Apenas 1, 2, 3 ou 4\n");
             }

@@ -22,6 +22,6 @@ int verificar_autenticidade_digito_unico(Consultorio* lista_pacientes, int digit
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios);
 void imprimir_consultorios_Disponiveis(Consultorio* lista);
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
-void editar_paciente(Consultorio* lista, char* nome_editar, int dg_procurar);
+
 
 #endif /* CONSULTORIO_H */

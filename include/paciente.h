@@ -13,7 +13,7 @@ typedef struct Paciente {
     int digito_unico;
     struct Consultorio* consultorio;
     struct Paciente* proximo;
-} Paciente;
+}Paciente;
 
 /*Renomeacao da estrutura lista geral*/
 typedef struct  Lista_atendidos {

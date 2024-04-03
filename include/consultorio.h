@@ -14,7 +14,7 @@ typedef struct Consultorio {
 
 
 /*Funcao que ler arquivos que estavm guardados em um arquivo de texto e insere na lista, antes de carregar o menu*/
-void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes);
+void ler_arquivo_e_inserir_lista(Consultorio **comeco,struct Paciente **pacientes);
 /*Funcao que verifica se a lista esta vazia,
   Recebe como parametros um ponteiro de consultorio*/
 int verificar_lista(Consultorio*consultorio_aux);

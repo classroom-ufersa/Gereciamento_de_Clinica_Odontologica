@@ -1,7 +1,15 @@
 Consultorio:
+Identificacao: 1
+Especialidade: L
+Equipamentos disponiveis: P
+Consultorio:
 Identificacao: 11
 Especialidade: Frf
 Equipamentos disponiveis: Frfr
+Consultorio:
+Identificacao: 12
+Especialidade: E
+Equipamentos disponiveis: E
 Consultorio:
 Identificacao: 33
 Especialidade: Frf

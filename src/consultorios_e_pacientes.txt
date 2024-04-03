@@ -1,4 +1,12 @@
 Consultorio:
-Identificacao: 222
-Especialidade: Edee
-Equipamentos disponiveis: Efede
+Identificacao: 1
+Especialidade: D
+Equipamentos disponiveis: D
+Consultorio:
+Identificacao: 11
+Especialidade: Eded
+Equipamentos disponiveis: Ded
+Consultorio:
+Identificacao: 22
+Especialidade: Jmm
+Equipamentos disponiveis: Uu

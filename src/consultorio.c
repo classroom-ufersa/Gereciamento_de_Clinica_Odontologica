@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<string.h>
+#include <string.h>
 #include "../include/consultorio.h"
-#include"../include/paciente.h"
-
+#include "../include/paciente.h"
 
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo = fopen("consultorios_e_pacientes.txt", "w");
@@ -47,10 +46,11 @@ int verificar_lista(Consultorio* consultorio_aux) {
         return 0;
     }
 }
+
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     Consultorio* novo_consultorio = (Consultorio*)malloc(sizeof(Consultorio));
     if (novo_consultorio == NULL) {
-        printf("Erro ao alocar memoria para o novo consultorio\n");
+        printf("Erro ao alocar memoria para o novo consultorio.\n");
         exit(1);
     }
 
@@ -99,7 +99,6 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
     return lista_consultorios;
 }
 
-
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     char id_remover[500];
     int id_a_remover;
@@ -134,6 +133,7 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     }
 
     free(atual);
+    
     printf("Consultorio removido com sucesso.\n");
 
     return lista_consultorios;
@@ -147,7 +147,7 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     }
     
     Consultorio* imprimir_lista = lista;
-    printf("Lista de consultorios:\n");
+    printf("===Lista de consultorios===\n");
     
     while (imprimir_lista != NULL) {
         printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
@@ -175,8 +175,8 @@ int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     }
     return 0;
 }
-int verificar_id_existente(Consultorio* lista_consultorios, int id) {
 
+int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
         if (consultorio_atual->identificacao == id) {
@@ -187,7 +187,6 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     return 0; 
 
 }
-
 
 void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
