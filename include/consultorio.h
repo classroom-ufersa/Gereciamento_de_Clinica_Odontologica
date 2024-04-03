@@ -3,18 +3,18 @@
 #include"paciente.h"
 
 typedef struct Consultorio {
-    int identificacao;
-    char especialidade[400];
-    char equipamentos_disponiveis[100];
-    struct Paciente* paciente;
-    struct Consultorio* proximo;
-    struct Lista_geral* listageral;
+  int identificacao;
+  char especialidade[400];
+  char equipamentos_disponiveis[100];
+  struct Paciente* paciente;
+  struct Consultorio* proximo;
+  struct Lista_geral* listageral;
 } Consultorio; 
-
 
 
 /*Funcao que ler arquivos que estavm guardados em um arquivo de texto e insere na lista, antes de carregar o menu*/
 void ler_arquivo_e_inserir_lista(Consultorio **comeco,struct Paciente **pacientes);
+
 /*Funcao que verifica se a lista esta vazia,
   Recebe como parametros um ponteiro de consultorio*/
 int verificar_lista(Consultorio*consultorio_aux);
@@ -31,8 +31,6 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios);
   Recebe como parametro um ponteiro de consultorio*/
 void imprimir_consultorios_Disponiveis(Consultorio* lista); 
 
-
-
 /*Funcao que verifica se o id digitado existe,
   Recebe como parametro a lista de consultorio e o id*/
 int verificar_id_existente(Consultorio* lista_consultorios, int id);
@@ -47,8 +45,6 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
 
 /**/
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
-
-
 
 /**/
 //void arquivo_para_consultorios(Consultorio*lista_completa);
