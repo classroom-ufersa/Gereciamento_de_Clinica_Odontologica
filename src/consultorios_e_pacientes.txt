@@ -1,4 +1,8 @@
-Consultorio:
-Identificacao: 22
-Especialidade: Jmm
-Equipamentos disponiveis: Uu
+CONSULTORIO:
+Identificacao: 1
+Especialidade: Ff
+Equipamentos disponiveis: F
+CONSULTORIO:
+Identificacao: 12
+Especialidade: M
+Equipamentos disponiveis: K

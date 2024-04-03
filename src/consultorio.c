@@ -14,7 +14,7 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
     Consultorio* atual = lista_consultorios;
     while (atual != NULL) {
         
-        fprintf(arquivo, "Consultorio:\n");
+        fprintf(arquivo, "CONSULTORIO:\n");
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
@@ -158,6 +158,8 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     }
 }
 
+
+
 int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
@@ -183,8 +185,8 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
         consultorio_atual = consultorio_atual->proximo;
     }
     return 0; 
-}
 
+}
 void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
@@ -194,74 +196,71 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
     char linha[200];
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        char *identificador = strtok(linha, ":");
-        if (identificador != NULL) {
-            if (strcmp(identificador, "Consultorio") == 0) {
-                Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));
-                if (novo_consultorio == NULL) {
-                    printf("Erro ao reservar memoria para um novo consultorio.\n");
-                    return;
-                }
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, "Identificacao: %d", &novo_consultorio->identificacao);
+        if (strncmp(linha, "CONSULTORIO:", strlen("CONSULTORIO:")) == 0) {
+            Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));
+            if (novo_consultorio == NULL) {
+                printf("Erro ao reservar memoria para um novo consultorio.\n");
+                return;
+            }
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Identificacao: %d", &novo_consultorio->identificacao);
 
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, "Especialidade: %[^\n]", novo_consultorio->especialidade);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Especialidade: %[^\n]", novo_consultorio->especialidade);
 
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, "Equipamentos disponiveis: %[^\n]", novo_consultorio->equipamentos_disponiveis);
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, "Equipamentos disponiveis: %[^\n]", novo_consultorio->equipamentos_disponiveis);
 
-                novo_consultorio->paciente = NULL;
-                novo_consultorio->proximo = NULL;
+            novo_consultorio->paciente = NULL;
+            novo_consultorio->proximo = NULL;
 
-                if (*comeco == NULL) {
-                    *comeco = novo_consultorio;
-                } else {
-                    Consultorio *ultimo = *comeco;
-                    while (ultimo->proximo != NULL) {
-                        ultimo = ultimo->proximo;
-                    }
-                    ultimo->proximo = novo_consultorio;
-                }
-            } else if (strcmp(identificador, "Paciente") == 0) {
+            if (*comeco == NULL) {
+                *comeco = novo_consultorio;
+            } else {
                 Consultorio *ultimo = *comeco;
                 while (ultimo->proximo != NULL) {
                     ultimo = ultimo->proximo;
                 }
+                ultimo->proximo = novo_consultorio;
+            }
+        } else if (strncmp(linha, "Paciente:", strlen("Paciente:")) == 0) {
+            Consultorio *ultimo = *comeco;
+            while (ultimo->proximo != NULL) {
+                ultimo = ultimo->proximo;
+            }
 
-                Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
-                if (novo_paciente == NULL) {
-                    printf("Erro: Não foi possível alocar memória para o novo paciente.\n");
-                    return;
+            Paciente *novo_paciente = (Paciente *)malloc(sizeof(Paciente));
+            if (novo_paciente == NULL) {
+                printf("Erro: Não foi possível alocar memória para o novo paciente.\n");
+                return;
+            }
+
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
+
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, " %*s %d", &novo_paciente->idade);
+
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
+
+            fgets(linha, sizeof(linha), arquivo);
+            sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
+
+            novo_paciente->proximo = NULL;
+
+            if (ultimo->paciente == NULL) {
+                ultimo->paciente = novo_paciente;
+            } else {
+                Paciente *ultimo_paciente = ultimo->paciente;
+                while (ultimo_paciente->proximo != NULL) {
+                    ultimo_paciente = ultimo_paciente->proximo;
                 }
-
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
-
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, " %*s %d", &novo_paciente->idade);
-
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
-
-                fgets(linha, sizeof(linha), arquivo);
-                sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
-
-                novo_paciente->proximo = NULL;
-
-                if (ultimo->paciente == NULL) {
-                    ultimo->paciente = novo_paciente;
-                } else {
-                    Paciente *ultimo_paciente = ultimo->paciente;
-                    while (ultimo_paciente->proximo != NULL) {
-                        ultimo_paciente = ultimo_paciente->proximo;
-                    }
-                    ultimo_paciente->proximo = novo_paciente;
-                }
+                ultimo_paciente->proximo = novo_paciente;
             }
         }
     }
 
     fclose(arquivo);
-    printf("Dados inseridos na lista.\n");
+    printf("Dados inseridos na lista\n");
 }

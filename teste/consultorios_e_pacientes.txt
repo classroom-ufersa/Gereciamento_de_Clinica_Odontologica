@@ -1,8 +1,8 @@
-Consultorio:
-Identificacao: 211
-Especialidade: Ee
-Equipamentos disponiveis: Eee
-Consultorio:
-Identificacao: 777
+CONSULTORIO:
+Identificacao: 1
+Especialidade: M
+Equipamentos disponiveis: L
+CONSULTORIO:
+Identificacao: 255
 Especialidade: L
-Equipamentos disponiveis: P
+Equipamentos disponiveis: E

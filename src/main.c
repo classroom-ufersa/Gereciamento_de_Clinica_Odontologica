@@ -13,8 +13,7 @@ int main() {
 
     ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente);
     do {
-        printf("========= CHAR OF SMILE DENTAL CLINIC ==========\n");
-        printf("Seja Bem Vindo! Segue o menu da clinica: \n");
+        printf("========= MENU CHAR OF SMILE DENTAL CLINIC ==========\n");
         printf("[1] Adicionar consultorio\n");
         printf("[2] Remover consultorio \n");
         printf("[3] Adicionar paciente\n");
@@ -103,7 +102,7 @@ int main() {
 
     } while (opcao != '9');
   
-  //Liberar memoria
+    //Liberar memoria
     free(lista_consultorios);
     free(lista_atendidos);
     free(lista_paciente);
