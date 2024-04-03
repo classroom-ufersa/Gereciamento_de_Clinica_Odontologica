@@ -46,8 +46,6 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
 /**/
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios);
 
-
-
 /**/
 //void arquivo_para_consultorios(Consultorio*lista_completa);
 
