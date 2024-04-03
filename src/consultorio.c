@@ -158,8 +158,6 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
     }
 }
 
-
-
 int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     Consultorio* consultorio_atual = lista_consultorios;
     while (consultorio_atual != NULL) {
@@ -185,7 +183,6 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
         consultorio_atual = consultorio_atual->proximo;
     }
     return 0; 
-
 }
 
 void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
@@ -194,7 +191,6 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
         printf("Erro na leitura de arquivo.\n");
         return;
     }
-
     char linha[200];
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
@@ -267,5 +263,5 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
     }
 
     fclose(arquivo);
-    printf("Dados inseridos na lista\n");
+    printf("Dados inseridos na lista.\n");
 }
