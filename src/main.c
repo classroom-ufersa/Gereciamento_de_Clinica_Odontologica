@@ -39,7 +39,7 @@ int main() {
             }
             case '2': {
                 lista_consultorios= remover_consultorio_por_id(lista_consultorios);
-                
+                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break; 
             }
             case '3': {
@@ -104,7 +104,7 @@ int main() {
 
     } while (opcao != '9');
   
-  
+  //Liberar memoria
     free(lista_consultorios);
     free(lista_atendidos);
     free(lista_paciente);
