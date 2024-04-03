@@ -78,7 +78,7 @@ int main() {
                 break;
             }
             case '9': {
-                printf("Saindo....\n");
+                printf("========Saindo========\n");
                 break;
             }
         
