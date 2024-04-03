@@ -16,14 +16,14 @@ typedef struct Paciente {
 } Paciente;
 
 /*Renomeacao da estrutura lista geral*/
-typedef struct lista_atendidos {
-    struct lista_atendidos* proximo;
+typedef struct  Lista_atendidos {
+    struct Lista_atendidos* proximo;
     Paciente* paciente_atendido;
 } Lista_Atendidos;
 
 /*Renomeacao lista geral*/
-typedef struct lista_geral {
-    struct lista_geral* proximo;
+typedef struct Lista_geral {
+    struct Lista_geral* proximo;
     Paciente* paciente_geral;
 } Lista_geral;
 

@@ -2,12 +2,12 @@
 #define CONSULTORIO_H
 #include"paciente.h"
 
-typedef struct consultorio {
+typedef struct Consultorio {
     int identificacao;
     char especialidade[400];
     char equipamentos_disponiveis[100];
     struct Paciente* paciente;
-    struct consultorio* proximo;
+    struct Consultorio* proximo;
     struct Lista_geral* listageral;
 } Consultorio; 
 
@@ -31,9 +31,7 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios);
   Recebe como parametro um ponteiro de consultorio*/
 void imprimir_consultorios_Disponiveis(Consultorio* lista); 
 
-/*Funncao que salva o consultorio no arquivo de texto,
-  Recebe como parametro um ponteiro para consultorios*/
-//void salvar_consultorios_em_arquivo(Consultorio* lista_consultorios); 
+
 
 /*Funcao que verifica se o id digitado existe,
   Recebe como parametro a lista de consultorio e o id*/
@@ -53,6 +51,6 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
 
 
 /**/
-void arquivo_para_consultorios(Consultorio*lista_completa);
+//void arquivo_para_consultorios(Consultorio*lista_completa);
 
 #endif /* CONSULTORIO_H */

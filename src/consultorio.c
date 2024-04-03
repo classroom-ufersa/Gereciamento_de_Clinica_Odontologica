@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 #include "../include/consultorio.h"
 #include"../include/paciente.h"
 
@@ -39,28 +40,6 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
     printf("Dados dos consultorios salvos com sucesso no arquivo consultorios.txt\n");
 }
 
-void arquivo_para_consultorios(Consultorio*lista_completa){
-FILE *consultorios;
-Consultorio*lista_atual=lista_completa;
-
-consultorios = fopen("consultorios_lista.txt", "w+"); 
-    if (consultorios == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-while (lista_atual!=NULL)
-{  fprintf(consultorios, "---Lista de consultorios:---\n");
-    fprintf(consultorios, "Identificacao: %d\n", lista_atual->identificacao);
-    fprintf(consultorios, "Especialidade: %s\n", lista_atual->especialidade);
-    fprintf(consultorios, "Equipamentos Disponiveis: %s\n", lista_atual->equipamentos_disponiveis);
-     fprintf(consultorios, "-------------------");
-    lista_atual=lista_atual->proximo;
-   
-}
-fclose(consultorios);
-
-
-}
 int verificar_lista(Consultorio* consultorio_aux) {
     if (consultorio_aux == NULL) {
         printf("Lista de consultorios esta vazia\n");
@@ -209,6 +188,7 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     return 0; 
 
 }
+
 void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
@@ -217,10 +197,10 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacien
     }
 
     char linha[200];
-    char *identificador;
+    char* identificador;
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        identificador =strtok(identificador, ":");
+        identificador = strtok(identificador, ":");
         if (identificador != NULL) {
             if (strcmp(identificador, "Consultorio") == 0) {
                 Consultorio *novo_consultorio = (Consultorio *)malloc(sizeof(Consultorio));

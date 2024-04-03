@@ -1,9 +1,5 @@
 ===Lista de consultorios===
-Identificacao: 1
-Especialidade: Grg
-Equipamentos Disponiveis: Rg
-=============================Lista de consultorios===
-Identificacao: 11
-Especialidade: Dd
-Equipamentos Disponiveis: Dd
+Identificacao: 77
+Especialidade: Mk
+Equipamentos Disponiveis: P
 ==========================

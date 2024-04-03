@@ -1,0 +1,48 @@
+# Query: buffer
+# ContextLines: 1
+
+27 resultados - 3 arquivos
+
+include\configuracoes.h:
+  7  void menu(void);
+  8: void limpa_buffer(void);
+
+src\configuracoes.c:
+  22  
+  23: void limpa_buffer(void){
+  24  
+
+teste\consultorio.c:
+  288  
+  289:     char linha[200];
+  290      char *identificador;
+  291  
+  292:     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+  293:         identificador = strtok(linha, ":");
+  294          if (identificador != NULL) {
+
+  300                  }
+  301:                     fgets(linha, sizeof(linha), arquivo);
+  302:                     sscanf(linha, "Identificacao: %d", &novo_consultorio->identificacao);
+  303  
+  304                  
+  305:                     fgets(linha, sizeof(linha), arquivo);
+  306:                     sscanf(linha, "Especialidade: %[^\n]", novo_consultorio->especialidade);
+  307  
+  308:                     fgets(linha, sizeof(linha), arquivo);
+  309:                     sscanf(linha, "Equipamentos disponiveis: %[^\n]", novo_consultorio->equipamentos_disponiveis);
+  310  
+
+  338              
+  339:                 fgets(linha, sizeof(linha), arquivo);
+  340:                 sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
+  341  
+  342:                 fgets(linha, sizeof(linha), arquivo);
+  343:                 sscanf(linha, " %*s %d", &novo_paciente->idade);
+  344  
+  345:                 fgets(linha, sizeof(linha), arquivo);
+  346:                 sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
+  347  
+  348:                 fgets(linha, sizeof(linha), arquivo);
+  349:                 sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
+  350  

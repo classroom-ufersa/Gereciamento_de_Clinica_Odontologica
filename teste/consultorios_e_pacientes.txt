@@ -1,8 +1,4 @@
-===Consultorio===
-Identificacao: 1
-Especialidade: Grg
-Equipamentos disponiveis: Rg
-===Consultorio===
-Identificacao: 11
-Especialidade: Dd
-Equipamentos disponiveis: Dd
+Consultorio:
+Identificacao: 77
+Especialidade: Mk
+Equipamentos disponiveis: P

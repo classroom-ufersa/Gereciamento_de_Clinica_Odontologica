@@ -17,7 +17,7 @@ int main() {
      scanf(" %c", &opcao);
         switch (opcao) {
             case '1': {
-                lista_consultorios = adicionar_consultorio(lista_consultorios);
+                 lista_consultorios = adicionar_consultorio(lista_consultorios);
                  salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break;
             }
