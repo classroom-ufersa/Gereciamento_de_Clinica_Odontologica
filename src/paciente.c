@@ -30,7 +30,7 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
         tratamento_de_numero(digito_unico_string);
         paciente->digito_unico = atoi(digito_unico_string);
         if (verificar_autenticidade(lista_pacientes, paciente->digito_unico) == 1) {
-            printf("Um paciente ja possui esse digito, informe outro.\n");
+            printf("Algum paciente possui esse digito, informe outro.\n");
         } else {
             break;
         }
@@ -151,18 +151,19 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     Lista_Atendidos*lista_completa=lista;
     int cont=0;
     atendidos = fopen("lista_atendidos.txt", "w+"); 
+
     if (atendidos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
     while (lista_completa!=NULL) { 
-    fprintf(atendidos, "===LISTA DE PACIENTES ATENDIDOS:===\n");
-    fprintf(atendidos, "Paciente:%d\n", cont+1);
-    fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
-    fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
-    fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
-    fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-    lista_completa=lista_completa->proximo;
+        fprintf(atendidos, "===LISTA DE PACIENTES ATENDIDOS===\n");
+        fprintf(atendidos, "Paciente:%d\n", cont+1);
+        fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
+        fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
+        fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
+        fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
+        lista_completa=lista_completa->proximo;
     }
     fclose(atendidos);
 }
@@ -239,7 +240,7 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
         if (consultorio_atual->identificacao == id_procurar) {
             Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
             if (novo_paciente == NULL) {
-                printf("Erro na alocacao\n");
+                printf("Erro na alocacao.\n");
                 exit(1);
             }
             coletar_dados_paciente(novo_paciente, lista_consultorios); 
@@ -262,7 +263,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     Paciente* paciente_Editar = buscar_paciente_por_nome(lista, nome_editar, dg_procurar);
     if (paciente_Editar != NULL) {
         printf("Edicao de dados do paciente:\n");
-        printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado\n ");
+        printf("Deseja editar apenas um dado ou todos? Digite 1 para todos e 0 para apenas um dado.\n ");
         scanf(" %c", &opcao);
         char idade_var[100];
 

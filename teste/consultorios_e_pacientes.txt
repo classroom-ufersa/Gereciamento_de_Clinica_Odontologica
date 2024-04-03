@@ -1,36 +1,8 @@
 Consultorio:
-Identificacao: 1
+Identificacao: 211
+Especialidade: Ee
+Equipamentos disponiveis: Eee
+Consultorio:
+Identificacao: 777
 Especialidade: L
 Equipamentos disponiveis: P
-Consultorio:
-Identificacao: 11
-Especialidade: Frf
-Equipamentos disponiveis: Frfr
-Consultorio:
-Identificacao: 12
-Especialidade: E
-Equipamentos disponiveis: E
-Consultorio:
-Identificacao: 33
-Especialidade: Frf
-Equipamentos disponiveis: Frfrf
-Consultorio:
-Identificacao: 111
-Especialidade: Deded
-Equipamentos disponiveis: Ede
-Consultorio:
-Identificacao: 222
-Especialidade: Edede
-Equipamentos disponiveis: Ded
-Consultorio:
-Identificacao: 444
-Especialidade: Yhy
-Equipamentos disponiveis: Yhyyh
-Consultorio:
-Identificacao: 666
-Especialidade: Frf
-Equipamentos disponiveis: Frfr
-Consultorio:
-Identificacao: 888
-Especialidade: Rfrf
-Equipamentos disponiveis: Frfr

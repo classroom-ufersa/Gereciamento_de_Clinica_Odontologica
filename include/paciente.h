@@ -79,9 +79,10 @@ void arquivo_atendidos(Lista_Atendidos*lista);
 
 /*Funcao que busca o paciente no consultorio pelo nome,
   Recebe como parametros a lista de consultorios, o nome e o digito*/
-
 Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico);
 
-
+/*Funcao que edita paciente que esta na lista,
+  Recebe como parametros a lista, o nome a ser editado e o dg procurar*/
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
+
 #endif
