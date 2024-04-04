@@ -137,8 +137,9 @@ void imprimir_atendidos(Lista_Atendidos* lista) {
         printf("Nenhum paciente foi atendido ainda, lista esta vazia. \n");
         return;
     }
-
+    printf("==LISTA DE PACIENTES ATENDIDOS==\n");
     while (lista != NULL) {
+        
         printf("Nome do paciente: %s\n", lista->paciente_atendido->nome);
         printf("Idade do paciente: %d\n", lista->paciente_atendido->idade);
         printf("Situacao de saude do paciente: %s\n \n", lista->paciente_atendido->situacao_saude);
@@ -155,13 +156,14 @@ void arquivo_atendidos(Lista_Atendidos*lista){
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
+    fprintf(atendidos, "\n");
     while (lista_completa!=NULL) { 
-    fprintf(atendidos, "===LISTA DE PACIENTES ATENDIDOS:===\n");
-    fprintf(atendidos, "Paciente:%d\n", cont+1);
+    fprintf(atendidos, "Paciente:%d\n");
     fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
     fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
     fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
     fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
+    fprintf(atendidos, "\n");
     lista_completa=lista_completa->proximo;
     }
     fclose(atendidos);

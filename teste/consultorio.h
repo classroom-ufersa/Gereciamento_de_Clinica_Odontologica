@@ -14,7 +14,7 @@ typedef struct Consultorio {
     struct Lista_geral* listageral;
 } Consultorio;
 
-void ler_arquivo_e_inserir_lista(Consultorio **comeco,  struct Paciente **pacientes);
+void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes);
 int verificar_lista(Consultorio*consultorio_aux);
 Consultorio* adicionar_consultorio(Consultorio* lista_consultorios);
 int verificar_id_existente(Consultorio* lista_consultorios, int id);

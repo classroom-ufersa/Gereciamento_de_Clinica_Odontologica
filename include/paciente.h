@@ -85,4 +85,6 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
   Recebe como parametros a lista, o nome a ser editado e o dg procurar*/
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar); 
 
+void tratamento_da_var_equipamentos(char *palavra_var);
+// Tratamento da variavel equipamentos separada pois, precisa aceitar "." e ":"
 #endif /* PACIENTE_H */

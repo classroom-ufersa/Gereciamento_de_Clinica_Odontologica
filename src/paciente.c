@@ -97,11 +97,17 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
 }
 
 void tratamento_de_numero(char *variavel_num) {
-    int Contador, Contador2;
+    int Contador, contador2
+    ;
     for (Contador = 0; variavel_num[Contador] != '\0'; Contador++){
         if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57) {
-            for (Contador2 = Contador; variavel_num[Contador2] != '\0'; Contador2++) {
-                variavel_num[Contador2] = variavel_num[Contador2 + 1];
+            for (contador2
+             = Contador; variavel_num[contador2
+            ] != '\0'; contador2
+            ++) {
+                variavel_num[contador2
+                ] = variavel_num[contador2
+                 + 1];
             }
         Contador--;
     }
@@ -109,12 +115,31 @@ void tratamento_de_numero(char *variavel_num) {
 }
 
 void tratamento_de_palavras(char *palavra_var){
-    int Contador, Contador2; 
+    int Contador, contador2;
     for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
-        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32)){
-            for(Contador2 = Contador;palavra_var[Contador2] != '\0';Contador2++){
-                palavra_var[Contador2] = palavra_var[Contador2 + 1];
+        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32 )){
+            for(contador2
+             = Contador;palavra_var[contador2
+            ] != '\0';contador2
+            ++){
+                palavra_var[contador2
+                ] = palavra_var[contador2
+                 + 1];
             }
+       Contador--;
+    }
+  }
+}
+
+
+void tratamento_da_var_equipamentos(char *palavra_var){
+    int Contador, contador2
+    ; 
+    for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
+        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32) && (palavra_var[Contador]!=46) && (palavra_var[Contador]!=250) && (palavra_var[Contador] != 44)){
+            for(contador2= Contador;palavra_var[contador2] != '\0';contador2++){
+                palavra_var[contador2] = palavra_var[contador2 + 1];
+              }
        Contador--;
     }
   }
@@ -151,22 +176,22 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     Lista_Atendidos*lista_completa=lista;
     int cont=0;
     atendidos = fopen("lista_atendidos.txt", "w+"); 
-
     if (atendidos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
     while (lista_completa!=NULL) { 
-        fprintf(atendidos, "===LISTA DE PACIENTES ATENDIDOS===\n");
-        fprintf(atendidos, "Paciente:%d\n", cont+1);
-        fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
-        fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
-        fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
-        fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-        lista_completa=lista_completa->proximo;
+    fprintf(atendidos, "Paciente:\n");
+    fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
+    fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
+    fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
+    fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
+    fprintf(atendidos, "\n");
+    lista_completa=lista_completa->proximo;
     }
     fclose(atendidos);
 }
+
 
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
@@ -211,12 +236,15 @@ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char*
 
 void imprimir_gerais(Lista_geral* lista) {
     if (lista == NULL) {
-        printf("LISTA GERAL ESTA VAZIA, TESTE.\n");
+        printf("LISTA GERAL ESTA VAZIA.\n");
         return;
     }
+    printf("====Lista geral:====\n");
     while (lista != NULL) {
         printf("nome: %s\n", lista->paciente_geral->nome);
         printf("Idade: %d\n", lista->paciente_geral->idade);
+        printf("Situacao de saude: %s\n", lista->paciente_geral->situacao_saude);
+        printf("Digito unico: %d\n", lista->paciente_geral->digito_unico);
         lista = lista->proximo;
     }
 }

@@ -4,6 +4,7 @@
 #include "consultorio.h"
 #include "paciente.h"
 
+
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo = fopen("consultorios_e_pacientes.txt", "w");
     if (arquivo == NULL) {
@@ -18,15 +19,17 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
         fprintf(arquivo, "Identificacao: %d\n", atual->identificacao);
         fprintf(arquivo, "Especialidade: %s\n", atual->especialidade);
         fprintf(arquivo, "Equipamentos disponiveis: %s\n", atual->equipamentos_disponiveis);
+        fprintf(arquivo, "\n");
 
        
         Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-            fprintf(arquivo, "Paciente:\n");
+            fprintf(arquivo, "PACIENTE:\n");
             fprintf(arquivo, "Nome: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude: %s\n", paciente_atual->situacao_saude);
             fprintf(arquivo, "Digito Unico: %d\n", paciente_atual->digito_unico);
+            fprintf(arquivo, "\n");
 
             paciente_atual = paciente_atual->proximo;
         }
@@ -74,7 +77,7 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
 
     printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
     scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
-    tratamento_de_palavras(novo_consultorio->equipamentos_disponiveis);
+    //tratamento_da_var_equipamentos(novo_consultorio->equipamentos_disponiveis);
     string_maiuscula_minuscula(novo_consultorio->equipamentos_disponiveis);
 
     novo_consultorio->paciente = NULL;
@@ -187,7 +190,7 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     return 0; 
 
 }
-void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
+void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes){
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
         printf("Erro na leitura de arquivo.\n");
@@ -223,7 +226,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 }
                 ultimo->proximo = novo_consultorio;
             }
-        } else if (strncmp(linha, "Paciente:", strlen("Paciente:")) == 0) {
+        } else if (strncmp(linha, "PACIENTE:", strlen("PACIENTE:")) == 0) {
             Consultorio *ultimo = *comeco;
             while (ultimo->proximo != NULL) {
                 ultimo = ultimo->proximo;
@@ -234,18 +237,20 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 printf("Erro: Não foi possível alocar memória para o novo paciente.\n");
                 return;
             }
+            //Lista_geral *novo_paciente_geral = (Lista_geral *)malloc(sizeof(Lista_geral));
+            //novo_paciente_geral->paciente_geral = novo_paciente;
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
+            sscanf(linha, "Nome: %[^\n]", novo_paciente->nome);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %d", &novo_paciente->idade);
+            sscanf(linha, "Idade: %d", &novo_paciente->idade);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
+            sscanf(linha, "Situacao de saude: %[^\n]", novo_paciente->situacao_saude);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
+            sscanf(linha, "Digito Unico: %d", &novo_paciente->digito_unico);
 
             novo_paciente->proximo = NULL;
 
@@ -258,9 +263,10 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 }
                 ultimo_paciente->proximo = novo_paciente;
             }
-        }
-    }
+
+            
 
     fclose(arquivo);
     printf("Dados inseridos na lista\n");
+}}
 }

@@ -1,7 +1,1 @@
-===LISTA DE PACIENTES ATENDIDOS:
-===Paciente 1
-Nome: Ana
-Idade: 47
-Situacao de saude: dores
-Digito Unico: 14
-Paciente 1
+

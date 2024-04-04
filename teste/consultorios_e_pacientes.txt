@@ -1,8 +1,17 @@
 CONSULTORIO:
-Identificacao: 1
-Especialidade: M
-Equipamentos disponiveis: L
-CONSULTORIO:
-Identificacao: 255
-Especialidade: L
-Equipamentos disponiveis: E
+Identificacao: 147
+Especialidade: Wswsws
+Equipamentos disponiveis: Wsws
+
+PACIENTE:
+Nome: Ana
+Idade: 7
+Situacao de saude: dores
+Digito Unico: 77
+
+PACIENTE:
+Nome: Ws
+Idade: 7
+Situacao de saude: s
+Digito Unico: 4
+
