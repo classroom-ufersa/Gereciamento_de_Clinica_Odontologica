@@ -6,6 +6,12 @@
 #include "consultorio.h"
 #include "paciente.h"
 
+/*Funcao do menu principal*/
+void menu(void);
+
+/*Funcao para limpar buffer*/
+void limpa_buffer(void);
+
 /*Funcao que remove todos os caracteres que nao sao digitos numericos da string,
   Recebe como parametro uma string*/
 void tratamento_de_numero(char *variavel_num); 
