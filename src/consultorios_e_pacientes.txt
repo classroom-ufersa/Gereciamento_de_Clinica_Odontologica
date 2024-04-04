@@ -4,14 +4,26 @@ Especialidade: Sqs
 Equipamentos disponiveis: Sss
 
 PACIENTE:
+Nome: Aaana
+Idade: 44
+Situacao de saude: Ss
+Digito Unico: 47
+
+PACIENTE:
+Nome: Ana
+Idade: 14
+Situacao de saude: Qs
+Digito Unico: 7
+
+PACIENTE:
+Nome: Elisa
+Idade: 47
+Situacao de saude: Ss
+Digito Unico: 58
+
+PACIENTE:
 Nome: Fernanda
 Idade: 14
 Situacao de saude: wdw
 Digito Unico: 7
-
-PACIENTE:
-Nome: Duda
-Idade: 47
-Situacao de saude: a
-Digito Unico: 9
 

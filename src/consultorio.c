@@ -189,7 +189,7 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     return 0; 
 
 }
-void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes){
+void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes, struct Lista_geral **pacientesgerais) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
         printf("Erro na leitura de arquivo.\n");
@@ -236,8 +236,6 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 printf("Erro: Não foi possível alocar memória para o novo paciente.\n");
                 return;
             }
-            //Lista_geral *novo_paciente_geral = (Lista_geral *)malloc(sizeof(Lista_geral));
-            //novo_paciente_geral->paciente_geral = novo_paciente;
 
             fgets(linha, sizeof(linha), arquivo);
             sscanf(linha, "Nome: %[^\n]", novo_paciente->nome);
@@ -263,9 +261,13 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 ultimo_paciente->proximo = novo_paciente;
             }
 
-            
+            Lista_geral *novo_paciente_geral = (Lista_geral *)malloc(sizeof(Lista_geral));
+            novo_paciente_geral->paciente_geral = novo_paciente;
+            novo_paciente_geral->proximo = *pacientesgerais;
+            *pacientesgerais = novo_paciente_geral;
+        }
+    }
 
     fclose(arquivo);
     printf("Dados inseridos na lista\n");
-}}
 }
