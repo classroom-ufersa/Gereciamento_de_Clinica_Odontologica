@@ -1,5 +1,8 @@
 #ifndef CONSULTORIO_H
 #define CONSULTORIO_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include"paciente.h"
 
 typedef struct Consultorio {
