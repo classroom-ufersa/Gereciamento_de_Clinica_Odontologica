@@ -52,18 +52,6 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     return novo_paciente;
 }
 
-void inserirPaciente(struct Consultorio *consultorio, Paciente *novoPaciente) {
-    if (consultorio->paciente == NULL) {
-        consultorio->paciente = novoPaciente;
-    } else {
-        Paciente *pacienteAtual = consultorio->paciente;
-        while (pacienteAtual->proximo != NULL) {
-            pacienteAtual = pacienteAtual->proximo;
-        }
-        pacienteAtual->proximo = novoPaciente;
-    }
-}
-
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
     if (lista == NULL || novo_paciente == NULL || strcmp(novo_paciente->nome, lista->nome) < 0) {
         novo_paciente->proximo = lista;
@@ -330,19 +318,19 @@ void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remo
         printf("Lista esta vazia.\n");
     }
 
-    struct Consultorio* consultorio_atual = lista;
+    Consultorio* consultorio_atual = lista;
     while (consultorio_atual != NULL) {
        
         if (consultorio_atual->paciente != NULL) {
             
             if (strcmp(consultorio_atual->paciente->nome, nome_remover) == 0 && consultorio_atual->paciente->digito_unico == dg_remover) {
-                struct Paciente* paciente_remover = consultorio_atual->paciente;
+                Paciente* paciente_remover = consultorio_atual->paciente;
                 consultorio_atual->paciente = paciente_remover->proximo;
                 free(paciente_remover);
                 return;
             }
-            struct Paciente* paciente_anterior = consultorio_atual->paciente;
-            struct Paciente* paciente_atual = paciente_anterior->proximo;
+         Paciente* paciente_anterior = consultorio_atual->paciente;
+         Paciente* paciente_atual = paciente_anterior->proximo;
             while (paciente_atual != NULL) {
                 if (strcmp(paciente_atual->nome, nome_remover) == 0 && paciente_atual->digito_unico == dg_remover) {
                     paciente_anterior->proximo = paciente_atual->proximo;
