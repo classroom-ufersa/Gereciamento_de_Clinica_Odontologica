@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include"consultorio.h"
+#include "consultorio.h"
 
 struct Consultorio;
 
@@ -45,18 +45,6 @@ Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente);
   Recebe como parametros um ponteiro para a lista geral*/
 Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* paciente); 
 
-/*Funcao que remove todos os caracteres que nao sao digitos numericos da string,
-  Recebe como parametro uma string*/
-void tratamento_de_numero(char *variavel_num); 
-
-/*Funcao que remove todos os caracteres que nao sao letras maiusculas, minusculas ou espaços,
-  Recebe como parametro uma string*/
-void tratamento_de_palavras(char *palavra_var); 
-
-/*Funcao que transforma a primeira letra em maiuscula e as demais em minusculas,
-  Recebe como parametro uma string*/
-void string_maiuscula_minuscula(char *palavra_var); 
-
 /*Funcao que imprime os dados de cada paciente na lista,
   Recebe como parametro uma lista de pacientes atendidos*/
 void imprimir_atendidos(Lista_Atendidos*lista); 
@@ -83,11 +71,10 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
 
 /*Funcao que edita paciente que esta na lista,
   Recebe como parametros a lista, o nome a ser editado e o dg procurar*/
-  void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
+void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
 
-void tratamento_da_var_equipamentos(char *palavra_var);
-// Tratamento da variavel equipamentos separada pois, precisa aceitar "." e ":"
-
-
+/*Funcao que remove um paciente do consultorio,
+  Recebe como parametros uma lista, o nome e o dg remover*/
 void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remover);
+
 #endif /* PACIENTE_H */
