@@ -18,7 +18,6 @@ typedef struct  Lista_atendidos {
     Paciente* paciente_atendido;
 } Lista_Atendidos;
 
-/*Renomeacao lista geral*/
 typedef struct Lista_geral {
     struct Lista_geral* proximo;
     Paciente* paciente_geral;
@@ -34,7 +33,8 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista);
   Recebe como parametros o nome, a idade, a situação de saude e um ponteiro para consultorio*/
 Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, int dg);
 
-/**/
+/*Funcao que insere um novo paciente ao consultorio,
+  Recebe como parametros um tipo estruturado consultorio e um novo paciente*/
 void inserirPaciente(struct Consultorio *consultorio, Paciente *novoPaciente); 
     
 /*Funcao que adiciona um novo paciente em ordem alfabetica a uma lista encadeada de pacientes,
