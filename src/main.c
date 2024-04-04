@@ -63,6 +63,7 @@ int main() {
                 digito_unico=atoi(dg_string);
 
                 editar_paciente(lista_consultorios, nome_editar,digito_unico);
+                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 break;
             }
             case '6': {

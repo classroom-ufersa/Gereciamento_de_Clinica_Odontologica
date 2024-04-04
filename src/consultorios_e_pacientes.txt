@@ -1,8 +1,30 @@
 CONSULTORIO:
-Identificacao: 1
-Especialidade: Ff
-Equipamentos disponiveis: F
+Identificacao: 33
+Especialidade: Maquinas
+Equipamentos disponiveis: Mma
+PACIENTE:
+Nome: Aana
+Idade: 14
+Situacao de saude: f
+Digito Unico: 74
+
+PACIENTE:
+Nome: Alina
+Idade: 47
+Situacao de saude: de saude: dores
+Digito Unico: 0
+
 CONSULTORIO:
-Identificacao: 12
-Especialidade: M
-Equipamentos disponiveis: K
+Identificacao: 44
+Especialidade: Rf
+Equipamentos disponiveis: Rffr
+PACIENTE:
+Nome: Maria
+Idade: 47
+Situacao de saude: efede
+Digito Unico: 7
+
+CONSULTORIO:
+Identificacao: 55
+Especialidade: Ee
+Equipamentos disponiveis: Ee

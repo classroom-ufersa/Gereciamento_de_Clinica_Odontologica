@@ -22,11 +22,12 @@ void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios)
        
         Paciente* paciente_atual = atual->paciente;
         while (paciente_atual != NULL) {
-            fprintf(arquivo, "Paciente:\n");
+            fprintf(arquivo, "PACIENTE:\n");
             fprintf(arquivo, "Nome: %s\n", paciente_atual->nome);
             fprintf(arquivo, "Idade: %d\n", paciente_atual->idade);
             fprintf(arquivo, "Situacao de saude: %s\n", paciente_atual->situacao_saude);
             fprintf(arquivo, "Digito Unico: %d\n", paciente_atual->digito_unico);
+            fprintf(arquivo, "\n");
 
             paciente_atual = paciente_atual->proximo;
         }
@@ -223,7 +224,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                 }
                 ultimo->proximo = novo_consultorio;
             }
-        } else if (strncmp(linha, "Paciente:", strlen("Paciente:")) == 0) {
+        } else if (strncmp(linha, "PACIENTE:", strlen("PACIENTE:")) == 0) {
             Consultorio *ultimo = *comeco;
             while (ultimo->proximo != NULL) {
                 ultimo = ultimo->proximo;
@@ -236,16 +237,17 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
             }
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %[^\n]", novo_paciente->nome);
+            sscanf(linha, "Nome: %[^\n]", novo_paciente->nome);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %d", &novo_paciente->idade);
+            sscanf(linha, "Idade: %d", &novo_paciente->idade);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %[^\n]", novo_paciente->situacao_saude);
+            sscanf(linha, "Situacao de saude: %[^\n]", novo_paciente->situacao_saude);
 
             fgets(linha, sizeof(linha), arquivo);
-            sscanf(linha, " %*s %d", &novo_paciente->digito_unico);
+            sscanf(linha, "Digito Unico: %d", &novo_paciente->digito_unico);
+            sscanf(linha," ");
 
             novo_paciente->proximo = NULL;
 
