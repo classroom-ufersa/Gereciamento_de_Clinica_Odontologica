@@ -1,5 +1,6 @@
 #include "../include/consultorio.h"
 #include "../include/paciente.h"
+#include "../include/funcoes.h"
 
 void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
@@ -26,6 +27,7 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
         scanf(" %[^\n]", digito_unico_string);
         tratamento_de_numero(digito_unico_string);
         paciente->digito_unico = atoi(digito_unico_string);
+        
         if (verificar_autenticidade(lista_pacientes, paciente->digito_unico) == 1) {
             printf("Algum paciente possui esse digito, informe outro.\n");
         } else {
@@ -86,13 +88,8 @@ void tratamento_de_numero(char *variavel_num) {
     ;
     for (Contador = 0; variavel_num[Contador] != '\0'; Contador++){
         if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57) {
-            for (contador2
-             = Contador; variavel_num[contador2
-            ] != '\0'; contador2
-            ++) {
-                variavel_num[contador2
-                ] = variavel_num[contador2
-                 + 1];
+            for (contador2= Contador; variavel_num[contador2] != '\0'; contador2++) {
+                variavel_num[contador2] = variavel_num[contador2+ 1];
             }
         Contador--;
     }
@@ -103,23 +100,16 @@ void tratamento_de_palavras(char *palavra_var){
     int Contador, contador2;
     for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
         if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32 )){
-            for(contador2
-             = Contador;palavra_var[contador2
-            ] != '\0';contador2
-            ++){
-                palavra_var[contador2
-                ] = palavra_var[contador2
-                 + 1];
+            for(contador2= Contador;palavra_var[contador2] != '\0';contador2++){
+                palavra_var[contador2] = palavra_var[contador2+ 1];
             }
        Contador--;
     }
   }
 }
 
-
 void tratamento_da_var_equipamentos(char *palavra_var){
-    int Contador, contador2
-    ; 
+    int Contador, contador2; 
     for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
         if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32) && (palavra_var[Contador]!=46) && (palavra_var[Contador]!=250) && (palavra_var[Contador] != 44)){
             for(contador2= Contador;palavra_var[contador2] != '\0';contador2++){
@@ -177,7 +167,6 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     fclose(atendidos);
 }
 
-
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
         printf("Lista geral esta vazia. \n");
@@ -189,7 +178,7 @@ void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_aten
 
     Lista_Atendidos *novo_atendimento = (Lista_Atendidos *)malloc(sizeof(Lista_Atendidos));
     if (novo_atendimento == NULL) {
-        printf("Erro na alocacao de memoria\n");
+        printf("Erro na alocacao de memoria.\n");
         exit(1);
     }
 
@@ -272,43 +261,40 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
         printf("Lista de consultorios esta vazia\n");
         return;
     }
-            char novo_nome[100];
-            int nova_idade;
-            char nova_situacao[100];
-            int novo_digito;
+    char novo_nome[100];
+    int nova_idade;
+    char nova_situacao[100];
+    int novo_digito;
+        
+    printf("Edicao de dados do paciente:\n");
+    remover_paciente(lista, nome_editar, dg_procurar);
+    char idade_var[100];
 
-        printf("Edicao de dados do paciente:\n");
-        remover_paciente(lista, nome_editar, dg_procurar);
-        char idade_var[100];
+    printf("Digite o novo nome do paciente:\n");
+    scanf(" %[^\n]", novo_nome);
+    tratamento_de_palavras(novo_nome);
+    string_maiuscula_minuscula(novo_nome);
 
-            printf("Digite o novo nome do paciente:\n");
-            scanf(" %[^\n]", novo_nome);
-            tratamento_de_palavras(novo_nome);
-            string_maiuscula_minuscula(novo_nome);
+    printf("Digite a nova idade do paciente:\n ");
+    scanf(" %[^\n]", idade_var);
+    tratamento_de_numero(idade_var);
+    nova_idade = atoi(idade_var);
 
-            printf("Digite a nova idade do paciente:\n ");
-            scanf(" %[^\n]", idade_var);
-            tratamento_de_numero(idade_var);
-            nova_idade = atoi(idade_var);
+    printf("Digite a nova situacao de saude:\n");
+    scanf(" %[^\n]", nova_situacao);
+    tratamento_de_palavras(nova_situacao);
+    string_maiuscula_minuscula(nova_situacao);
 
-            printf("Digite a nova situacao de saude:\n");
-            scanf(" %[^\n]", nova_situacao);
-            tratamento_de_palavras(nova_situacao);
-            string_maiuscula_minuscula(nova_situacao);
+    char dg_str[100];
+    printf("Insira o novo digito unico do paciente:\n");
+    scanf(" %[^\n]", dg_str);
+    tratamento_de_numero(dg_str);
+    novo_digito= atoi(dg_str);
 
-            char dg_str[100];
-            printf("Insira o novo digito unico do paciente:\n");
-            scanf(" %[^\n]", dg_str);
-            tratamento_de_numero(dg_str);
-            novo_digito= atoi(dg_str);
-
-           
-           Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
-           printf("teste\n");
-            lista->paciente = adicionar_paciente_ordenado(lista->paciente, paciente_atualizado);
-
-
-            }
+    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
+    printf("teste\n");
+    lista->paciente = adicionar_paciente_ordenado(lista->paciente, paciente_atualizado);
+}
     
 void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if(verificar_lista(lista)==1){
@@ -326,6 +312,7 @@ void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remo
                 free(paciente_remover);
                 return;
             }
+            
          Paciente* paciente_anterior = consultorio_atual->paciente;
          Paciente* paciente_atual = paciente_anterior->proximo;
             while (paciente_atual != NULL) {
@@ -340,5 +327,5 @@ void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remo
         }
         consultorio_atual = consultorio_atual->proximo;
     }
-    printf("Paciente nao encontrado na lista\n");
+    printf("Paciente nao encontrado na lista.\n");
 }
