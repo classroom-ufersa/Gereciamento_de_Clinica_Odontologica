@@ -3,6 +3,7 @@
 #include<string.h>
 #include "../include/consultorio.h"
 #include "../include/paciente.h"
+#include "../include/funcoes.h"
 
 int main() {
     Consultorio* lista_consultorios =NULL; 
@@ -94,7 +95,7 @@ int main() {
                 printf("Saindo...\n");
                 break;
             }
-        
+    
             default: {
                 printf("Opção invalida. Tente novamente. \n");
                 break;
