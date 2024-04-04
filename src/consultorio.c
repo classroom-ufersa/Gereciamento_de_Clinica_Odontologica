@@ -1,5 +1,6 @@
 #include "../include/consultorio.h"
 #include "../include/paciente.h"
+#include "../include/funcoes.h"
 
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
     FILE* arquivo = fopen("consultorios_e_pacientes.txt", "w");
@@ -139,9 +140,7 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
 }
 
 void imprimir_consultorios_Disponiveis(Consultorio* lista) {
-
-    if (verificar_lista(lista)==1)
-    {
+    if (verificar_lista(lista)==1){
         printf("Lista de consultorios esta vazia, nao ha nada para imprimir\n");
     }
     
@@ -156,8 +155,6 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista) {
         imprimir_lista = imprimir_lista->proximo;
     }
 }
-
-
 
 int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     Consultorio* consultorio_atual = lista_consultorios;
@@ -183,9 +180,9 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
         }
         consultorio_atual = consultorio_atual->proximo;
     }
-    return 0; 
-
+    return 0;
 }
+
 void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes, struct Lista_geral **pacientesgerais) {
     FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
     if (arquivo == NULL) {
