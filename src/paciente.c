@@ -306,13 +306,6 @@ void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remo
        
         if (consultorio_atual->paciente != NULL) {
             
-            if (strcmp(consultorio_atual->paciente->nome, nome_remover) == 0 && consultorio_atual->paciente->digito_unico == dg_remover) {
-                Paciente* paciente_remover = consultorio_atual->paciente;
-                consultorio_atual->paciente = paciente_remover->proximo;
-                free(paciente_remover);
-                return;
-            }
-            
          Paciente* paciente_anterior = consultorio_atual->paciente;
          Paciente* paciente_atual = paciente_anterior->proximo;
             while (paciente_atual != NULL) {

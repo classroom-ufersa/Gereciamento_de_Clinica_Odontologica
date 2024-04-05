@@ -4,9 +4,9 @@ Especialidade: Sqs
 Equipamentos disponiveis: Sss
 
 PACIENTE:
-Nome: Aaana
-Idade: 44
-Situacao de saude: Ss
+Nome: Aaaana
+Idade: 47
+Situacao de saude: Dor De Dente
 Digito Unico: 47
 
 PACIENTE:
