@@ -4,12 +4,6 @@ Especialidade: Sqs
 Equipamentos disponiveis: Sss
 
 PACIENTE:
-Nome: Aaaana
-Idade: 47
-Situacao de saude: Dor De Dente
-Digito Unico: 47
-
-PACIENTE:
 Nome: Ana
 Idade: 14
 Situacao de saude: Qs
@@ -26,4 +20,10 @@ Nome: Fernanda
 Idade: 14
 Situacao de saude: wdw
 Digito Unico: 7
+
+PACIENTE:
+Nome: Zoe
+Idade: 4
+Situacao de saude: D
+Digito Unico: 4
 
