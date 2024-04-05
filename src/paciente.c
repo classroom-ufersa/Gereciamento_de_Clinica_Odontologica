@@ -137,11 +137,12 @@ void imprimir_atendidos(Lista_Atendidos* lista) {
         printf("Nenhum paciente foi atendido ainda, lista esta vazia. \n");
         return;
     }
-
+printf("***===Lista de Pacientes atendidos===***\n");
     while (lista != NULL) {
         printf("Nome do paciente: %s\n", lista->paciente_atendido->nome);
         printf("Idade do paciente: %d\n", lista->paciente_atendido->idade);
         printf("Situacao de saude do paciente: %s\n \n", lista->paciente_atendido->situacao_saude);
+        printf("Digito Unico do paciente: %d\n", lista->paciente_atendido->digito_unico);
         lista = lista->proximo;
     }
 }
@@ -155,6 +156,7 @@ void arquivo_atendidos(Lista_Atendidos*lista){
         printf("Erro ao abrir o arquivo.\n");
         exit(1);
     }
+    fprintf(atendidos, "====Banco de dados dos pacientes atendidos.=====\n");
     while (lista_completa!=NULL) { 
     fprintf(atendidos, "Paciente:\n");
     fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
@@ -295,7 +297,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     printf("teste\n");
     lista->paciente = adicionar_paciente_ordenado(lista->paciente, paciente_atualizado);
 }
-void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remover) {
+void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if (verificar_lista(lista) == 1) {
         printf("Lista está vazia.\n");
         return;
@@ -305,20 +307,20 @@ void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remo
 
     while (consultorio_atual != NULL) {
         Paciente* paciente_atual = consultorio_atual->paciente;
-        Paciente* paciente_anterior = NULL;
+        Paciente* paciente_anterior_ao_atual = NULL;
 
         while (paciente_atual != NULL) {
             if (strcmp(paciente_atual->nome, nome_remover) == 0 && paciente_atual->digito_unico == dg_remover) {
-                if (paciente_anterior == NULL) {
+                if (paciente_anterior_ao_atual== NULL) {
                     
                     consultorio_atual->paciente = paciente_atual->proximo;
                 } else {
-                    paciente_anterior->proximo = paciente_atual->proximo;
+                    paciente_anterior_ao_atual->proximo = paciente_atual->proximo;
                 }
                 free(paciente_atual);
                 return;
             }
-            paciente_anterior = paciente_atual;
+           paciente_anterior_ao_atual = paciente_atual;
             paciente_atual = paciente_atual->proximo;
         }
 
