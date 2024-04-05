@@ -171,26 +171,40 @@ void arquivo_atendidos(Lista_Atendidos*lista){
 
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
-        printf("Lista geral esta vazia. \n");
+        printf("A lista geral está vazia.\n");
         return;
     }
 
-    Lista_geral *removido = *lista;
-    *lista = (*lista)->proximo;
+    
+    Lista_geral *atual = *lista;
+    Lista_geral *anterior = NULL;
+    while (atual->proximo != NULL) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+   
+    if (anterior != NULL) {
+        anterior->proximo = NULL;
+    } else {
+       
+        *lista = NULL;
+    }
 
     Lista_Atendidos *novo_atendimento = (Lista_Atendidos *)malloc(sizeof(Lista_Atendidos));
     if (novo_atendimento == NULL) {
-        printf("Erro na alocacao de memoria.\n");
+        printf("Erro na alocação de memória.\n");
         exit(1);
     }
 
-    novo_atendimento->paciente_atendido = removido->paciente_geral;
+    novo_atendimento->paciente_atendido = atual->paciente_geral;
     novo_atendimento->proximo = *lista_atendidos;
     *lista_atendidos = novo_atendimento;
 
-    free(removido); 
-    printf("Paciente removido com sucessp\n");
+    free(atual);
+    printf("Paciente removido com sucesso.\n");
 }
+
 
 Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico) {
     Consultorio* consultorio_atual = lista_consultorios;
@@ -269,7 +283,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     int novo_digito;
         
     printf("Edicao de dados do paciente:\n");
-    remover_paciente(lista, nome_editar, dg_procurar);
+    remover_paciente_para_inserir(lista, nome_editar, dg_procurar);
     char idade_var[100];
 
     printf("Digite o novo nome do paciente:\n");

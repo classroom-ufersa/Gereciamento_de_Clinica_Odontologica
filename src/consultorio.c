@@ -263,5 +263,6 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
     }
 
     fclose(arquivo);
+    
     printf("Dados inseridos na lista\n");
 }

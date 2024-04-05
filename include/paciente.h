@@ -76,6 +76,6 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
 
 /*Funcao que remove um paciente do consultorio,
   Recebe como parametros uma lista, o nome e o dg remover*/
-void remover_paciente(struct Consultorio* lista, char* nome_remover, int dg_remover);
+void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
 
 #endif /* PACIENTE_H */

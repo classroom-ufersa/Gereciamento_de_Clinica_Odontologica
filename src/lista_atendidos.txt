@@ -1,0 +1,7 @@
+====Banco de dados dos pacientes atendidos.=====
+Paciente:
+Nome: Maria
+Idade: 47
+Situacao de saude: qsqsq
+Digito Unico: 44
+
