@@ -243,6 +243,8 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
             fgets(linha, sizeof(linha), arquivo);
             sscanf(linha, "Digito Unico: %d", &novo_paciente->digito_unico);
 
+            *pacientesgerais=adicionar_paciente_geral(*pacientesgerais, novo_paciente);
+
             novo_paciente->proximo = NULL;
 
             if (ultimo->paciente == NULL) {
@@ -253,13 +255,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
                     ultimo_paciente = ultimo_paciente->proximo;
                 }
                 ultimo_paciente->proximo = novo_paciente;
-            }
-
-            Lista_geral *novo_paciente_geral = (Lista_geral *)malloc(sizeof(Lista_geral));
-            novo_paciente_geral->paciente_geral = novo_paciente;
-            novo_paciente_geral->proximo = *pacientesgerais;
-            *pacientesgerais = novo_paciente_geral;
-        }
+            } }
     }
 
     fclose(arquivo);

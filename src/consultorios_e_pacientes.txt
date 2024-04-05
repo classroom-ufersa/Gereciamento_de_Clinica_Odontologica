@@ -1,17 +1,35 @@
 CONSULTORIO:
-Identificacao: 11
-Especialidade: Sqsqas
-Equipamentos disponiveis: Wdwdw
+Identificacao: 247
+Especialidade: Sqs
+Equipamentos disponiveis: Sss
 
 PACIENTE:
-Nome: Maria
+Nome: Ana
+Idade: 14
+Situacao de saude: Qs
+Digito Unico: 7
+
+PACIENTE:
+Nome: Elisa
 Idade: 47
-Situacao de saude: qsqsq
-Digito Unico: 44
+Situacao de saude: Ss
+Digito Unico: 58
+
+PACIENTE:
+Nome: Fernanda
+Idade: 14
+Situacao de saude: wdw
+Digito Unico: 7
 
 PACIENTE:
 Nome: Zoe
 Idade: 47
-Situacao de saude: ssasa
-Digito Unico: 66
+Situacao de saude: D
+Digito Unico: 21
+
+PACIENTE:
+Nome: Zoe
+Idade: 4
+Situacao de saude: D
+Digito Unico: 4
 

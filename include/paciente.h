@@ -56,8 +56,7 @@ void arquivo_atendidos(Lista_Atendidos*lista);
 
 /*Funcao que remove um paciente do inicio da lista e adiciona a lista de atendidos, 
   Recebe como parametros a lista e a lista de atendidos*/
-void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos); 
-
+void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos);
 /*Funcao que busca o paciente no consultorio pelo nome,
   Recebe como parametros a lista de consultorios, o nome e o digito*/
 Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char* nome, int digitoUnico); 
