@@ -15,7 +15,8 @@ int main() {
     ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente, &lista_geral);
     do {
         menu();
-    } while (opcao != '9');
+        while (opcao != '9');
+    
     //Liberar memoria
     free(lista_consultorios);
     free(lista_atendidos);
