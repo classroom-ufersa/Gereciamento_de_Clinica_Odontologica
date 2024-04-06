@@ -39,7 +39,7 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
 Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
     if (novo_paciente == NULL) {
-        printf("Erro na alocacao, tente novamente;");
+        printf("Erro na alocacao.\n");
         exit(1);
     }
 
@@ -52,22 +52,18 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
 }
 
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente) {
-    if (lista == NULL || novo_paciente == NULL || strcmp(novo_paciente->nome, lista->nome) < 0) {
+    if (lista == NULL || strcmp(lista->nome, novo_paciente->nome) > 0) {
         novo_paciente->proximo = lista;
         return novo_paciente;
     }
 
-    Paciente* anterior = lista;
-    Paciente* atual = lista->proximo;
-
-    while (atual != NULL && strcmp(novo_paciente->nome, atual->nome) > 0) {
-        anterior = atual;
+    Paciente* atual = lista;
+    while (atual->proximo != NULL && strcmp(atual->proximo->nome, novo_paciente->nome) < 0) {
         atual = atual->proximo;
     }
 
-    anterior->proximo = novo_paciente;
-    novo_paciente->proximo = atual;
-
+    novo_paciente->proximo = atual->proximo;
+    atual->proximo = novo_paciente;
     return lista;
 }
 
@@ -90,62 +86,12 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
     while (atual->proximo != NULL) {
         atual = atual->proximo;
     }
-
-    
-    atual->proximo = novo_paciente_geral;
-
-    return lista_geral;
+     
+     atual->proximo = novo_paciente_geral;
+     return lista_geral;
 }
 
 
-void tratamento_de_numero(char *variavel_num) {
-    int Contador, contador2
-    ;
-    for (Contador = 0; variavel_num[Contador] != '\0'; Contador++){
-        if (variavel_num[Contador] < 48 || variavel_num[Contador] > 57) {
-            for (contador2= Contador; variavel_num[contador2] != '\0'; contador2++) {
-                variavel_num[contador2] = variavel_num[contador2+ 1];
-            }
-        Contador--;
-    }
-  }
-}
-
-void tratamento_de_palavras(char *palavra_var){
-    int Contador, contador2;
-    for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
-        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32 )){
-            for(contador2= Contador;palavra_var[contador2] != '\0';contador2++){
-                palavra_var[contador2] = palavra_var[contador2+ 1];
-            }
-       Contador--;
-    }
-  }
-}
-
-void tratamento_da_var_equipamentos(char *palavra_var){
-    int Contador, contador2; 
-    for (Contador = 0; palavra_var[Contador] != '\0'; Contador++)  {
-        if((palavra_var[Contador] < 65 || palavra_var[Contador] > 90) && (palavra_var[Contador] < 97 || palavra_var[Contador] > 122) && (palavra_var[Contador] != 32) && (palavra_var[Contador]!=46) && (palavra_var[Contador]!=250) && (palavra_var[Contador] != 44)){
-            for(contador2= Contador;palavra_var[contador2] != '\0';contador2++){
-                palavra_var[contador2] = palavra_var[contador2 + 1];
-              }
-       Contador--;
-    }
-  }
-}
-
-void string_maiuscula_minuscula(char *palavra_var){ 
-    int Contador; 
-    palavra_var[0] = toupper(palavra_var[0]);  
-    for (Contador = 1; palavra_var[Contador] != '\0'; Contador++)  { 
-        if (isspace(palavra_var[Contador - 1]))  { 
-            palavra_var[Contador] = toupper(palavra_var[Contador]);
-        } else  { 
-            palavra_var[Contador] = tolower(palavra_var[Contador]); 
-        }
-    }
-}
 
 void imprimir_atendidos(Lista_Atendidos* lista) {
     if (lista == NULL) {
@@ -240,8 +186,6 @@ void imprimir_gerais(Lista_geral* lista) {
         atual = atual->proximo;
     }
 }
-
-
 void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_geral** lista_geral) {
     int id_procurar;
     char id_var[100];
@@ -272,47 +216,6 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
         consultorio_atual = consultorio_atual->proximo;
     }
     printf("Consultorio nao encontrado. \n");
-}
-
-void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar) {
-    char opcao;
-    if (verificar_lista(lista) == 1) {
-        printf("Lista de consultorios esta vazia\n");
-        return;
-    }
-    char novo_nome[100];
-    int nova_idade;
-    char nova_situacao[100];
-    int novo_digito;
-        
-    printf("Edicao de dados do paciente:\n");
-    remover_paciente_para_inserir(lista, nome_editar, dg_procurar);
-    char idade_var[100];
-
-    printf("Digite o novo nome do paciente:\n");
-    scanf(" %[^\n]", novo_nome);
-    tratamento_de_palavras(novo_nome);
-    string_maiuscula_minuscula(novo_nome);
-
-    printf("Digite a nova idade do paciente:\n ");
-    scanf(" %[^\n]", idade_var);
-    tratamento_de_numero(idade_var);
-    nova_idade = atoi(idade_var);
-
-    printf("Digite a nova situacao de saude:\n");
-    scanf(" %[^\n]", nova_situacao);
-    tratamento_de_palavras(nova_situacao);
-    string_maiuscula_minuscula(nova_situacao);
-
-    char dg_str[100];
-    printf("Insira o novo digito unico do paciente:\n");
-    scanf(" %[^\n]", dg_str);
-    tratamento_de_numero(dg_str);
-    novo_digito= atoi(dg_str);
-
-    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
-    printf("teste\n");
-    lista->paciente = adicionar_paciente_ordenado(lista->paciente, paciente_atualizado);
 }
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if (verificar_lista(lista) == 1) {
@@ -345,5 +248,70 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
     }
 
     printf("Paciente não encontrado.\n");
+return;
 }
 
+void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar) {
+    char opcao;
+    if (verificar_lista(lista) == 1) {
+        printf("Lista de consultórios está vazia\n");
+        return;
+    }
+    int paciente_encontrado = 0;
+    Consultorio* consultorio_paciente = NULL;
+    Consultorio* consultorio_atual = lista;
+    while (consultorio_atual != NULL) {
+        Paciente* paciente_atual = consultorio_atual->paciente;
+        while (paciente_atual != NULL) {
+            if (strcmp(paciente_atual->nome, nome_editar) == 0 && paciente_atual->digito_unico == dg_procurar) {
+                paciente_encontrado = 1;
+                consultorio_paciente = consultorio_atual; 
+                break;
+            }
+            paciente_atual = paciente_atual->proximo;
+        }
+        if (paciente_encontrado) {
+            break; 
+        }
+        consultorio_atual = consultorio_atual->proximo;
+    }
+
+    if (!paciente_encontrado) {
+        printf("Paciente não encontrado.\n");
+        return;
+    }
+
+    char novo_nome[100];
+    int nova_idade;
+    char nova_situacao[100];
+    int novo_digito;
+        
+    printf("Edição de dados do paciente:\n");
+    remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); // Remove o paciente do consultório correto
+
+    char idade_var[100];
+
+    printf("Digite o novo nome do paciente:\n");
+    scanf(" %[^\n]", novo_nome);
+    tratamento_de_palavras(novo_nome);
+    string_maiuscula_minuscula(novo_nome);
+
+    printf("Digite a nova idade do paciente:\n ");
+    scanf(" %[^\n]", idade_var);
+    tratamento_de_numero(idade_var);
+    nova_idade = atoi(idade_var);
+
+    printf("Digite a nova situação de saúde:\n");
+    scanf(" %[^\n]", nova_situacao);
+    tratamento_de_palavras(nova_situacao);
+    string_maiuscula_minuscula(nova_situacao);
+
+    char dg_str[100];
+    printf("Insira o novo digito unico do paciente:\n");
+    scanf(" %[^\n]", dg_str);
+    tratamento_de_numero(dg_str);
+    novo_digito= atoi(dg_str);
+
+    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
+    consultorio_paciente->paciente = adicionar_paciente_ordenado(consultorio_paciente->paciente, paciente_atualizado); 
+}

@@ -93,6 +93,7 @@ int main() {
             }
             case '9': {
                 printf("Saindo....\n");
+                printf("A CHAR OF SMILLE agradece sua preferencia!");
                 break;
             }
         

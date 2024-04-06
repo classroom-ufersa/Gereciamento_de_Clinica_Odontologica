@@ -4,18 +4,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include "consultorio.h"
-#include "funcoes.h"
+
 
 struct Consultorio;
-
-typedef struct Paciente {
+typedef struct paciente Paciente;
+struct paciente {
     char nome[100];
     int idade;
     char situacao_saude[100];
     int digito_unico;
     struct Consultorio* consultorio;
-    struct Paciente* proximo;
-} Paciente;
+    struct paciente* proximo;
+};
 
 typedef struct  Lista_atendidos {
     struct Lista_atendidos* proximo;

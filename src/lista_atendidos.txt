@@ -1,13 +1,13 @@
 ====Banco de dados dos pacientes atendidos.=====
 Paciente:
-Nome: Elisa
+Nome: Ana
 Idade: 47
-Situacao de saude: Ss
+Situacao de saude: D
 Digito Unico: 58
 
 Paciente:
-Nome: Ana
-Idade: 14
-Situacao de saude: Qs
-Digito Unico: 7
+Nome: Aana
+Idade: 47
+Situacao de saude: qs
+Digito Unico: 222
 

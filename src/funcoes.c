@@ -1,9 +1,8 @@
-#include "../include/consultorio.h"
-#include "../include/paciente.h"
 #include "../include/funcoes.h"
 
 /*Funcao do menu principal*/
-void menu(void) {
+ void menu() {
+    
         printf("========= MENU CHAR OF SMILE DENTAL CLINIC ==========\n");
         printf("[1] Adicionar consultorio\n");
         printf("[2] Remover consultorio \n");
@@ -17,81 +16,8 @@ void menu(void) {
         printf("==============================================\n");
         printf("Escolha uma das opcoes acima:\n");
 
-        scanf(" %c", &opcao);
-    
-        switch (opcao) {
-            case '1': {
-                lista_consultorios = adicionar_consultorio(lista_consultorios);
-                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
-                break;
-            }
-            case '2': {
-                lista_consultorios= remover_consultorio_por_id(lista_consultorios);
-                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
-                break; 
-            }
-            case '3': {
-                adicionar_paciente_por_id(lista_consultorios,&lista_geral);
-                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
-                break;
-            }
-            case '4': {
-                remover_paciente_por_fila(&lista_geral,&lista_atendidos);
-                break;
-            }
-            case '5': {
-                char nome_editar[500];
-                char dg_string[100];
-                int digito_unico;
-
-                printf("Digite o nome do paciente que deseja editar:\n");
-                scanf(" %[^\n]", nome_editar);
-                tratamento_de_palavras(nome_editar);
-                string_maiuscula_minuscula(nome_editar);
-                printf("Agora insira o digito unico desse paciente:\n");
-                scanf(" %[^\n]", dg_string);
-                tratamento_de_numero(dg_string);
-                digito_unico=atoi(dg_string);
-
-                editar_paciente(lista_consultorios, nome_editar,digito_unico);
-                salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
-                break;
-            }
-            case '6': {
-                char nome_buscar[500];
-                char dg_string[100];
-                int digito_unico;
-                printf("Digite o nome do paciente que deseja buscar:\n");
-                scanf(" %[^\n]", nome_buscar);
-                tratamento_de_palavras(nome_buscar);
-                string_maiuscula_minuscula(nome_buscar);
-                printf("Agora insira o digito unico desse paciente:\n");
-                scanf(" %[^\n]", dg_string);
-                tratamento_de_numero(dg_string);
-                digito_unico=atoi(dg_string);
-                lista_paciente = buscar_paciente_por_nome(lista_consultorios, nome_buscar, digito_unico);
-            }
-            case '7': {
-                imprimir_consultorios_Disponiveis(lista_consultorios);
-                break;
-            }
-            case '8': {
-                imprimir_gerais(lista_geral);
-                imprimir_atendidos(lista_atendidos);
-                arquivo_atendidos(lista_atendidos);
-                break;
-            }
-            case '9': {
-                printf("======....Saindo do sistema....======\n");
-                break;
-            }
-    
-            default: {
-                printf("Opção invalida. Tente novamente. \n");
-                break;
-            }
-        }
 }
+
 
 /*Funcao para limpar buffer*/
 void limpa_buffer(void);
