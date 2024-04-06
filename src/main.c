@@ -57,6 +57,7 @@ int main() {
                 break;
             }
             case '6': {
+                printf("ola\n");
                 char nome_buscar[500];
                 char dg_string[100];
                 int digito_unico;
@@ -69,6 +70,7 @@ int main() {
                 tratamento_de_numero(dg_string);
                 digito_unico=atoi(dg_string);
                 lista_paciente = buscar_paciente_por_nome(lista_consultorios, nome_buscar, digito_unico);
+                break;
             }
             case '7': {
                 imprimir_consultorios_Disponiveis(lista_consultorios);
@@ -94,8 +96,8 @@ int main() {
    
     
     //Liberar memoria
-    liberar_listas(lista_consultorios);
-    liberar_atendidos_lista(lista_atendidos);
-    liberar_lista_geral(lista_geral);
+    //liberar_listas(lista_consultorios);
+   // liberar_atendidos_lista(lista_atendidos);
+   // liberar_lista_geral(lista_geral);
     return 0;
 }

@@ -1,0 +1,50 @@
+CONSULTORIO:
+Identificacao: 1
+Especialidade: W
+Equipamentos disponiveis: W,.w
+
+PACIENTE:
+Nome: Maria
+Idade: 47
+Situacao de saude: ss
+Digito Unico: 7
+
+CONSULTORIO:
+Identificacao: 158
+Especialidade: S
+Equipamentos disponiveis: S
+
+PACIENTE:
+Nome: Aana
+Idade: 47
+Situacao de saude: qs
+Digito Unico: 222
+
+PACIENTE:
+Nome: Ana
+Idade: 47
+Situacao de saude: D
+Digito Unico: 58
+
+CONSULTORIO:
+Identificacao: 247
+Especialidade: Sqs
+Equipamentos disponiveis: Sss
+
+PACIENTE:
+Nome: Ana
+Idade: 14
+Situacao de saude: S
+Digito Unico: 878
+
+PACIENTE:
+Nome: Zzzzzzz
+Idade: 7
+Situacao de saude: D
+Digito Unico: 87
+
+CONSULTORIO:
+Identificacao: 258
+Especialidade: Ma
+Equipamentos disponiveis: Maquinas,lugares.
+

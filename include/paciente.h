@@ -7,15 +7,15 @@
 
 
 struct Consultorio;
-typedef struct paciente Paciente;
-struct paciente {
+
+typedef struct Paciente {
     char nome[100];
     int idade;
     char situacao_saude[100];
     int digito_unico;
     struct Consultorio* consultorio;
-    struct paciente* proximo;
-};
+    struct Paciente* proximo;
+}Paciente;
 
 typedef struct  Lista_atendidos {
     struct Lista_atendidos* proximo;
