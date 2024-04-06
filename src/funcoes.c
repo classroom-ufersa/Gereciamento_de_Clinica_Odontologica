@@ -71,3 +71,7 @@ void string_maiuscula_minuscula(char *palavra_var){
         }
     }
 }
+void limpar_buffer(){ 
+    int percorre;
+    while( (percorre = fgetc(stdin)) != EOF && percorre!= '\n' ){} 
+}

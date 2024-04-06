@@ -12,7 +12,7 @@ void menu();
 
 
 /*Funcao para limpar buffer*/
-void limpa_buffer(void);
+void limpar_buffer();
 
 /*Funcao que remove todos os caracteres que nao sao digitos numericos da string,
   Recebe como parametro uma string*/

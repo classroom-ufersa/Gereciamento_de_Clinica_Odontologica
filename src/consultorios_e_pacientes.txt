@@ -10,6 +10,11 @@ Situacao de saude: ss
 Digito Unico: 7
 
 CONSULTORIO:
+Identificacao: 147
+Especialidade: Dd
+Equipamentos disponiveis: Ss
+
+CONSULTORIO:
 Identificacao: 158
 Especialidade: S
 Equipamentos disponiveis: S
