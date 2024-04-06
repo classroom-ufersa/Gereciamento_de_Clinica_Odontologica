@@ -91,15 +91,6 @@ void menu(void) {
                 break;
             }
         }
-
-    } while (opcao != '9');
-  
-    //Liberar memoria
-    free(lista_consultorios);
-    free(lista_atendidos);
-    free(lista_paciente);
-    free(lista_geral);
-    return 0;
 }
 
 /*Funcao para limpar buffer*/
