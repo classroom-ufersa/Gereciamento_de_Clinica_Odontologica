@@ -29,7 +29,7 @@ A utilização de listas encadeadas nesse contexto oferece flexibilidade, organi
 ***
 
 ## **Problemática**
-- [X] O sistema de gerenciamento para uma clínica odontológica - CHAR OF SMILLE, desenvolvido em Linguagem C, tem como objetivo simplificar as operações cruciais para o funcionamento eficiente do estabelecimento. Ele proporciona funcionalidades como adicionar, excluir, buscar e editar pacientes e consultas, além de listar os pacientes e seus históricos de consultas. Essas funcionalidades são essenciais para garantir uma gestão eficaz e organizada das atividades da clínica odontológica.
+- O sistema de gerenciamento para uma clínica odontológica - CHAR OF SMILLE, desenvolvido em Linguagem C, tem como objetivo simplificar as operações cruciais para o funcionamento eficiente do estabelecimento. Ele proporciona funcionalidades como adicionar, excluir, buscar e editar pacientes e consultas, além de listar os pacientes e seus históricos de consultas. Essas funcionalidades são essenciais para garantir uma gestão eficaz e organizada das atividades da clínica odontológica.
 
 ### Atribuições
 #### *Atributos Consultório*
@@ -197,6 +197,7 @@ void tratamento_da_var_equipamentos(char *palavra_var);
 │
 └─── bin
         │
+        ├──.vscode
         ├──.gitignore
         ├──desktop.ini
 │
