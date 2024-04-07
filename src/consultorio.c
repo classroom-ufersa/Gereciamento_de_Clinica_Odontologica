@@ -110,24 +110,6 @@ void liberar_listas(struct Consultorio* lista) {
 
 }
 
-void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos){
-    Lista_Atendidos*aux_var;
-    while (lista_atendidos!= NULL) {
-        aux_var = lista_atendidos;
-        lista_atendidos =lista_atendidos->proximo;
-        free(aux_var);
-    }
- }
-
-void liberar_lista_geral(Lista_geral*lista_geral){
-    Lista_geral*aux_var;
-    while (lista_geral != NULL) {
-        aux_var = lista_geral;
-        lista_geral =lista_geral->proximo;
-        free(aux_var);
-    }
- }
-
 Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     char id_remover[500];
     int id_a_remover;
