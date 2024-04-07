@@ -18,12 +18,6 @@
         printf("Escolha uma das opcoes acima:\n");
 }
 
-/*Funcao para limpar buffer*/
-void limpa_buffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
 void tratamento_de_numero(char *variavel_num) {
     int Contador, contador2
     ;
@@ -73,7 +67,8 @@ void string_maiuscula_minuscula(char *palavra_var){
     }
 }
 
+/*Funcao para limpar buffer*/
 void limpar_buffer(){ 
     int percorre;
-    while( (percorre = fgetc(stdin)) != EOF && percorre!= '\n' ){} 
+    while((percorre = fgetc(stdin)) != EOF && percorre!= '\n' ){} 
 }
