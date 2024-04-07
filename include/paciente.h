@@ -5,8 +5,6 @@
 #include <string.h>
 #include "consultorio.h"
 
-struct Consultorio;
-
 typedef struct Paciente {
     char nome[100];
     int idade;
@@ -26,7 +24,6 @@ typedef struct Lista_geral {
     Paciente* paciente_geral;
 } Lista_geral;
 
-extern struct Lista_geral* lista_geral;
 
 /*Funcao que coleta dados do paciente,
   Recebe como parametro um ponteiro para paciente*/
