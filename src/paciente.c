@@ -122,7 +122,6 @@ printf("***===Lista de Pacientes atendidos===***\n");
 void arquivo_atendidos(Lista_Atendidos*lista){
     FILE*atendidos;
     Lista_Atendidos*lista_completa=lista;
-    int cont=0;
     atendidos = fopen("lista_atendidos.txt", "w+"); 
     if (atendidos == NULL) {
         printf("Erro ao abrir o arquivo.\n");
@@ -135,8 +134,8 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
     fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
     fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-    fprintf(atendidos, "\n");
     lista_completa=lista_completa->proximo;
+    fprintf(atendidos, "\n");
     }
     fclose(atendidos);
 }
