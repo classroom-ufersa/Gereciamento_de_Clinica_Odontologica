@@ -65,10 +65,14 @@ int main() {
                 char nome_buscar[500];
                 char dg_string[100];
                 int digito_unico;
+                do
+                {
                 printf("Digite o nome do paciente que deseja buscar:\n");
                 scanf(" %[^\n]", nome_buscar);
                 tratamento_de_palavras(nome_buscar);
                 string_maiuscula_minuscula(nome_buscar);
+                }while (nome_buscar[0]==0);
+                
                 printf("Agora insira o digito unico desse paciente:\n");
                 scanf(" %[^\n]", dg_string);
                 tratamento_de_numero(dg_string);
