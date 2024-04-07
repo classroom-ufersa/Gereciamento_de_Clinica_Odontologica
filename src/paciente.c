@@ -80,7 +80,6 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
     if (lista_geral == NULL) {
         return novo_paciente_geral;
     }
-
     
     Lista_geral* atual = lista_geral;
     while (atual->proximo != NULL) {
@@ -90,8 +89,6 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
      atual->proximo = novo_paciente_geral;
      return lista_geral;
 }
-
-
 
 void imprimir_atendidos(Lista_Atendidos* lista) {
     if (lista == NULL) {
@@ -129,6 +126,7 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     }
     fclose(atendidos);
 }
+
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {
         printf("A lista geral está vazia.\n");
@@ -186,6 +184,7 @@ void imprimir_gerais(Lista_geral* lista) {
         atual = atual->proximo;
     }
 }
+
 void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_geral** lista_geral) {
     int id_procurar;
     char id_var[100];
@@ -217,12 +216,12 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
     }
     printf("Consultorio nao encontrado. \n");
 }
+
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if (verificar_lista(lista) == 1) {
         printf("Lista está vazia.\n");
         return;
     }
-
     Consultorio* consultorio_atual = lista;
 
     while (consultorio_atual != NULL) {
@@ -232,7 +231,6 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
         while (paciente_atual != NULL) {
             if (strcmp(paciente_atual->nome, nome_remover) == 0 && paciente_atual->digito_unico == dg_remover) {
                 if (paciente_anterior_ao_atual== NULL) {
-                    
                     consultorio_atual->paciente = paciente_atual->proximo;
                 } else {
                     paciente_anterior_ao_atual->proximo = paciente_atual->proximo;
@@ -240,7 +238,7 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
                 free(paciente_atual);
                 return;
             }
-           paciente_anterior_ao_atual = paciente_atual;
+            paciente_anterior_ao_atual = paciente_atual;
             paciente_atual = paciente_atual->proximo;
         }
 
@@ -248,7 +246,34 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
     }
 
     printf("Paciente não encontrado.\n");
-return;
+    return;
+}
+
+void liberar_listas(struct Consultorio* lista) {
+    struct Consultorio* temp_consultorio;
+    while (lista != NULL) {
+        temp_consultorio = lista;
+        lista = lista->proximo;
+        free(temp_consultorio);
+    }
+}
+
+void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos){
+    Lista_Atendidos*aux_var;
+    while (lista_atendidos!= NULL) {
+        aux_var = lista_atendidos;
+        lista_atendidos =lista_atendidos->proximo;
+        free(aux_var);
+    }
+}
+
+void liberar_lista_geral(Lista_geral*lista_geral){
+    Lista_geral*aux_var;
+    while (lista_geral != NULL) {
+        aux_var = lista_geral;
+        lista_geral =lista_geral->proximo;
+        free(aux_var);
+    }
 }
 
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar) {
@@ -260,6 +285,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     int paciente_encontrado = 0;
     Consultorio* consultorio_paciente = NULL;
     Consultorio* consultorio_atual = lista;
+    
     while (consultorio_atual != NULL) {
         Paciente* paciente_atual = consultorio_atual->paciente;
         while (paciente_atual != NULL) {
