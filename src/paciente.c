@@ -6,37 +6,49 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
     char digito_unico_string[100];
     Consultorio* lista_pacientes = lista;
-    printf("Digite o nome do paciente: ");
-    scanf(" %[^\n]", paciente->nome);
-    tratamento_de_palavras(paciente->nome);
-    string_maiuscula_minuscula(paciente->nome);
-    getchar();
+printf("Digite apenas o tipo de caractere que é pedido, se digitar apenas numeros os dados seram pedidos, novamente\n");
+    do {
+    
+        printf("Digite o nome do paciente: ");
+        scanf(" %[^\n]", paciente->nome);
+        tratamento_de_palavras(paciente->nome);
+        string_maiuscula_minuscula(paciente->nome);
+        getchar();
+    }
+     while (paciente->nome[0] == '\0');
 
-    printf("Digite a idade do paciente: ");
-    scanf(" %[^\n]", idade_var_string);
+    do {
+        printf("Digite a idade do paciente: ");
+        scanf(" %[^\n]", idade_var_string);
+        tratamento_de_numero(idade_var_string);
+        paciente->idade = atoi(idade_var_string);
+    } while (paciente->idade == 0);
 
-    tratamento_de_numero(idade_var_string);
-    paciente->idade = atoi(idade_var_string);
+    do {
+        printf("Digite a situacao da saude do paciente: ");
+        scanf(" %[^\n]", paciente->situacao_saude);
+        tratamento_de_palavras(paciente->situacao_saude);
+    } while (paciente->situacao_saude[0] == '\0');
 
-    printf("Digite a situacao da saude do paciente: ");
-    scanf(" %[^\n]", paciente->situacao_saude);
-    tratamento_de_palavras(paciente->situacao_saude);
+
 
     while (1) {
+        printf("Lembre-se, o digito unico nao podera ser editado depois\n");
         printf("Digite o digito unico desse paciente:\n");
         scanf(" %[^\n]", digito_unico_string);
         tratamento_de_numero(digito_unico_string);
         paciente->digito_unico = atoi(digito_unico_string);
-        
+
         if (verificar_autenticidade(lista_pacientes, paciente->digito_unico) == 1) {
-            printf("Algum paciente possui esse digito, informe outro.\n");
-        } else {
+            printf("Algum paciente ja possui esse digito unico, informe outro\n");      
+             } 
+            else {
             break;
         }
     }
 }
 
-Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
+Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
     Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
     if (novo_paciente == NULL) {
         printf("Erro na alocacao.\n");
@@ -46,7 +58,6 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     strcpy(novo_paciente->nome, nome);
     novo_paciente->idade = idade;
     strcpy(novo_paciente->situacao_saude, situacao_saude);
-    novo_paciente->digito_unico = dg;
     novo_paciente->proximo = NULL;
     return novo_paciente;
 }
@@ -219,7 +230,7 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
 
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if (verificar_lista(lista) == 1) {
-        printf("Lista está vazia.\n");
+        printf("Lista esta vazia.\n");
         return;
     }
     Consultorio* consultorio_atual = lista;
@@ -245,17 +256,8 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
         consultorio_atual = consultorio_atual->proximo;
     }
 
-    printf("Paciente não encontrado.\n");
+    printf("Paciente nao encontrado.\n");
     return;
-}
-
-void liberar_listas(struct Consultorio* lista) {
-    struct Consultorio* temp_consultorio;
-    while (lista != NULL) {
-        temp_consultorio = lista;
-        lista = lista->proximo;
-        free(temp_consultorio);
-    }
 }
 
 void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos){
@@ -279,7 +281,7 @@ void liberar_lista_geral(Lista_geral*lista_geral){
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar) {
     char opcao;
     if (verificar_lista(lista) == 1) {
-        printf("Lista de consultórios está vazia\n");
+        printf("Lista de consultorios esta vazia\n");
         return;
     }
     int paciente_encontrado = 0;
@@ -303,7 +305,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     }
 
     if (!paciente_encontrado) {
-        printf("Paciente não encontrado.\n");
+        printf("Paciente nao encontrado.\n");
         return;
     }
 
@@ -312,32 +314,33 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     char nova_situacao[100];
     int novo_digito;
         
-    printf("Edição de dados do paciente:\n");
-    remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); // Remove o paciente do consultório correto
+    printf("Edicao de dados do paciente:\n");
+    remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); 
 
     char idade_var[100];
-
+do
+{
     printf("Digite o novo nome do paciente:\n");
     scanf(" %[^\n]", novo_nome);
     tratamento_de_palavras(novo_nome);
     string_maiuscula_minuscula(novo_nome);
+}while (novo_nome[0]=='\0');
 
+do
+{
     printf("Digite a nova idade do paciente:\n ");
     scanf(" %[^\n]", idade_var);
     tratamento_de_numero(idade_var);
     nova_idade = atoi(idade_var);
-
-    printf("Digite a nova situação de saúde:\n");
+}while (nova_idade==0);
+    
+do{
+    printf("Digite a nova situacao de saude:\n");
     scanf(" %[^\n]", nova_situacao);
     tratamento_de_palavras(nova_situacao);
     string_maiuscula_minuscula(nova_situacao);
+}while (nova_situacao[0]=='\0');
 
-    char dg_str[100];
-    printf("Insira o novo digito unico do paciente:\n");
-    scanf(" %[^\n]", dg_str);
-    tratamento_de_numero(dg_str);
-    novo_digito= atoi(dg_str);
-
-    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
+    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao);
     consultorio_paciente->paciente = adicionar_paciente_ordenado(consultorio_paciente->paciente, paciente_atualizado); 
 }

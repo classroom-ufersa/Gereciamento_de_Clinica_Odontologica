@@ -54,28 +54,42 @@ Consultorio* adicionar_consultorio(Consultorio* lista_consultorios) {
         exit(1);
     }
 
-    while (1) {
-        char identificacao[500];
-        printf("Digite o ID do consultorio:\n ");
-        scanf(" %[^\n]", identificacao);
-        tratamento_de_numero(identificacao);
-        novo_consultorio->identificacao = atoi(identificacao);
+while (1) {
+    char identificacao[500];
+    printf("Digite o ID do consultorio:\n ");
+    scanf(" %[^\n]", identificacao);
+    tratamento_de_numero(identificacao);
+    novo_consultorio->identificacao = atoi(identificacao);
+
+    if (verificar_id_existente(lista_consultorios, novo_consultorio->identificacao) == 1 || novo_consultorio->identificacao == 0) {
         if (verificar_id_existente(lista_consultorios, novo_consultorio->identificacao) == 1) {
             printf("Esse id ja pertence a um consultorio, digite outro.\n");
-        } else {
-            break; 
         }
+        if (novo_consultorio->identificacao == 0) {
+            printf("Nao se pode digitar apenas letras\n");
+        }
+    } else {
+        break; 
     }
+}
 
+ 
+do
+ {
     printf("Digite a especialidade desse consultorio:\n ");
     scanf(" %[^\n]", novo_consultorio->especialidade);
     tratamento_de_palavras(novo_consultorio->especialidade);
     string_maiuscula_minuscula(novo_consultorio->especialidade);
-
+ }while (novo_consultorio->especialidade[0]=='\0');
+ 
+  do
+  {
     printf("Digite os equipamentos que estao disponiveis nesse consultorio:\n");
     scanf(" %[^\n]", novo_consultorio->equipamentos_disponiveis);
     tratamento_da_var_equipamentos(novo_consultorio->equipamentos_disponiveis);
     string_maiuscula_minuscula(novo_consultorio->equipamentos_disponiveis);
+  }while (novo_consultorio->equipamentos_disponiveis==0);
+  
 
     novo_consultorio->paciente = NULL;
     novo_consultorio->proximo = NULL;

@@ -6,7 +6,13 @@ Equipamentos disponiveis: W,.w
 PACIENTE:
 Nome: Maria
 Idade: 47
-Situacao de saude: ss
+Situacao de saude: dwd
+Digito Unico: 47
+
+PACIENTE:
+Nome: Nadja
+Idade: 48
+Situacao de saude: Aqaqqa
 Digito Unico: 7
 
 CONSULTORIO:
@@ -20,16 +26,16 @@ Especialidade: S
 Equipamentos disponiveis: S
 
 PACIENTE:
-Nome: Aana
-Idade: 47
-Situacao de saude: qs
-Digito Unico: 222
-
-PACIENTE:
 Nome: Ana
 Idade: 47
 Situacao de saude: D
 Digito Unico: 58
+
+PACIENTE:
+Nome: Zzzzzzzzzoe
+Idade: 47
+Situacao de saude: Sqsq
+Digito Unico: 222
 
 CONSULTORIO:
 Identificacao: 247

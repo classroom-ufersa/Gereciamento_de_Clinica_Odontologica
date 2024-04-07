@@ -34,7 +34,7 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista);
 
 /*Funcao que cria um novo paciente e inicializa com os dados fornecidos,
   Recebe como parametros o nome, a idade, a situação de saude e um ponteiro para consultorio*/
-Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, int dg);
+Paciente* criar_paciente(char* nome, int idade, char* situacao_saude);
 
 /*Funcao que adiciona um novo paciente em ordem alfabetica a uma lista encadeada de pacientes,
   Recebe como parametros a lista atual de pacientes e o novo paciente adicionado*/
@@ -76,9 +76,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
   Recebe como parametros uma lista, o nome e o dg remover*/
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
 
-/*Funcao de liberar as listas,
-  Recebe como parametro a lista*/
-void liberar_listas(struct Consultorio* lista);
+
 
 /*Funcao de liberar a lista de atendidos,
   Recebe como parametro a lista de atendidos*/
