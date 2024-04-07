@@ -6,7 +6,6 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
     char idade_var_string[50];
     char digito_unico_string[100];
     Consultorio* lista_pacientes = lista;
-printf("Digite apenas o tipo de caractere que é pedido, se digitar apenas numeros os dados seram pedidos, novamente\n");
     do {
     
         printf("Digite o nome do paciente: ");

@@ -1,19 +1,1 @@
 ====Banco de dados dos pacientes atendidos.=====
-Paciente:  0
-Nome: Ana
-Idade: 47
-Situacao de saude: D
-Digito Unico: 58
-
-Paciente:  1
-Nome: Nadja
-Idade: 48
-Situacao de saude: Aqaqqa
-Digito Unico: 7
-
-Paciente:  2
-Nome: Maria
-Idade: 47
-Situacao de saude: dwd
-Digito Unico: 47
-

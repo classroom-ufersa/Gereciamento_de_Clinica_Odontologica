@@ -4,16 +4,16 @@ Especialidade: W
 Equipamentos disponiveis: W,.w
 
 PACIENTE:
-Nome: Maria
-Idade: 47
-Situacao de saude: dwd
-Digito Unico: 47
-
-PACIENTE:
 Nome: Nadja
 Idade: 48
 Situacao de saude: Aqaqqa
 Digito Unico: 7
+
+PACIENTE:
+Nome: Penelope
+Idade: 58
+Situacao de saude: Dededed
+Digito Unico: 47
 
 CONSULTORIO:
 Identificacao: 147
