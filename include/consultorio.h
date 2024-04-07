@@ -46,16 +46,4 @@ void imprimir_consultorios_Disponiveis(Consultorio* lista);
   Recebe como parametros uma lista de consultorios*/
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios); 
 
-/*Funcao de liberar as listas,
-  Recebe como parametro a lista*/
-void liberar_listas(struct Consultorio* lista);
-
-/*Funcao de liberar a lista de atendidos,
-  Recebe como parametro a lista de atendidos*/
-void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos);
-
-/*Funcao de liberar lista geral,
-  Recebe como parametro a lista geral*/
-void liberar_lista_geral(Lista_geral*lista_geral);
-
 #endif /* CONSULTORIO_H */
