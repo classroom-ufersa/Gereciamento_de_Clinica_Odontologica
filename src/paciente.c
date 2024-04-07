@@ -31,21 +31,24 @@ printf("Digite apenas o tipo de caractere que é pedido, se digitar apenas numer
     } while (paciente->situacao_saude[0] == '\0');
 
 
+while (1) {
+    printf("Lembre-se, o digito unico nao podera ser editado depois\n");
+    printf("Digite o digito unico desse paciente:\n");
+    scanf(" %[^\n]", digito_unico_string);
+    tratamento_de_numero(digito_unico_string);
+    paciente->digito_unico = atoi(digito_unico_string);
 
-    while (1) {
-        printf("Lembre-se, o digito unico nao podera ser editado depois\n");
-        printf("Digite o digito unico desse paciente:\n");
-        scanf(" %[^\n]", digito_unico_string);
-        tratamento_de_numero(digito_unico_string);
-        paciente->digito_unico = atoi(digito_unico_string);
-
+    if (verificar_autenticidade(lista_pacientes, paciente->digito_unico) == 1 || paciente->digito_unico == 0) {
         if (verificar_autenticidade(lista_pacientes, paciente->digito_unico) == 1) {
-            printf("Algum paciente ja possui esse digito unico, informe outro\n");      
-             } 
-            else {
-            break;
+            printf("Algum paciente ja possui esse digito unico, informe outro\n"); 
         }
+        if (paciente->digito_unico == 0) {
+            printf("O campo nao pode estar vazio.\n");
+        }
+    } else {
+        break;
     }
+}
 }
 
 Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
