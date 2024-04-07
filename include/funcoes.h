@@ -6,10 +6,8 @@
 #include "consultorio.h"
 #include "paciente.h"
 
-
 /*Funcao do menu principal*/
 void menu();
-
 
 /*Funcao para limpar buffer*/
 void limpar_buffer();
