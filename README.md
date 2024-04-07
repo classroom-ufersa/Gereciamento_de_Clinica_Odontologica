@@ -55,11 +55,11 @@ A utilização de listas encadeadas nesse contexto oferece flexibilidade, organi
 ***
 
 ## **Desenvolvimento**
-- O projeto desenvolvimento conta com 3 TAD's, sendo estas consultorio, paciente e funções, 
+- O projeto desenvolvimento conta com 3 TAD's, sendo estas consultorio, paciente e funções.  
 
 ### Tipos estruturados
-- O projeto apresenta os seguintes tipos estruturados
-- 
+- O projeto apresenta os seguintes tipos estruturados:
+
 #### *Struct Consultorio*
 ```c
 typedef struct Consultorio {
@@ -70,6 +70,27 @@ typedef struct Consultorio {
   struct Consultorio* proximo;
   struct Lista_geral* listageral;
 } Consultorio; 
+```
+#### *Struct paciente*
+```c
+typedef struct Paciente {
+    char nome[100];
+    int idade;
+    char situacao_saude[100];
+    int digito_unico;
+    struct Consultorio* consultorio;
+    struct Paciente* proximo;
+}Paciente;
+
+typedef struct  Lista_atendidos {
+    struct Lista_atendidos* proximo;
+    Paciente* paciente_atendido;
+} Lista_Atendidos;
+
+typedef struct Lista_geral {
+    struct Lista_geral* proximo;
+    Paciente* paciente_geral;
+} Lista_geral;
 ```
 
 ### **Tipo Abstrato de Dados**
@@ -188,7 +209,15 @@ void tratamento_da_var_equipamentos(char *palavra_var);
 
 ### Listas Encadeadas
 
+#### Consultorio
+- A gestão dinâmica de consultórios médicos por meio de uma lista encadeada representa um avanço significativo em termos de flexibilidade, organização e escalabilidade. Cada nó dessa lista é como um consultório em si, capaz de se adaptar às necessidades da clínica de forma ágil e eficiente.
+- A adição de novos consultórios é simplificada, permitindo a expansão da capacidade de atendimento de forma fluida e sem sobressaltos. A gestão da fila de espera é otimizada, garantindo uma distribuição equitativa dos pacientes e reduzindo o tempo de espera, proporcionando uma experiência mais satisfatória tanto para os pacientes quanto para a equipe médica e administrativa.
+- As remoções e alterações necessárias são realizadas com precisão e rapidez, mantendo a organização interna da clínica em constante harmonia. Esse sistema oferece não apenas eficiência operacional, mas também uma gestão mais humanizada, onde o foco está no bem-estar dos pacientes e na otimização do trabalho da equipe médica, contribuindo assim para a excelência no atendimento médico.
 
+#### Paciente
+- A utilização de uma lista encadeada de pacientes oferece uma abordagem organizada e flexível para a gestão eficiente dos atendimentos nos consultórios médicos. Cada nó dessa estrutura representa um paciente, permitindo uma visão ampla de todos os pacientes em um contexto geral, enquanto também oferece a capacidade de organizá-los por consultório.
+- As adições de novos pacientes são feitas de maneira simples e direta, integrando-os à lista geral ou associando-os a um consultório específico, conforme necessário. A gestão da fila de espera é realizada de forma estratégica, garantindo uma distribuição equitativa dos atendimentos e minimizando o tempo de espera dos pacientes.
+- As remoções e alterações de pacientes são tratadas de maneira eficiente, mantendo o registro atualizado dos pacientes atendidos e proporcionando uma visão clara do fluxo de atendimentos ao longo do tempo. Esse sistema não apenas organiza os pacientes de forma eficaz, mas também oferece flexibilidade para adaptar-se às demandas variáveis dos consultórios, contribuindo para uma experiência mais ágil e satisfatória tanto para os pacientes quanto para a equipe médica.
 ***
 
 ## Organização do Repositório
@@ -242,5 +271,6 @@ void tratamento_da_var_equipamentos(char *palavra_var);
 Certifique-se de que você possui um compilador C instalado. Recomendamos o uso do [GCC](https://gcc.gnu.org/) para compilar o código.
 
 ### Compilação do código
+
 
 ### Execução do código
