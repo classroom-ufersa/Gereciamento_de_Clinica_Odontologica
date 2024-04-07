@@ -5,7 +5,6 @@
 #include <string.h>
 #include "consultorio.h"
 
-
 struct Consultorio;
 
 typedef struct Paciente {
@@ -76,5 +75,17 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
 /*Funcao que remove um paciente do consultorio,
   Recebe como parametros uma lista, o nome e o dg remover*/
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
+
+/*Funcao de liberar as listas,
+  Recebe como parametro a lista*/
+void liberar_listas(struct Consultorio* lista);
+
+/*Funcao de liberar a lista de atendidos,
+  Recebe como parametro a lista de atendidos*/
+void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos);
+
+/*Funcao de liberar lista geral,
+  Recebe como parametro a lista geral*/
+void liberar_lista_geral(Lista_geral*lista_geral);
 
 #endif /* PACIENTE_H */
