@@ -2,7 +2,6 @@
 
 /*Funcao do menu principal*/
  void menu() {
-    
         printf("========= MENU CHAR OF SMILE DENTAL CLINIC ==========\n");
         printf("[1] Adicionar consultorio\n");
         printf("[2] Remover consultorio \n");
@@ -15,12 +14,12 @@
         printf("[9] Sair\n");
         printf("==============================================\n");
         printf("Escolha uma das opcoes acima:\n");
-
 }
 
-
 /*Funcao para limpar buffer*/
-void limpa_buffer(void);
+void limpa_buffer() {
+    fflush(stdin);
+}
 
 void tratamento_de_numero(char *variavel_num) {
     int Contador, contador2
