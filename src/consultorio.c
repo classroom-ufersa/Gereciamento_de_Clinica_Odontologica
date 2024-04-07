@@ -3,7 +3,7 @@
 #include "../include/funcoes.h"
 
 void salvar_consultorios_e_pacientes_em_arquivo(Consultorio* lista_consultorios) {
-    FILE* arquivo = fopen("consultorios_e_pacientes.txt", "w");
+    FILE* arquivo = fopen("banco_de_dados.txt", "w");
     if (arquivo == NULL) {
         printf("Erro na abertura do arquivo.\n");
         return;
@@ -207,7 +207,7 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
 }
 
 void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes, struct Lista_geral **pacientesgerais) {
-    FILE *arquivo = fopen("consultorios_e_pacientes.txt", "r");
+    FILE *arquivo = fopen("banco_de_dados.txt", "r");
     if (arquivo == NULL) {
         printf("Erro na leitura de arquivo.\n");
         return;

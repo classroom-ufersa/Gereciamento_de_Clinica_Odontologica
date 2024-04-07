@@ -175,7 +175,7 @@ Paciente* buscar_paciente_por_nome(struct Consultorio* lista_consultorios, char*
         }
         consultorio_atual = consultorio_atual->proximo;
     }
-    printf("Paciente nao encontrado.\n");
+    printf("Paciente nao encontrado no sistema.\n");
     return NULL;
 }
 
