@@ -46,16 +46,22 @@ int main() {
                 char nome_editar[500];
                 char dg_string[100];
                 int digito_unico;
+                do
+                {
 
                 printf("Digite o nome do paciente que deseja editar:\n");
                 scanf(" %[^\n]", nome_editar);
                 tratamento_de_palavras(nome_editar);
                 string_maiuscula_minuscula(nome_editar);
+                }while (nome_editar[0]==0);
+            
+
+                do{
                 printf("Agora insira o digito unico desse paciente:\n");
                 scanf(" %[^\n]", dg_string);
                 tratamento_de_numero(dg_string);
                 digito_unico=atoi(dg_string);
-
+                }while(digito_unico==0);
                 editar_paciente(lista_consultorios, nome_editar,digito_unico);
                 salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                 limpar_buffer();
@@ -72,11 +78,12 @@ int main() {
                 tratamento_de_palavras(nome_buscar);
                 string_maiuscula_minuscula(nome_buscar);
                 }while (nome_buscar[0]==0);
-                
+                do{
                 printf("Agora insira o digito unico desse paciente:\n");
                 scanf(" %[^\n]", dg_string);
                 tratamento_de_numero(dg_string);
                 digito_unico=atoi(dg_string);
+                }while (digito_unico==0);
                 lista_paciente = buscar_paciente_por_nome(lista_consultorios, nome_buscar, digito_unico);
                 limpar_buffer();
                 break;
@@ -107,8 +114,8 @@ int main() {
    
     
     //Liberar memoria
-    //liberar_listas(lista_consultorios);
-   // liberar_atendidos_lista(lista_atendidos);
-   // liberar_lista_geral(lista_geral);
+    liberar_listas(lista_consultorios);
+   liberar_atendidos_lista(lista_atendidos);
+   liberar_lista_geral(lista_geral);
     return 0;
 }
