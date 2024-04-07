@@ -1,3 +1,5 @@
+#include "../include/consultorio.h"
+#include "../include/paciente.h"
 #include "../include/funcoes.h"
 
 /*Funcao do menu principal*/
@@ -18,7 +20,8 @@
 
 /*Funcao para limpar buffer*/
 void limpa_buffer() {
-    fflush(stdin);
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 void tratamento_de_numero(char *variavel_num) {
@@ -58,7 +61,6 @@ void tratamento_da_var_equipamentos(char *palavra_var){
   }
 }
 
-
 void string_maiuscula_minuscula(char *palavra_var){ 
     int Contador; 
     palavra_var[0] = toupper(palavra_var[0]);  
@@ -70,6 +72,7 @@ void string_maiuscula_minuscula(char *palavra_var){
         }
     }
 }
+
 void limpar_buffer(){ 
     int percorre;
     while( (percorre = fgetc(stdin)) != EOF && percorre!= '\n' ){} 
