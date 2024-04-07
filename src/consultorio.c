@@ -72,8 +72,6 @@ while (1) {
         break; 
     }
 }
-
- 
 do
  {
     printf("Digite a especialidade desse consultorio:\n ");
