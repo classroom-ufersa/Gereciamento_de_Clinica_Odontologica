@@ -64,7 +64,7 @@ Situacao de saude: Regeneracao rapida causando problemas dentarios
 Digito Unico: 1111
 
 PACIENTE:
-Nome: Marcelo furador de porco
+Nome: Marcelo furador de poco
 Idade: 30
 Situacao de saude: Riu demais e esqueceu de escovar os dentes, tendo problema com caries
 Digito Unico: 1244
