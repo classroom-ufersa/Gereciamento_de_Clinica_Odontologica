@@ -28,7 +28,7 @@ Situacao de saude: dentes caindo
 Digito Unico: 9999
 
 PACIENTE:
-Nome: Murilo mata grilo
+Nome: Murilo Mata Grilo
 Idade: 30
 Situacao de saude: Problema com caries
 Digito Unico: 1244
@@ -58,7 +58,7 @@ Situacao de saude: Regeneracao rapida causando problemas dentarios
 Digito Unico: 1111
 
 PACIENTE:
-Nome: Marcelo furador de poco
+Nome: Marcelo
 Idade: 30
 Situacao de saude: Riu demais e esqueceu de escovar os dentes, tendo problema com caries
 Digito Unico: 1244
@@ -111,7 +111,7 @@ Situacao de saude: Problemas dentarios devido a uma dieta rica em acucar e falta
 Digito Unico: 8765
 
 PACIENTE:
-Nome: Pedro Lucas da Silva
+Nome: Pedro Lucas
 Idade: 17
 Situacao de saude: Caiu de moto e quebrou 5 dentes
 Digito Unico: 8745
@@ -187,7 +187,7 @@ Especialidade: Ortodontia
 Equipamentos disponiveis: Aparelhos ortodonticos, Moldes e modelos ortodonticos.
 
 PACIENTE:
-Nome: Allan Gabriel da Silva
+Nome: Allan Gabriel
 Idade: 19
 Situacao de saude: Sobremordida devido a pressao dos fones de ouvido durante as maratonas de programacao
 Digito Unico: 4680
