@@ -1,61 +1,212 @@
 CONSULTORIO:
-Identificacao: 1
-Especialidade: W
-Equipamentos disponiveis: W,.w
+Identificacao: 1000
+Especialidade: Clinico Geral
+Equipamentos disponiveis: Cadeira odontologica, Unidade auxiliar, Raio-X odontologico, Fotopolimerizador.
 
 PACIENTE:
-Nome: Penelope
-Idade: 58
-Situacao de saude: Dededed
-Digito Unico: 47
+Nome: Beatriz Costa
+Idade: 25
+Situacao de saude: Dor De Dente
+Digito Unico: 2547
 
 PACIENTE:
-Nome: Zoe
-Idade: 58
-Situacao de saude: Ded
-Digito Unico: 7
+Nome: Francisco Adrian Vinicius Foguetes
+Idade: 19
+Situacao de saude: sofrendo de dor de dente por amar demais
+Digito Unico: 1162039122
+
+PACIENTE:
+Nome: Charles Xavier Professor X
+Idade: 60
+Situacao de saude: Tensoes mentais afetando a saude bucal
+Digito Unico: 4444
+
+PACIENTE:
+Nome: Murilo mata grilo
+Idade: 30
+Situacao de saude: Problema com caries
+Digito Unico: 1244
+
+PACIENTE:
+Nome: Forrest Gump
+Idade: 45
+Situacao de saude: Problemas dentarios devido a correr tanto na vida
+Digito Unico: 7890
+
+PACIENTE:
+Nome: Harry Potter
+Idade: 17
+Situacao de saude: Fez um feitico errado e machucou os dentes
+Digito Unico: 1981
+
+PACIENTE:
+Nome: Indiana Jones
+Idade: 40
+Situacao de saude: Quebrou um dente em uma de suas aventuras arqueologicas
+Digito Unico: 4567
+
+PACIENTE:
+Nome: Jack Sparrow
+Idade: 35
+Situacao de saude: Problemas dentarios devido ao estilo de vida pirata
+Digito Unico: 3456
+
+PACIENTE:
+Nome: Jean Grey Fenix
+Idade: 30
+Situacao de saude: Conflitos psiquicos impactando a saude dos dentes
+Digito Unico: 5555
+
+PACIENTE:
+Nome: Logan Wolverine
+Idade: 150
+Situacao de saude: Regeneracao rapida causando problemas dentarios
+Digito Unico: 1111
+
+PACIENTE:
+Nome: Marcelo furador de poco
+Idade: 30
+Situacao de saude: Riu demais e esqueceu de escovar os dentes, tendo problema com caries
+Digito Unico: 1244
+
+PACIENTE:
+Nome: Ororo Munroe Tempestade
+Idade: 30
+Situacao de saude: Impacto de raios causando danos aos dentes
+Digito Unico: 2222
+
+PACIENTE:
+Nome: Scott Summers Ciclope
+Idade: 35
+Situacao de saude: Problemas com controle de feixes opticos afetando os dentes
+Digito Unico: 3333
 
 CONSULTORIO:
-Identificacao: 147
-Especialidade: Dd
-Equipamentos disponiveis: Ss
+Identificacao: 2100
+Especialidade: Implantodontia
+Equipamentos disponiveis: Kit cirurgico de implantes, Motor cirurgico.
+
+PACIENTE:
+Nome: Anthony Edward Stark
+Idade: 52
+Situacao de saude: Quebrou o dente consertando a armadura
+Digito Unico: 2019
+
+PACIENTE:
+Nome: Chico Moedas
+Idade: 25
+Situacao de saude: Escorreu no banheiro e quebrou um dente
+Digito Unico: 1233
+
+PACIENTE:
+Nome: Ines Brasil
+Idade: 50
+Situacao de saude: Perdeu um dente ao cantar e dançar muito animadamente
+Digito Unico: 5432
+
+PACIENTE:
+Nome: Maria Cururu
+Idade: 60
+Situacao de saude: Problemas dentarios devido a uma dieta rica em acucar e falta de escovacao adequada
+Digito Unico: 8765
+
+PACIENTE:
+Nome: Pedro Lucas da Silva
+Idade: 17
+Situacao de saude: Caiu de moto e quebrou 5 dentes
+Digito Unico: 8745
+
+PACIENTE:
+Nome: Ratinho
+Idade: 65
+Situacao de saude: Tentou imitar um dos truques de magica do programa e acabou quebrando um dente
+Digito Unico: 2468
+
+PACIENTE:
+Nome: Silvio Santos
+Idade: 90
+Situacao de saude: Engoliu um dente enquanto ensaiava seu famoso bordao "Quem quer dinheiro?"
+Digito Unico: 1357
+
+PACIENTE:
+Nome: Timothee Chalamet
+Idade: 27
+Situacao de saude: Quebrou um dente ao bater a cabeca ao admirar seu proprio reflexo
+Digito Unico: 2345
 
 CONSULTORIO:
-Identificacao: 158
-Especialidade: S
-Equipamentos disponiveis: S
+Identificacao: 2243
+Especialidade: Odontopediatria
+Equipamentos disponiveis: Instrumentos pediatricos, Fluor topico.
 
 PACIENTE:
-Nome: Ana
-Idade: 47
-Situacao de saude: D
-Digito Unico: 58
+Nome: Ana Sorriso
+Idade: 6
+Situacao de saude: Comeu tanto algodao doce que seus dentes ficaram coloridos de rosa
+Digito Unico: 1234
 
 PACIENTE:
-Nome: Zzzzzzzzzoe
-Idade: 47
-Situacao de saude: Sqsq
-Digito Unico: 222
-
-CONSULTORIO:
-Identificacao: 247
-Especialidade: Sqs
-Equipamentos disponiveis: Sss
+Nome: Bruno Crocante
+Idade: 5
+Situacao de saude: Tentou morder uma batata muito dura e perdeu um dente de leite
+Digito Unico: 2345
 
 PACIENTE:
-Nome: Ana
-Idade: 14
-Situacao de saude: S
-Digito Unico: 878
+Nome: Carolina Chule
+Idade: 4
+Situacao de saude: Se recusa a escovar os dentes porque acha que o chule dos pes vai para a boca
+Digito Unico: 3456
 
 PACIENTE:
-Nome: Zzzzzzz
+Nome: Pedrinho
 Idade: 7
-Situacao de saude: D
-Digito Unico: 87
+Situacao de saude: Deixou o dente de leite amolecer tanto que caiu sozinho enquanto comia uma maca
+Digito Unico: 4567
+
+PACIENTE:
+Nome: Eduardo Pereira
+Idade: 8
+Situacao de saude: Ficou com um pedaco de esparadrapo grudado no dente apos um acidente
+Digito Unico: 5678
+
+PACIENTE:
+Nome: Fernanda Docura
+Idade: 3
+Situacao de saude: Comeu tanto doce que seus dentes ficaram tao doces que a abelha veio visitar
+Digito Unico: 6789
+
+PACIENTE:
+Nome: Gustavo Rodrigues
+Idade: 5
+Situacao de saude: Mastigou tanto uma gelatina que seus dentes ficaram podres
+Digito Unico: 0
 
 CONSULTORIO:
-Identificacao: 258
-Especialidade: Ma
-Equipamentos disponiveis: Maquinas,lugares.
+Identificacao: 1900880
+Especialidade: Ortodontia
+Equipamentos disponiveis: Aparelhos ortodonticos, Moldes e modelos ortodonticos.
+
+PACIENTE:
+Nome: Allan Gabriel da Silva
+Idade: 19
+Situacao de saude: Sobremordida devido a pressao dos fones de ouvido durante as maratonas de programacao
+Digito Unico: 4680
+
+PACIENTE:
+Nome: Bernardo Emenda Pneu
+Idade: 18
+Situacao de saude: Apinhamento dental devido ao tempo excessivo em frente ao computador programando
+Digito Unico: 1357
+
+PACIENTE:
+Nome: Kayque Lopes
+Idade: 20
+Situacao de saude: Diastema causado pelo habito de morder objetos durante longas sessoes de programacao
+Digito Unico: 2468
+
+PACIENTE:
+Nome: Maria Isabelly Lima
+Idade: 19
+Situacao de saude: Mordida aberta devido ao estresse ao programar para um projeto universitario
+Digito Unico: 5791
 
