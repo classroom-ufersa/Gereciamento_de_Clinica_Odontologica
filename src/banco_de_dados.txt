@@ -1,4 +1,9 @@
 CONSULTORIO:
+Identificacao: 11
+Especialidade: Cirurgiao
+Equipamentos disponiveis: Cadeira
+
+CONSULTORIO:
 Identificacao: 1000
 Especialidade: Clinico Geral
 Equipamentos disponiveis: Cadeira odontologica, Unidade auxiliar, Raio-X odontologico, Fotopolimerizador.
@@ -80,6 +85,11 @@ Nome: Zoe Lorde
 Idade: 14
 Situacao de saude: Gengiva Inflafamada
 Digito Unico: 0
+
+CONSULTORIO:
+Identificacao: 1111
+Especialidade: Fsfsd
+Equipamentos disponiveis: Sfs
 
 CONSULTORIO:
 Identificacao: 2100

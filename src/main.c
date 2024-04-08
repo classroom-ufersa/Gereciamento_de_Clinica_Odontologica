@@ -15,8 +15,16 @@ int main() {
     ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente, &lista_geral);
    do
    {
-    menu();
-    scanf(" %c", &opcao);
+    do {
+        menu();
+    printf("Escolha uma opcao acima: ");
+    if (scanf(" %c", &opcao) != 1 || (opcao < '1' || opcao > '9')) {
+        printf("Opcao invalida. Por favor, escolha uma opcao de 1 a 9.\n");
+        limpar_buffer();
+        opcao = '0';
+    }
+} while(opcao < '1' || opcao > '9');
+
     
         switch (opcao) {
             case '1': {
@@ -107,8 +115,9 @@ int main() {
             }
     
             default: {
-                printf("Opção invalida. Tente novamente. \n");
+               printf("Opcao invalida. Tente novamente. \n");
                 break;
+            
             }
         }
 }while(opcao!= '9');

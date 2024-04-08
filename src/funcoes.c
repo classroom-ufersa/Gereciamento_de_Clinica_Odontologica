@@ -15,7 +15,7 @@
         printf("[8] Listar pacientes atendidos\n");
         printf("[9] Sair\n");
         printf("==============================================\n");
-        printf("Escolha uma das opcoes acima:\n");
+     
 }
 
 void tratamento_de_numero(char *variavel_num) {
