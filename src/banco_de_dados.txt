@@ -4,6 +4,12 @@ Especialidade: Clinico Geral
 Equipamentos disponiveis: Cadeira odontologica, Unidade auxiliar, Raio-X odontologico, Fotopolimerizador.
 
 PACIENTE:
+Nome: Adrian Rocket
+Idade: 19
+Situacao de saude: sofrendo por amar demais
+Digito Unico: 2546
+
+PACIENTE:
 Nome: Beatriz Costa
 Idade: 25
 Situacao de saude: Dor De Dente
