@@ -3,12 +3,6 @@ Identificacao: 1000
 Especialidade: Clinico Geral
 Equipamentos disponiveis: Cadeira odontologica, Unidade auxiliar, Raio-X odontologico, Fotopolimerizador.
 
-ACIENTE:
-Nome: Adrian Rocket
-Idade: 19
-Situacao de saude: sofrendo de dor de dente por amar demais
-Digito Unico: 1162039122
-
 PACIENTE:
 Nome: Beatriz Costa
 Idade: 25
@@ -22,6 +16,12 @@ Situacao de saude: Tensoes mentais afetando a saude bucal
 Digito Unico: 4444
 
 PACIENTE:
+Nome: Danilo
+Idade: 58
+Situacao de saude: dentes caindo
+Digito Unico: 9999
+
+PACIENTE:
 Nome: Murilo mata grilo
 Idade: 30
 Situacao de saude: Problema com caries
@@ -32,18 +32,6 @@ Nome: Forrest Gump
 Idade: 45
 Situacao de saude: Problemas dentarios devido a correr tanto na vida
 Digito Unico: 7890
-
-PACIENTE:
-Nome: Harry Potter
-Idade: 17
-Situacao de saude: Fez um feitico errado e machucou os dentes
-Digito Unico: 1981
-
-PACIENTE:
-Nome: Indiana Jones
-Idade: 40
-Situacao de saude: Quebrou um dente em uma de suas aventuras arqueologicas
-Digito Unico: 4567
 
 PACIENTE:
 Nome: Jack Sparrow
@@ -80,6 +68,12 @@ Nome: Scott Summers Ciclope
 Idade: 35
 Situacao de saude: Problemas com controle de feixes opticos afetando os dentes
 Digito Unico: 3333
+
+PACIENTE:
+Nome: Zoe Lorde 
+Idade: 14
+Situacao de saude: Gengiva Inflafamada
+Digito Unico: 0
 
 CONSULTORIO:
 Identificacao: 2100
@@ -158,12 +152,6 @@ Situacao de saude: Se recusa a escovar os dentes porque acha que o chule dos pes
 Digito Unico: 3456
 
 PACIENTE:
-Nome: Pedrinho
-Idade: 7
-Situacao de saude: Deixou o dente de leite amolecer tanto que caiu sozinho enquanto comia uma maca
-Digito Unico: 4567
-
-PACIENTE:
 Nome: Eduardo Pereira
 Idade: 8
 Situacao de saude: Ficou com um pedaco de esparadrapo grudado no dente apos um acidente
@@ -181,8 +169,14 @@ Idade: 5
 Situacao de saude: Mastigou tanto uma gelatina que seus dentes ficaram podres
 Digito Unico: 0
 
+PACIENTE:
+Nome: Pedrinho
+Idade: 6
+Situacao de saude: Dor De Dente
+Digito Unico: 3648
+
 CONSULTORIO:
-Identificacao: 1900880
+Identificacao: 1900
 Especialidade: Ortodontia
 Equipamentos disponiveis: Aparelhos ortodonticos, Moldes e modelos ortodonticos.
 

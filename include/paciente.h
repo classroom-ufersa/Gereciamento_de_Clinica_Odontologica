@@ -31,7 +31,7 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista);
 
 /*Funcao que cria um novo paciente e inicializa com os dados fornecidos,
   Recebe como parametros o nome, a idade, a situação de saude e um ponteiro para consultorio*/
-Paciente* criar_paciente(char* nome, int idade, char* situacao_saude);
+Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, int dg);
 
 /*Funcao que adiciona um novo paciente em ordem alfabetica a uma lista encadeada de pacientes,
   Recebe como parametros a lista atual de pacientes e o novo paciente adicionado*/

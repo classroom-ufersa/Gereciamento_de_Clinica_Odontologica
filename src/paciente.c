@@ -31,7 +31,6 @@ void coletar_dados_paciente(Paciente* paciente, struct Consultorio* lista) {
 
 
 while (1) {
-    printf("Lembre-se, o digito unico nao podera ser editado depois\n");
     printf("Digite o digito unico desse paciente:\n");
     scanf(" %[^\n]", digito_unico_string);
     tratamento_de_numero(digito_unico_string);
@@ -50,7 +49,7 @@ while (1) {
 }
 }
 
-Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
+Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, int dg) {
     Paciente* novo_paciente = (Paciente*)malloc(sizeof(Paciente));
     if (novo_paciente == NULL) {
         printf("Erro na alocacao.\n");
@@ -60,6 +59,7 @@ Paciente* cria_paciente(char* nome, int idade, char* situacao_saude) {
     strcpy(novo_paciente->nome, nome);
     novo_paciente->idade = idade;
     strcpy(novo_paciente->situacao_saude, situacao_saude);
+    novo_paciente->digito_unico=dg;
     novo_paciente->proximo = NULL;
     return novo_paciente;
 }
@@ -133,9 +133,8 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
     fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
     fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-    fprintf(atendidos, "\n");
     lista_completa=lista_completa->proximo;
-    
+    fprintf(atendidos, "\n");
     }
     fclose(atendidos);
 }
@@ -314,7 +313,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     char novo_nome[100];
     int nova_idade;
     char nova_situacao[100];
-    //int novo_digito;
+    int novo_digito;
         
     printf("Edicao de dados do paciente:\n");
     remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); 
@@ -342,7 +341,21 @@ do{
     tratamento_de_palavras(nova_situacao);
     string_maiuscula_minuscula(nova_situacao);
 }while (nova_situacao[0]=='\0');
+while (1) {
+    char dg_str[100];
+    printf("Insira o novo digito unico do paciente:\n");
+    scanf(" %[^\n]", dg_str);
+    tratamento_de_numero(dg_str);
+    novo_digito = atoi(dg_str);
+    
+    if (verificar_autenticidade(lista, novo_digito) == 1) {
+        printf("Ja existe um paciente com esse digito.\n");
+    } else {
+        break; 
+    }
+}
 
-    Paciente* paciente_atualizado = cria_paciente(novo_nome, nova_idade, nova_situacao);
+
+    Paciente* paciente_atualizado = criar_paciente(novo_nome, nova_idade, nova_situacao, novo_digito);
     consultorio_paciente->paciente = adicionar_paciente_ordenado(consultorio_paciente->paciente, paciente_atualizado); 
 }
