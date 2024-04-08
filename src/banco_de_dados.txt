@@ -3,17 +3,17 @@ Identificacao: 1000
 Especialidade: Clinico Geral
 Equipamentos disponiveis: Cadeira odontologica, Unidade auxiliar, Raio-X odontologico, Fotopolimerizador.
 
+ACIENTE:
+Nome: Adrian Rocket
+Idade: 19
+Situacao de saude: sofrendo de dor de dente por amar demais
+Digito Unico: 1162039122
+
 PACIENTE:
 Nome: Beatriz Costa
 Idade: 25
 Situacao de saude: Dor De Dente
 Digito Unico: 2547
-
-PACIENTE:
-Nome: Francsico Adrian
-Idade: 19
-Situacao de saude: sofrendo de dor de dente por amar demais
-Digito Unico: 1162039122
 
 PACIENTE:
 Nome: Charles Xavier Professor X

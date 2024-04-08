@@ -133,8 +133,9 @@ void arquivo_atendidos(Lista_Atendidos*lista){
     fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
     fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
     fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-    lista_completa=lista_completa->proximo;
     fprintf(atendidos, "\n");
+    lista_completa=lista_completa->proximo;
+    
     }
     fclose(atendidos);
 }
@@ -313,7 +314,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     char novo_nome[100];
     int nova_idade;
     char nova_situacao[100];
-    int novo_digito;
+    //int novo_digito;
         
     printf("Edicao de dados do paciente:\n");
     remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); 
