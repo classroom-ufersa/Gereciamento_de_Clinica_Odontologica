@@ -11,8 +11,8 @@
         printf("[4] Remover paciente\n");
         printf("[5] Editar informacoes de paciente\n");
         printf("[6] Buscar paciente por nome\n");
-        printf("[7] Listar consultorios e pacientes\n");
-        printf("[8] Listar pacientes atendidos\n");
+        printf("[7] Listar consultorios e pacientes atendidos\n");
+        printf("[8] Listar apenas pacientes atendidos do dia\n");
         printf("[9] Sair\n");
         printf("==============================================\n");
      
