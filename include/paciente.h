@@ -69,13 +69,13 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
   Recebe como parametros a lista, o nome a ser editado e o dg procurar*/
 void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procurar);
 
-/*Funcao que remove um paciente do consultorio,
+/*Funcao que remove um paciente da lista geral do dia e add a lista de atendidos do dia,
   Recebe como parametros uma lista, o nome e o dg remover*/
 void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
 
 
 
-/*Funcao de liberar a lista de atendidos,
+/*Funcao de liberar a lista de atendidos do dia,
   Recebe como parametro a lista de atendidos*/
 void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos);
 

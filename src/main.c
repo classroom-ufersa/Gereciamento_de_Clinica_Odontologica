@@ -12,7 +12,7 @@ int main() {
     Lista_geral*lista_geral=NULL;
     char opcao;
 
-    ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente, &lista_geral);
+    ler_arquivo_e_inserir_lista(&lista_consultorios,&lista_paciente);
    do
    {
     do {

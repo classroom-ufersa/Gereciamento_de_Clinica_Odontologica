@@ -220,7 +220,7 @@ int verificar_id_existente(Consultorio* lista_consultorios, int id) {
     return 0;
 }
 
-void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes, struct Lista_geral **pacientesgerais) {
+void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacientes) {
     FILE *arquivo = fopen("banco_de_dados.txt", "r");
     if (arquivo == NULL) {
         printf("Erro na leitura de arquivo.\n");
@@ -280,7 +280,7 @@ void ler_arquivo_e_inserir_lista(Consultorio **comeco, struct Paciente **pacient
             fgets(linha, sizeof(linha), arquivo);
             sscanf(linha, "Digito Unico: %d", &novo_paciente->digito_unico);
 
-            *pacientesgerais=adicionar_paciente_geral(*pacientesgerais, novo_paciente);
+          
 
             novo_paciente->proximo = NULL;
 
