@@ -46,11 +46,30 @@ int main() {
                 break;
             }
             case '4': {
-                remover_paciente_por_fila(&lista_geral,&lista_atendidos);
-                arquivo_atendidos(lista_atendidos);
-                limpar_buffer();
-                break;
-            }
+                 char escolha;
+                     do {
+                    printf("Deseja remover do banco de dados[0] ou da lista geral do dia[1]?\n");
+                    scanf(" %c", &escolha);
+                     } while (escolha != '0' && escolha != '1');
+
+                    if (escolha == '0') {
+                    char nome[200];
+                     int dg;
+                    printf("Digite o nome do paciente que deseja remover:\n");
+                     scanf(" %[^\n]", nome);
+                    tratamento_de_palavras(nome);
+                    string_maiuscula_minuscula(nome);
+                    remover_paciente_para_inserir(lista_consultorios, nome, dg);
+                     }   
+                    if (escolha == '1') {
+                    remover_paciente_por_fila(&lista_geral, &lista_atendidos);
+                    arquivo_atendidos(lista_atendidos);
+                            }
+                  limpar_buffer();
+                     break;
+                        }
+
+            
             case '5': {
                 char nome_editar[500];
                 char dg_string[100];
