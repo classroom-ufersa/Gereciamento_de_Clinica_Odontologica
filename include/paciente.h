@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "consultorio.h"
-
+//definicao da estrutura aqui para um mais facil acesso dentro do Consultorio.c
 typedef struct Paciente {
     char nome[100];
     int idade;
@@ -37,7 +37,7 @@ Paciente* criar_paciente(char* nome, int idade, char* situacao_saude, int dg);
   Recebe como parametros a lista atual de pacientes e o novo paciente adicionado*/
 Paciente* adicionar_paciente_ordenado(Paciente* lista, Paciente* novo_paciente); 
 
-/*Funcao que adiciona paciente a uma lista geral de pacientes,
+/*Funcao que adiciona paciente a uma lista geral de pacientes, pacientes adicionados igual uma fila, o primeiro a entrar, é o primeiro a sair 
   Recebe como parametros um ponteiro para a lista geral*/
 Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* paciente); 
 

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include"paciente.h"
-
+//definicao da estrutura aqui para um mais facil acesso dentro do paciente.c
 typedef struct Consultorio {
   int identificacao;
   char especialidade[400];
