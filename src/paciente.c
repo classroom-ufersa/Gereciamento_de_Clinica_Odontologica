@@ -229,10 +229,10 @@ void adicionar_paciente_por_id(struct Consultorio* lista_consultorios,  Lista_ge
     printf("Consultorio nao encontrado. \n");
 }
 
-void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
+struct Consultorio* remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover) {
     if (verificar_lista(lista) == 1) {
         printf("Lista esta vazia.\n");
-        return;
+        return lista;
     }
     Consultorio* consultorio_atual = lista;
 
@@ -242,13 +242,14 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
 
         while (paciente_atual != NULL) {
             if (strcmp(paciente_atual->nome, nome_remover) == 0 && paciente_atual->digito_unico == dg_remover) {
-                if (paciente_anterior_ao_atual== NULL) {
+                if (paciente_anterior_ao_atual == NULL) {
                     consultorio_atual->paciente = paciente_atual->proximo;
                 } else {
                     paciente_anterior_ao_atual->proximo = paciente_atual->proximo;
                 }
                 free(paciente_atual);
-                return;
+                printf("Paciente removido com sucesso.\n");
+                return lista; 
             }
             paciente_anterior_ao_atual = paciente_atual;
             paciente_atual = paciente_atual->proximo;
@@ -258,8 +259,9 @@ void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover
     }
 
     printf("Paciente nao encontrado.\n");
-    return;
+    return lista; 
 }
+
 
 void liberar_atendidos_lista(Lista_Atendidos*lista_atendidos){
     Lista_Atendidos*aux_var;
@@ -316,7 +318,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
     int novo_digito;
         
     printf("Edicao de dados do paciente:\n");
-    remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); 
+    consultorio_atual=remover_paciente_para_inserir(consultorio_paciente, nome_editar, dg_procurar); 
 
     char idade_var[100];
 do

@@ -47,6 +47,7 @@ int main() {
             }
             case '4': {
                  char escolha;
+                 char num_str[200];
                      do {
                     printf("Deseja remover do banco de dados[0] ou da lista geral do dia[1]?\n");
                     scanf(" %c", &escolha);
@@ -59,7 +60,12 @@ int main() {
                      scanf(" %[^\n]", nome);
                     tratamento_de_palavras(nome);
                     string_maiuscula_minuscula(nome);
-                    remover_paciente_para_inserir(lista_consultorios, nome, dg);
+                    printf("Informe o digito unico:\n");
+                    scanf(" %[^\n]", num_str);
+                    tratamento_de_numero(num_str);
+                    dg= atoi(num_str);
+                   lista_consultorios=remover_paciente_para_inserir(lista_consultorios, nome, dg);
+                   salvar_consultorios_e_pacientes_em_arquivo(lista_consultorios);
                      }   
                     if (escolha == '1') {
                     remover_paciente_por_fila(&lista_geral, &lista_atendidos);

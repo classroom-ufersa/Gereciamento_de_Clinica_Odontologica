@@ -71,7 +71,7 @@ void editar_paciente(struct Consultorio* lista, char* nome_editar, int dg_procur
 
 /*Funcao que remove um paciente da lista geral do dia e add a lista de atendidos do dia,
   Recebe como parametros uma lista, o nome e o dg remover*/
-void remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
+struct Consultorio* remover_paciente_para_inserir(struct Consultorio* lista, char* nome_remover, int dg_remover);
 
 
 

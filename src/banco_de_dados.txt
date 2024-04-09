@@ -27,9 +27,9 @@ Situacao de saude: Tensoes mentais afetando a saude bucal
 Digito Unico: 4444
 
 PACIENTE:
-Nome: Danilo
-Idade: 58
-Situacao de saude: dentes caindo
+Nome: Euler
+Idade: 14
+Situacao de saude: Dor Na Gengiva
 Digito Unico: 9999
 
 PACIENTE:
