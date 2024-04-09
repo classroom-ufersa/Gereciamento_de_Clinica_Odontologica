@@ -98,7 +98,7 @@ int main() {
                 break;
             }
             case '7': {
-                imprimir_consultorios_Disponiveis(lista_consultorios);
+                imprimir_consultorios_Disponiveis(lista_consultorios,lista_paciente);
                 limpar_buffer();
                 break;
             }

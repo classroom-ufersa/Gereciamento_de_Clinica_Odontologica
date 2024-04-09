@@ -162,22 +162,36 @@ Consultorio* remover_consultorio_por_id(Consultorio* lista_consultorios) {
     return lista_consultorios;
 }
 
-void imprimir_consultorios_Disponiveis(Consultorio* lista) {
-    if (verificar_lista(lista)==1){
+void imprimir_consultorios_Disponiveis(Consultorio* lista, struct Paciente* lista_paciente) {
+    if (verificar_lista(lista) == 1) {
         printf("Lista de consultorios esta vazia, nao ha nada para imprimir\n");
+        return;
     }
-    
+
     Consultorio* imprimir_lista = lista;
     printf("===Lista de consultorios===\n");
     
     while (imprimir_lista != NULL) {
+        printf("Consultorio:\n");
         printf("Identificacao do consultorio: %d\n", imprimir_lista->identificacao);
         printf("Especialidade: %s\n", imprimir_lista->especialidade);
         printf("Equipamentos disponiveis: %s\n", imprimir_lista->equipamentos_disponiveis);
        
+        Paciente* paciente_atual = imprimir_lista->paciente;
+        while (paciente_atual != NULL) {
+            printf("Paciente:\n");
+            printf("Nome: %s\n", paciente_atual->nome);
+            printf("Idade: %d\n", paciente_atual->idade);
+            printf("Situacao de Saude: %s\n", paciente_atual->situacao_saude);
+            printf("Digito Unico: %d\n", paciente_atual->digito_unico);
+
+            paciente_atual = paciente_atual->proximo;
+        }
+
         imprimir_lista = imprimir_lista->proximo;
     }
 }
+
 
 int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u) {
     Consultorio* consultorio_atual = lista_consultorios;

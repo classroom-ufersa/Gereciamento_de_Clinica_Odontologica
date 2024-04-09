@@ -40,7 +40,7 @@ int verificar_autenticidade(Consultorio* lista_consultorios, int digito_u);
 
 /*Funcao que imprime os consultorios disponiveis,
   Recebe como parametro um ponteiro de consultorio*/
-void imprimir_consultorios_Disponiveis(Consultorio* lista); 
+void imprimir_consultorios_Disponiveis(Consultorio* lista, struct Paciente* lista_paciente);
 
 /*Funcao que salva os consultorios cadastrados e pacientes em um arquivo,
   Recebe como parametros uma lista de consultorios*/
