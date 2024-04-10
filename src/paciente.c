@@ -118,26 +118,6 @@ printf("***===Lista de Pacientes atendidos===***\n");
     }
 }
 
-void arquivo_atendidos(Lista_Atendidos*lista){
-    FILE*atendidos;
-    Lista_Atendidos*lista_completa=lista;
-    atendidos = fopen("lista_atendidos.txt", "w+"); 
-    if (atendidos == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-    fprintf(atendidos, "====Banco de dados dos pacientes atendidos.=====\n");
-    while (lista_completa!=NULL) { 
-    fprintf(atendidos, "Paciente:\n");
-    fprintf(atendidos, "Nome: %s\n", lista_completa->paciente_atendido->nome);
-    fprintf(atendidos, "Idade: %d\n", lista_completa->paciente_atendido->idade);
-    fprintf(atendidos, "Situacao de saude: %s\n", lista_completa->paciente_atendido->situacao_saude);
-    fprintf(atendidos, "Digito Unico: %d\n", lista_completa->paciente_atendido->digito_unico);
-    lista_completa=lista_completa->proximo;
-    fprintf(atendidos, "\n");
-    }
-    fclose(atendidos);
-}
 
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos) {
     if (*lista == NULL) {

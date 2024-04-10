@@ -45,10 +45,6 @@ Lista_geral* adicionar_paciente_geral(Lista_geral* lista_geral, Paciente* pacien
   Recebe como parametro uma lista de pacientes atendidos*/
 void imprimir_atendidos(Lista_Atendidos*lista); 
 
-/*Funcao que coloca os pacientes atendidos em uma lista,
-  Recebe como parametro uma lista*/
-void arquivo_atendidos(Lista_Atendidos*lista); 
-
 /*Funcao que remove um paciente do inicio da lista e adiciona a lista de atendidos, 
   Recebe como parametros a lista e a lista de atendidos*/
 void remover_paciente_por_fila(Lista_geral **lista, Lista_Atendidos **lista_atendidos);

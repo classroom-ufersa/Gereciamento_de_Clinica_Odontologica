@@ -130,7 +130,6 @@ int main() {
             case '8': {
                 imprimir_gerais(lista_geral);
                 imprimir_atendidos(lista_atendidos);
-                arquivo_atendidos(lista_atendidos);
                 limpar_buffer();
                 break;
             }
