@@ -69,7 +69,7 @@ int main() {
                      }   
                     if (escolha == '1') {
                     remover_paciente_por_fila(&lista_geral, &lista_atendidos);
-                    arquivo_atendidos(lista_atendidos);
+                    
                             }
                   limpar_buffer();
                      break;
