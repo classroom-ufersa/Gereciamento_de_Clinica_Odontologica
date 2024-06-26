@@ -15,8 +15,8 @@ Projeto de  um sistema na Linguagem C para gerenciamento de uma Clínica Odontol
 > [Desenvolvimento](#desenvolvimento)
 > 
 > [Organização do repositório](#organização-do-repositório)
-> 
-> [Compilação e execução](#compilação-e-execução)
+>
+
 ***
 
 ## **Introdução**
@@ -265,12 +265,3 @@ void tratamento_da_var_equipamentos(char *palavra_var);
 │
 └───README.md
 ```
-
-## Compilação e Execução do projeto
-### Pré-Requisitos
-Certifique-se de que você possui um compilador C instalado. Recomendamos o uso do [GCC](https://gcc.gnu.org/) para compilar o código.
-
-### Compilação do código
-
-
-### Execução do código
